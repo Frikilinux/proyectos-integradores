@@ -1,8 +1,56 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
-
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;700;900&display=swap);
 * {
   /* border: 1px dashed red; */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: calc(50px + 1vw);
+  padding: 0 5%;
+  background-color: rgb(47, 51, 51);
+}
+
+.header__logo {
+  height: 60%;
+}
+
+.navbar {
+  align-items: center;
+  display: flex;
+  width: 40%;
+  gap: 40px;
+  justify-content: flex-end;
+}
+
+.navbar__menu {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  gap: 10%;
+}
+
+.menu__link a {
+  color: beige;
+  /* font-size: 1.2rem; */
+  font-weight: 300;
+}
+
+.navbar__cart {
+  color: beige;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  background-color: aquamarine;
 }
