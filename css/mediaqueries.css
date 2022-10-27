@@ -1,0 +1,44 @@
+@media (max-width: 520px) {
+  .navbar__label {
+    display: flex;
+    color:var(--fg3);
+    cursor: pointer;
+    color: beige;
+  }
+
+  .navbar {
+    order: 1;
+    width: unset;
+  }
+
+  .logo {
+    order: 2;
+    height: 40%;
+  }
+
+  .cart {
+    order: 3;
+  }
+
+  #menu-toggle:checked + .menu {
+    display: flex;
+  }
+
+  .menu {
+    align-items: center;
+    box-shadow: 0px 40px 30px -30px var(--bg_p);
+    background: rgba(24, 7, 7, 0.548); 
+    border-radius: 0px 0px 10px 10px;
+    display: none;
+    flex-direction: column;
+    gap: 25px;
+    left: 5%;
+    opacity: 0.96;
+    padding: 1.5rem;
+    position: absolute;
+    right: 5%;
+    top: calc(50px + 1vw);
+    width: 90%;
+    z-index: 5;
+  }
+}
