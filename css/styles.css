@@ -56,10 +56,20 @@
   font-weight: 600;
 }
 
-.cart {
+.btn {
+  color: beige;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(179, 40, 192);
+}
+
+
+/* .cart {
   font-size: 0.9rem;
   color: beige;
-}
+} */
 
 .main {
   height: 100vh;
