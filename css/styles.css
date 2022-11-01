@@ -1,5 +1,12 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
-@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;700;900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;700;900&display=swap);
+
+:root {
+  --background: #333;
+  --fg1: #d6d6d6;
+  --fg2: #1d1d1f;
+  --bg-btn: #fa243c;
+}
 
 * {
   /* border: 1px dashed red; */
@@ -16,9 +23,9 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: calc(50px + 1vw);
+  height: calc(45px + 1vw);
   padding: 0 5%;
-  background-color: rgb(47, 51, 51);
+  background-color: #333;
 }
 
 .logo {
@@ -35,7 +42,7 @@
 
 #menu-toggle,
 .navbar__label {
-  color: beige;
+  color: var(--fg1);
   display: none;
 }
 
@@ -47,7 +54,7 @@
 }
 
 .menu__link {
-  color: beige;
+  color: var(--fg1);
   /* font-size: 1.2rem; */
   font-weight: 300;
 }
@@ -57,12 +64,17 @@
 }
 
 .btn {
-  color: beige;
+  font-weight: 500;
+  color: var(--fg1);
   border: none;
-  padding: 5px 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: rgb(179, 40, 192);
+  padding: 3px 8px;
+  border-radius: 15px;
+  /* cursor: pointer; */
+  background-color: var(--bg-btn);
+}
+
+.header__login .fa-user {
+  display: none;
 }
 
 

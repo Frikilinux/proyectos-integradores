@@ -13,11 +13,19 @@
 
   .logo {
     order: 2;
-    height: 40%;
+    height: 45%;
   }
 
-  .btn {
+  .header__login {
     order: 3;
+  }
+
+  .header__login .btn {
+    display: none;
+  }
+
+  .header__login .fa-user {
+    display: flex;
   }
 
   #menu-toggle:checked + .menu {
