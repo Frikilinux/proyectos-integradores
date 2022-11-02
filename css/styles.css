@@ -3,7 +3,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap);
 :root {
-  --background: #333;
+  --bg: #333;
   --fg1: #d6d6d6;
   --fg2: #1d1d1f;
   --bg-btn: #fa243c;
@@ -26,7 +26,7 @@
   width: 100%;
   height: calc(45px + 1vw);
   padding: 0 5%;
-  background-color: #333;
+  background-color: var(--bg);
 }
 
 .logo {
@@ -150,4 +150,100 @@
   background-color: #fa243c;
   height: 15vh;
   width: 300px;
+}
+
+.albums {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 50px;
+}
+
+.albums__release {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  height: 430px;
+  border-radius: 15px;
+  box-shadow: 0px 24px 35px -15px #151A4140;
+}
+
+.release__img {
+  /* border: 1px solid var(--bg); */
+  background: url(../assets/img/twennies_dragonette.jpg) no-repeat center/cover;
+  height: 80%;
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.format {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 80%;
+  width: 50px;
+  padding: 5px;
+  background-color: #1d1d1f9c;
+  backdrop-filter: blur(10px);
+  border-radius: 10px 0 0 10px;
+}
+
+.format .format-img {
+  width: 80%;
+}
+
+.release__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  height: 20%;
+  width: 100%;
+  background-color: var(--bg);
+}
+
+.release__data {
+  height: 100%;
+  color: var(--fg1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.release__data .album-name {
+  font-size: 1.2rem;
+  font-family: 'Montserrat';
+  font-weight: 500;
+}
+.release__data .artist {
+  font-size: 0.8rem;
+  font-family: 'Montserrat';
+  font-weight: 300;
+}
+.release__data .date {
+  font-size: .5rem;
+  font-family: 'Montserrat';
+  font-weight: 300;
+}
+
+.release__price {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.release__price .price {
+  font-size: 1.3rem;
+  color: var(--fg1);
+  font-family: 'Montserrat';
+  font-weight: 600;
+
 }
