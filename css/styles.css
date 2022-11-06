@@ -3,10 +3,12 @@
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap);
 :root {
-  --bg: #333;
-  --fg1: #d6d6d6;
+  --bg: #2B2D42;
+  --bg2: #8D99AE;
+  --fg1: #EDF2F4;
   --fg2: #1d1d1f;
-  --bg-btn: #fa243c;
+  --red: #EF233C;
+  --bg-btn: #D90429;
 }
 
 * {
@@ -17,6 +19,14 @@
   text-decoration: none;
   list-style: none;
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  /* text-decoration: none; */
 }
 
 .header {
@@ -48,6 +58,7 @@
 }
 
 .menu {
+  color: var(--fg1);
   width: 100%;
   justify-content: center;
   display: flex;
@@ -55,8 +66,6 @@
 }
 
 .menu__link {
-  color: var(--fg1);
-  /* font-size: 1.2rem; */
   font-weight: 300;
 }
 
@@ -64,29 +73,46 @@
   font-weight: 600;
 }
 
+#user-toggle,
+.user__label {
+  color: var(--fg1);
+  display: none;
+}
+
 .btn {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--fg1);
   border: none;
-  padding: 3px 8px;
-  border-radius: 15px;
-  /* cursor: pointer; */
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
   background-color: var(--bg-btn);
+}
+
+.header__user {
+  color: var(--fg1);
+  display: flex;
+  width: 25%;
+  min-width: 200px;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /* .btn:hover {
   scale: 1.5;
 } */
 
-.header__login .fa-user {
+/* .header__login .fa-user {
   display: none;
-}
+} */
 
 
 /* .cart {
   font-size: 0.9rem;
   color: beige;
 } */
+
+/* Main main */
 
 .main {
   /* height: 100vh; */
@@ -98,13 +124,19 @@
   background-color: var(--fg1);
 }
 
+container {
+  max-width: 1200px;
+}
+
+/* Section Hero */
+
 .hero {
   width: 100%;
-  /* max-width: 1200px; */
-  height: calc(100vh - (45px + 1vw));
+  /* height: calc(100vh - (45px + 1vw)); */
   padding: 5%;
+  background-color: var(--bg2);
   /* background: url(../assets/img/headphone.jpg) no-repeat center/cover; */
-  background: url(../assets/img/back.jpg) no-repeat right/cover;
+  /* background: url(../assets/img/back.jpg) no-repeat right/cover; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,6 +184,8 @@
   width: 300px;
 }
 
+/* Cards albums */
+
 .albums {
   display: flex;
   align-items: center;
@@ -160,19 +194,22 @@
 }
 
 .albums__release {
+  background: url(../assets/img/twennies_dragonette.jpg) no-repeat center/cover;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px;
-  height: 430px;
-  border-radius: 15px;
-  box-shadow: 0px 24px 35px -15px #151A4140;
+  width: 300px;
+  height: 300px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 24px 35px -15px #151A4169;
 }
 
 .release__img {
-  /* border: 1px solid var(--bg); */
+  border: 1px solid var(--bg);
   background: url(../assets/img/twennies_dragonette.jpg) no-repeat center/cover;
-  height: 80%;
+  height: 100%;
   width: 100%;
   border-radius: 15px 15px 0 0;
   display: flex;
@@ -181,11 +218,14 @@
 }
 
 .format {
+  position: absolute;
+  top: 50px;
+  right: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 80%;
+  height: 50%;
   width: 50px;
   padding: 5px;
   background-color: #1d1d1f9c;
@@ -198,13 +238,16 @@
 }
 
 .release__info {
+  position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 8px 10px;
   height: 20%;
   width: 100%;
-  background-color: var(--bg);
+  bottom: 0;
+  backdrop-filter: blur(8px);
+  background-color: #2b2d42ab;
 }
 
 .release__data {
@@ -217,17 +260,17 @@
 }
 
 .release__data .album-name {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: 'Montserrat';
   font-weight: 500;
 }
 .release__data .artist {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-family: 'Montserrat';
   font-weight: 300;
 }
 .release__data .date {
-  font-size: .5rem;
+  font-size: 0.5rem;
   font-family: 'Montserrat';
   font-weight: 300;
 }
@@ -241,9 +284,13 @@
 }
 
 .release__price .price {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: var(--fg1);
   font-family: 'Montserrat';
   font-weight: 600;
 
+}
+
+.btn--buy {
+  font-size: 0.7rem;
 }

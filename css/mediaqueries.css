@@ -16,23 +16,20 @@
     height: 45%;
   }
 
-  .header__login {
+  .user__label {
     order: 3;
   }
 
-  .header__login .btn {
+  .header__user {
     display: none;
-  }
-
-  .header__login .fa-user {
-    display: flex;
   }
 
   #menu-toggle:checked + .menu {
     display: flex;
   }
 
-  .menu {
+  .menu,
+  .header__user {
     align-items: center;
     box-shadow: 0px 40px 30px -30px var(--bg_p);
     background: rgba(24, 7, 7, 0.548); 
@@ -48,5 +45,33 @@
     top: calc(50px + 1vw);
     width: 90%;
     z-index: 5;
+    backdrop-filter: blur(20px);
   }
+
+  .user__label {
+    display: flex;
+  }
+
+  #user-toggle:checked + .header__user {
+    display: flex;
+  }
+
+  /* .header__user {
+    align-items: center;
+    box-shadow: 0px 40px 30px -30px var(--bg_p);
+    background: rgba(24, 7, 7, 0.548); 
+    border-radius: 0px 0px 10px 10px;
+    display: none;
+    flex-direction: column;
+    gap: 25px;
+    left: 5%;
+    opacity: 0.96;
+    padding: 1.5rem;
+    position: absolute;
+    right: 5%;
+    top: calc(50px + 1vw);
+    width: 90%;
+    z-index: 5;
+    backdrop-filter: blur(20px);
+  } */
 }
