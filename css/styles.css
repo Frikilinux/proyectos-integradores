@@ -96,6 +96,7 @@ a:active {
   min-width: 200px;
   justify-content: space-evenly;
   align-items: center;
+  width: 90%;
 }
 
 /* .btn:hover {
@@ -124,46 +125,81 @@ a:active {
   background-color: var(--fg1);
 }
 
-container {
+/* All sections container */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-width: 1200px;
+  width: 90%;
 }
 
 /* Section Hero */
-
 .hero {
   width: 100%;
   /* height: calc(100vh - (45px + 1vw)); */
-  padding: 5%;
+  /* padding: 5% 0; */
+  /* margin: auto; */
   background-color: var(--bg2);
-  /* background: url(../assets/img/headphone.jpg) no-repeat center/cover; */
-  /* background: url(../assets/img/back.jpg) no-repeat right/cover; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.container--hero {
+  height: calc(150px + 15vw);
+  max-height: 410px;
+}
+
 .hero__text {
-  /* width: 80%; */
-  background-color: rgba(0, 0, 0, 0.312);
-  border-radius: 20px;
+  width: 60%;
+  /* background-color: rgba(0, 0, 0, 0.312); */
+  /* border-radius: 20px; */
   padding: 40px;
   max-width: 1200px;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
 }
 
 .hero__text h1 {
-  color: var(--fg1);
-  font-size: calc(1rem + 2vw);
+  color: var(--fg2);
+  font-size: 2.5rem;
   font-family: 'Montserrat', sans-serif;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .hero__text h2 {
-  font-size: calc(0.5rem + 1.5vw);
-  color: var(--fg1);
+  font-size: 1.8rem;
+  color: var(--fg2);
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
-  text-align: center;
+  /* text-align: center; */
+}
+
+.hero__img {
+  background: url(../assets/img/listen_man.png) no-repeat center/cover;
+  height: 100%;
+  width: 50%;
+  max-width: 510px;
+  /* width: 510px; */
+}
+
+.hero__facts {
+  width: 400px;
+  display: flex;
+  gap: 30px;
+  /* justify-content: center; */
+}
+
+.facts__info {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.facts__count {
+  font-size: 3rem;
 }
 
 .shorts {
@@ -184,23 +220,97 @@ container {
   width: 300px;
 }
 
-/* Cards albums */
+/* New releases Section */
 
-.albums {
+.new-release {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 50px;
+  justify-content: center;
+  width: 100%;
+  background-color: #1d1d1f;
 }
 
+.container--new-release {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  color: var(--fg1);
+  width: 90%;
+}
+
+.container--new-release h2 {
+  color: var(--red);
+  text-align: center;
+  font-size: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.new-release__albums {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.album__launch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+}
+
+.album__launch .position {
+  color: var(--bg2);
+  position: absolute;
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-size: 8rem;
+  font-weight: 900;
+  width: 70%;
+  text-shadow: 1px 1px 15px  var(--fg2);
+}
+
+.album__launch .album {
+  position: absolute;
+  right: 0px;
+  background: url(../assets/img/twennies_dragonette.jpg) no-repeat center/cover;
+  height: 70%;
+  width: 70%;
+}
+
+
+
+
+/* Abums Section */
+
+.albums {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--fg1);
+}
+
+.container--albums {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  justify-content: space-around;
+  align-content: center;
+  padding: 50px 0;
+  flex-wrap: wrap;
+}
+
+/* Cards albums */
 .albums__release {
   background: url(../assets/img/twennies_dragonette.jpg) no-repeat center/cover;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 0px 24px 35px -15px #151A4169;
@@ -219,14 +329,14 @@ container {
 
 .format {
   position: absolute;
-  top: 50px;
+  top: 40px;
   right: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
   height: 50%;
-  width: 50px;
+  width: 40px;
   padding: 5px;
   background-color: #1d1d1f9c;
   backdrop-filter: blur(10px);
@@ -243,7 +353,7 @@ container {
   justify-content: space-between;
   align-items: center;
   padding: 8px 10px;
-  height: 20%;
+  height: 25%;
   width: 100%;
   bottom: 0;
   backdrop-filter: blur(8px);
@@ -293,4 +403,8 @@ container {
 
 .btn--buy {
   font-size: 0.7rem;
+}
+
+.btn--buy:hover {
+  transform: scale(1.1);
 }
