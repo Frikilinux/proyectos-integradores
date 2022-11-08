@@ -184,7 +184,7 @@ a:active {
 }
 
 .hero__facts {
-  width: 400px;
+  width: 450px;
   display: flex;
   gap: 30px;
   /* justify-content: center; */
@@ -226,7 +226,7 @@ a:active {
   display: flex;
   justify-content: center;
   width: 100%;
-  background-color: #1d1d1f;
+  background-color: #687c5b;
 }
 
 .container--new-release {
@@ -240,7 +240,7 @@ a:active {
 }
 
 .container--new-release h2 {
-  color: var(--red);
+  color: var(--fg2);
   text-align: center;
   font-size: 2rem;
   font-family: 'Montserrat', sans-serif;
@@ -262,7 +262,7 @@ a:active {
 }
 
 .album__launch .position {
-  color: var(--bg2);
+  color: #bac931;
   position: absolute;
   font-family: 'Montserrat';
   font-style: italic;
@@ -281,15 +281,13 @@ a:active {
 }
 
 
-
-
 /* Abums Section */
 
 .albums {
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: var(--fg1);
+  background-color: #1e2031;
 }
 
 .container--albums {
