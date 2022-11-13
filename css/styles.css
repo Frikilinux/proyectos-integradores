@@ -39,6 +39,20 @@ a:active {
   background-color: var(--bg);
 }
 
+.isotipo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 5%;
+}
+
+.brand {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: var(--fg1);
+  font-size: 2rem;
+}
+
 .logo {
   height: 60%;
 }
@@ -62,7 +76,7 @@ a:active {
   width: 100%;
   justify-content: center;
   display: flex;
-  gap: 10%;
+  gap: 8%;
 }
 
 .menu__link {
@@ -96,7 +110,6 @@ a:active {
   min-width: 200px;
   justify-content: space-evenly;
   align-items: center;
-  width: 90%;
 }
 
 /* .btn:hover {
@@ -126,7 +139,7 @@ a:active {
 }
 
 /* All sections container */
-.container {
+.container__hero {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,6 +150,7 @@ a:active {
 /* Section Hero */
 .hero {
   width: 100%;
+  /* height: 100vh; */
   /* height: calc(100vh - (45px + 1vw)); */
   /* padding: 5% 0; */
   /* margin: auto; */
@@ -155,7 +169,7 @@ a:active {
   width: 60%;
   /* background-color: rgba(0, 0, 0, 0.312); */
   /* border-radius: 20px; */
-  padding: 40px;
+  padding: 30px;
   max-width: 1200px;
   /* backdrop-filter: blur(10px); */
 }
