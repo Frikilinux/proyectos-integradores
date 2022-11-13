@@ -216,18 +216,6 @@ a:active {
   font-size: 3rem;
 }
 
-.shorts {
-  max-width: 1200px;
-  width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  min-height: calc(20vh);
-  gap: 30px;
-  padding: 20px;
-}
-
 .shorts__link {
   background-color: #fa243c;
   height: 15vh;
@@ -250,7 +238,7 @@ a:active {
   justify-content: center;
   padding: 20px 0;
   color: var(--fg1);
-  width: 90%;
+  width: 100%;
 }
 
 .container--new-release h2 {
@@ -263,7 +251,9 @@ a:active {
 
 .new-release__albums {
   display: flex;
-  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
   align-items: center;
 }
 
@@ -308,7 +298,7 @@ a:active {
   display: flex;
   align-items: center;
   gap: 50px;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-content: center;
   padding: 50px 0;
   flex-wrap: wrap;

@@ -13,6 +13,7 @@
       padding: 10px;
       text-align: center;
       display: flex;
+      gap: 10px;
       flex-direction: column;
       align-items: center;
       width: 80%;
@@ -40,9 +41,9 @@
     display: none;
   }
 
-  .logo {
+  .isotipo {
     order: 2;
-    height: 45%;
+    /* height: 45%; */
   }
 
   .user__label {
