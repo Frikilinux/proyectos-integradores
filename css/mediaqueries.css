@@ -6,11 +6,13 @@
     }
 
     .hero__img {
-      min-height: 250px;
+      width: 90%;
+      max-width: 430px;
+      min-height: calc(150px + 13vw);
     }
 
     .hero__text {
-      padding: 10px;
+      padding: 15px 0;
       text-align: center;
       display: flex;
       gap: 10px;
@@ -22,6 +24,9 @@
     .hero__facts {
       width: unset;
       text-align: left;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 3vw;
     }
 }  
 @media (max-width: 576px) {
@@ -84,6 +89,18 @@
 
   #user-toggle:checked + .header__user {
     display: flex;
+  }
+
+  .hero__text {
+    width: 90%;
+  }
+
+  .facts__count {
+    font-size: 2.5rem;
+  }
+
+  .facts__text {
+    font-size: 0.8rem ;
   }
 
   /* .header__user {
