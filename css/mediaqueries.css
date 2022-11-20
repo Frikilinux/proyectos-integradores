@@ -28,6 +28,27 @@
       flex-wrap: wrap;
       gap: 3vw;
     }
+
+    .container__contact {
+      flex-direction: column;
+    }
+
+    .contact__form {
+      width: 90%;
+    }
+
+    .separator {
+      width: 70%;
+      /* border: 1px solid var(--fg1); */
+    }
+
+    .contact__data {
+      width: 90%;
+      flex-direction: row;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+    
 }  
 @media (max-width: 576px) {
   .navbar__label {
@@ -102,6 +123,24 @@
   .facts__text {
     font-size: 0.8rem ;
   }
+
+  .footer {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer__company {
+    width: 80%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__network {
+    width: 80%;
+    align-items: center;
+  }
+
+
 
   /* .header__user {
     align-items: center;
