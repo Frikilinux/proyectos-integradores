@@ -38,7 +38,8 @@
     }
 
     .separator {
-      width: 70%;
+      width: 230px;
+      height: unset;
       /* border: 1px solid var(--fg1); */
     }
 
@@ -103,7 +104,7 @@
     padding: 1.5rem;
     position: absolute;
     right: 5%;
-    top: calc(50px + 1vw);
+    top: calc(45px + 1vw);
     width: 90%;
     z-index: 5;
     backdrop-filter: blur(20px);
@@ -146,6 +147,7 @@
   }
 
   .login {
+    justify-content: center;
     width: 90%;
   }
 

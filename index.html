@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/mediaqueries.css">
+  <link rel="stylesheet" href="./css/animations.css">
   <title>ZMusic</title>
 </head>
 <body>
@@ -19,17 +20,17 @@
       <label for="menu-toggle" class="navbar__label">
         <i class="fas fa-bars"></i>
       </label>
-      <input type="checkbox" id="menu-toggle">
+      <input type="checkbox" id="menu-toggle" name="toggle">
 
       <ul class="menu">
         <li class="menu__item">
           <a class="menu__link link--home" href="#">Home</a>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#last">Latest</a>
+          <a class="menu__link" href="#albums">Nuevos</a>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#offers">Offers</a>
+          <a class="menu__link" href="#contact">contact</a>
         </li>
       </ul>
     </nav>
@@ -37,16 +38,20 @@
     <label for="user-toggle" class="user__label">
       <i class="fas fa-user"></i>
     </label>
-    <input type="checkbox" id="user-toggle">
+    <input type="checkbox" id="user-toggle" name="toggle">
     <div class="header__user">
-      <a href="./pages/login.html" class="login">Acceder</a>
-      <a href="./pages/regiter.html" class="header__login">
+      <a href="./pages/login.html" class="header__login">Acceder</a>
+      <a href="./pages/register.html" class="header__register">
         <button class="btn">Registrate gratis</button>
       </a>
     </div>
   </header>
 
   <main class="main">
+
+    <a class="back__btn btn--up" href="#">
+      <i class="fa-solid fa-arrow-up"></i>
+    </a>
 
     <section id="hero" class="hero">
       <div class="container__hero container--hero">

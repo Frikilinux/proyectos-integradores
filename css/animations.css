@@ -1,0 +1,9 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(45px + 1vw);
+}
+
+.btn:hover,
+.back__btn:hover {
+  transform: scale(1.1);
+}
