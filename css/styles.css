@@ -94,6 +94,7 @@ a:active {
 }
 
 .btn {
+  text-align: center;
   font-weight: 600;
   color: var(--fg1);
   border: none;
@@ -101,6 +102,10 @@ a:active {
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--bg-btn);
+}
+
+.btn:hover {
+  transform: scale(1.1);
 }
 
 .header__user {
@@ -129,6 +134,7 @@ a:active {
 /* Main main */
 
 .main {
+  position: relative;
   /* height: 100vh; */
   align-items: center;
   display: flex;
@@ -408,7 +414,7 @@ a:active {
   font-size: 0.7rem;
 }
 
-.btn--buy:hover {
+.btn:hover {
   transform: scale(1.1);
 }
 
@@ -514,7 +520,7 @@ a:active {
 
 .separator {
   /* padding: 25px; */
-  height: 95%;
+  height: 75%;
   border: 1px solid var(--fg1);
 }
 
@@ -596,4 +602,15 @@ a:active {
 .social-icons i {
   font-size: 2rem;
   padding: 10px;
+}
+
+.back--btn {
+  font-weight: 600;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  border-radius: 50%;
+  padding: 15px;
 }

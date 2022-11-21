@@ -1,42 +1,59 @@
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
-@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;700;900&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap);
-:root {
-  --bg: #2B2D42;
-  --bg2: #8D99AE;
-  --fg1: #EDF2F4;
-  --fg2: #1d1d1f;
-  --red: #EF233C;
-  --bg-btn: #D90429;
-}
-
-* {
-  /* border: 1px dashed red; */
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style: none;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
 .main {
   /* height: 100vh; */
   align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
   min-height: 100vh;
   background-color: var(--fg2);
-  padding: 0 0;
 }
 
 .login {
-  height: 400px;
+  /* height: 400px; */
+  padding: 20px;
+  gap: 20px;
   width: 60%;
+  height: auto;
   background-color: #8D99AE;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+}
 
+.login__inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  gap: 20px;
+  min-width: 300px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.form__input {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--bg);
+  color: #fff;
+  outline: none;
+  border: none;
+}
+
+.input {
+  padding: 0 0 0 15px;
+  background-color: var(--bg);
+  border: none;
+  outline: none;
+}
+
+.login__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
 }

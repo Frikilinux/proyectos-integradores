@@ -4,12 +4,39 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/login.css">
-  <title>Regitrarse</title>
+  <link rel="stylesheet" href="../css/mediaqueries.css">
 </head>
 <body>
   <main class="main">
+    <a class="btn back--btn" href="/">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
     <section id="login" class="login">
+      <div class="login__inputs">
+        <h1>Accede con tu mail</h1>
+        <form class="form" action="">
+          <div class="form__input">
+            <label for="mail" >
+              <i class="fa-solid fa-at"></i>
+            </label>
+            <input type="email" id="mail" placeholder="email" name="login-mail" class="input">
+          </div>
+          <div class="form__input">
+            <label for="psss">
+              <i class="fa-solid fa-lock"></i>
+            </label>
+            <input type="password" id="pass" name="login-pass" class="input">
+          </div>
+          <input type="submit" id="send" class="btn" value="Acceder">
+        </form>
+      </div>
+      <div class="separator"></div>
+      <div class="login__brand">
+        <img src="../assets/img/logo.svg" alt="">
+        <p>zmusic</p>
+      </div>
 
     </section>
   </main>

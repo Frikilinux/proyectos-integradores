@@ -48,6 +48,11 @@
       justify-content: space-evenly;
       flex-wrap: wrap;
     }
+
+    .login {
+      flex-direction: column;
+      width: 70%;
+    }
     
 }  
 @media (max-width: 576px) {
@@ -138,6 +143,10 @@
   .footer__network {
     width: 80%;
     align-items: center;
+  }
+
+  .login {
+    width: 90%;
   }
 
 
