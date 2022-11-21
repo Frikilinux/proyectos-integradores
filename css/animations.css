@@ -6,4 +6,21 @@ html {
 .btn:hover,
 .back__btn:hover {
   transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn,
+.back__btn {
+  transition: all 0.3s ease-in-out;
+}
+
+.format {
+  transform: translate(100%);
+  transition: all 0.7s ease-in-out;
+}
+
+.albums__release:hover > .format {
+  /* backdrop-filter: blur(10px); */
+  transform: translate(0%);
+  transition: all 0.7s ease-in-out;
 }
