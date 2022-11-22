@@ -182,16 +182,16 @@ a:active {
 }
 
 .container--hero {
-  height: calc(150px + 15vw);
+  height: calc(250px + 15vw);
   max-height: 410px;
 }
 
 .hero__text {
-  width: 60%;
+  width: 50%;
   /* background-color: rgba(0, 0, 0, 0.312); */
   /* border-radius: 20px; */
-  padding: 30px;
-  max-width: 1200px;
+  /* padding: 30px; */
+  /* max-width: 1200px; */
   /* backdrop-filter: blur(10px); */
 }
 
@@ -211,8 +211,9 @@ a:active {
 }
 
 .hero__img {
+  align-self: flex-end;
   background: url(../assets/img/listen_man.png) no-repeat center/cover;
-  height: 100%;
+  height: 85%;
   width: 50%;
   max-width: 510px;
   /* width: 510px; */
@@ -362,13 +363,23 @@ a:active {
   justify-content: space-evenly;
   height: 50%;
   width: 40px;
-  padding: 5px;
+  /* padding: 5px; */
   background-color: #1d1d1f9c;
   border-radius: 8px 0 0 8px;
 }
 
 .format .format-img {
   width: 80%;
+}
+
+.img-select {
+  text-align: center;
+  width: 100%;
+  padding: 3px;
+}
+
+.img-select:hover {
+  background-color: #D90429;
 }
 
 .release__info {
