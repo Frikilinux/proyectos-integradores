@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/forms.css">
   <link rel="stylesheet" href="./css/mediaqueries.css">
   <link rel="stylesheet" href="./css/animations.css">
   <title>ZMusic</title>
@@ -22,7 +23,7 @@
       </label>
       <input type="checkbox" id="menu-toggle" name="toggle">
 
-      <ul class="menu">
+      <ul class="menu trans-5">
         <li class="menu__item">
           <a class="menu__link link--home" href="#">Home</a>
         </li>
@@ -39,7 +40,7 @@
       <i class="fas fa-user"></i>
     </label>
     <input type="checkbox" id="user-toggle" name="toggle">
-    <div class="header__user">
+    <div class="header__user trans-5">
       <a href="./pages/login.html" class="header__login">Acceder</a>
       <a href="./pages/register.html" class="header__register">
         <button class="btn">Registrate gratis</button>
@@ -128,6 +129,114 @@
 
     <section id="albums" class="albums">
       <div class="container container--albums">
+        <div class="albums__release release--img1">
+          <div class="format">
+            <div class="img-select trans-5">
+              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
+            </div>
+          </div>
+          <div class="release__info">
+            <div class="release__data">
+              <p class="album-name">Tapestry of Life</p>
+              <p class="artist">Natural Lateral</p>
+              <p class="tracks">6 pistas (38:23)</p>
+            </div>
+            <div class="release__price">
+              <p class="price">$ 1500</p>
+              <button class="btn--buy btn">
+                Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="albums__release release--img2">
+          <div class="format">
+            <div class="img-select trans-5">
+              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
+            </div>
+          </div>
+          <div class="release__info">
+            <div class="release__data">
+              <p class="album-name">Spoon</p>
+              <p class="artist">Grace Kelly</p>
+              <p class="tracks">9 pistas (39:00)</p>
+            </div>
+            <div class="release__price">
+              <p class="price">$ 1650</p>
+              <button class="btn--buy btn">
+                Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="albums__release release--img3">
+          <div class="format">
+            <div class="img-select trans-5">
+              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
+            </div>
+          </div>
+          <div class="release__info">
+            <div class="release__data">
+              <p class="album-name">All Stars Aligned</p>
+              <p class="artist">Bravé</p>
+              <p class="tracks">6 tracks (16:22)</p>
+            </div>
+            <div class="release__price">
+              <p class="price">$ 1100</p>
+              <button class="btn--buy btn">
+                Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="albums__release release--img4">
+          <div class="format">
+            <div class="img-select trans-5">
+              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
+            </div>
+            <div class="img-select trans-5">
+              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
+            </div>
+          </div>
+          <div class="release__info">
+            <div class="release__data">
+              <p class="album-name">Endless Era</p>
+              <p class="artist">Chino Corvalán</p>
+              <p class="tracks">10 pistas (50:49)</p>
+            </div>
+            <div class="release__price">
+              <p class="price">$ 1699</p>
+              <button class="btn--buy btn">
+                Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="albums__release">
           <div class="format">
             <div class="img-select trans-5">
@@ -144,7 +253,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -171,7 +280,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -198,7 +307,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -225,7 +334,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -252,7 +361,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -279,7 +388,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -306,7 +415,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -333,115 +442,7 @@
             <div class="release__data">
               <p class="album-name">Twennies</p>
               <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
-            </div>
-            <div class="release__price">
-              <p class="price">$ 9.99</p>
-              <button class="btn--buy btn">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="albums__release">
-          <div class="format">
-            <div class="img-select trans-5">
-              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
-            </div>
-          </div>
-          <div class="release__info">
-            <div class="release__data">
-              <p class="album-name">Twennies</p>
-              <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
-            </div>
-            <div class="release__price">
-              <p class="price">$ 9.99</p>
-              <button class="btn--buy btn">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="albums__release">
-          <div class="format">
-            <div class="img-select trans-5">
-              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
-            </div>
-          </div>
-          <div class="release__info">
-            <div class="release__data">
-              <p class="album-name">Twennies</p>
-              <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
-            </div>
-            <div class="release__price">
-              <p class="price">$ 9.99</p>
-              <button class="btn--buy btn">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="albums__release">
-          <div class="format">
-            <div class="img-select trans-5">
-              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
-            </div>
-          </div>
-          <div class="release__info">
-            <div class="release__data">
-              <p class="album-name">Twennies</p>
-              <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
-            </div>
-            <div class="release__price">
-              <p class="price">$ 9.99</p>
-              <button class="btn--buy btn">
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="albums__release">
-          <div class="format">
-            <div class="img-select trans-5">
-              <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
-            </div>
-            <div class="img-select trans-5">
-              <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
-            </div>
-          </div>
-          <div class="release__info">
-            <div class="release__data">
-              <p class="album-name">Twennies</p>
-              <p class="artist">Dragonette</p>
-              <p class="date">Release 28/10/2022</p>
+              <p class="tracks">Release 28/10/2022</p>
             </div>
             <div class="release__price">
               <p class="price">$ 9.99</p>
@@ -459,12 +460,22 @@
     <section id="contact" class="contact">
       <div class="container__contact container--contact">
           <div class="contact__form">
-            <p class="form__msg">Dejanos un comrntari oo consulta y nos comunicaremos a la brevedad</p>
-          <form class="form" action="#">
-              <input class="input__box" type="text" placeholder="Ingresa tu nombre">
-              <input class="input__box" type="text" placeholder="Ingresa tu correo">
+            <p class="form__msg">Dejanos un comentario o consulta y nos comunicaremos a la brevedad</p>
+          <form class="form">
+              <div class="form__input">
+                <label for="name" >
+                  <i class="fa-solid fa-user"></i>
+                </label>
+                <input id="name" class="input" type="text" placeholder="Ingresa tu nombre" required>
+              </div>
+              <div class="form__input">
+                <label for="mail" >
+                  <i class="fa-solid fa-at"></i>
+                </label>
+                <input id="mail" class="input" type="text" placeholder="Ingresa tu correo" required>
+              </div>
               <!-- <input class="input__box" type="text" placeholder="Escribe tu mensaje"> -->
-              <textarea name="" id=""></textarea>
+              <textarea class="form__input form--textarea" name="" id=""></textarea>
               <input type="submit" value="Enviar" class="btn">
           </form>
         </div>
@@ -503,7 +514,7 @@
           <i class="fab fa-linkedin"></i>
           <i class="fab fa-square-youtube"></i>
         </div>
-        <p>Powered by <span>Heartbeats</span></p>
+      <p>Powered by <span class="p__text">Heartbeats</span></p>
       </div>
 
     </footer>
