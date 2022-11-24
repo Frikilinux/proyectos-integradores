@@ -32,6 +32,16 @@ a:active {
   /* text-decoration: none; */
 }
 
+.header__login:hover,
+.menu__link:hover {
+  color: var(--bg-btn);
+  /* border: 2px solid var(--bg-btn); */
+  border-left: none;
+  border-right: none;
+  padding: 0 5px;
+  /* height: 150%; */
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -108,6 +118,7 @@ a:active {
 
 #user-toggle,
 .user__label {
+  cursor: pointer;
   color: var(--fg1);
   display: none;
 }
@@ -672,6 +683,10 @@ a:active {
 .social-icons i {
   font-size: 2rem;
   padding: 10px;
+}
+
+.social-icons .fab {
+  cursor: pointer;
 }
 
 .back__btn {
