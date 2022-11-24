@@ -391,11 +391,11 @@ a:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  box-shadow: 0px 24px 35px -15px #151A4169;
+  box-shadow: 0px 24px 35px -15px #03040b69;
   overflow: hidden;
 }
 
@@ -434,10 +434,10 @@ a:active {
   justify-content: space-between;
   align-items: center;
   padding: 8px 10px;
-  height: 25%;
+  height: 22%;
   width: 100%;
   bottom: 0;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
   background-color: #2b2d42ab;
 }
 
@@ -448,7 +448,7 @@ a:active {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  max-width: 140px;
+  /* max-width: 140px; */
 }
 
 .release__data .album-name {
