@@ -38,7 +38,7 @@ a:active {
   /* border: 2px solid var(--bg-btn); */
   border-left: none;
   border-right: none;
-  padding: 0 5px;
+  /* padding: 0 5px; */
   /* height: 150%; */
 }
 
@@ -374,27 +374,21 @@ a:active {
   background: url(../assets/img/punisher.jpg) no-repeat center/cover;
 }
 
-.release--img1 {
-  background: url(../assets/img/tapestry_of_life.jpg) no-repeat center/cover;
+.release--img9 {
+  background: url(../assets/img/dream_better.jpg) no-repeat center/cover;
 }
 
-.release--img1 {
-  background: url(../assets/img/tapestry_of_life.jpg) no-repeat center/cover;
+.release--img10 {
+  background: url(../assets/img/atalaya.jpg) no-repeat center/cover;
 }
 
-.release--img1 {
-  background: url(../assets/img/tapestry_of_life.jpg) no-repeat center/cover;
+.release--img11 {
+  background: url(../assets/img/alfa_zulu.jpg) no-repeat center/cover;
 }
 
-.release--img1 {
-  background: url(../assets/img/tapestry_of_life.jpg) no-repeat center/cover;
+.release--img12 {
+  background: url(../assets/img/capricorn_sun.jpg) no-repeat center/cover;
 }
-
-.release--img1 {
-  background: url(../assets/img/tapestry_of_life.jpg) no-repeat center/cover;
-}
-
-
 
 .albums__release {
   /* background: url(../assets/img/twennies_dragonette.jpg) no-repeat center/cover; */
