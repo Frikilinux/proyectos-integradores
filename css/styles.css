@@ -21,7 +21,8 @@
 }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  /* font-weight: 300; */
 }
 
 a,
@@ -35,11 +36,8 @@ a:active {
 .header__login:hover,
 .menu__link:hover {
   color: var(--bg-btn);
-  /* border: 2px solid var(--bg-btn); */
   border-left: none;
   border-right: none;
-  /* padding: 0 5px; */
-  /* height: 150%; */
 }
 
 .header {
@@ -111,7 +109,6 @@ a:active {
 }
 
 .menu__link {
-  font-weight: 300;
 }
 
 .link--home {
@@ -472,6 +469,7 @@ a:active {
 
 .feat__description {
   text-align: center;
+  font-size: 1.15rem;
 }
 
 
@@ -561,6 +559,8 @@ a:active {
 }
 
 .company__logo {
+  font-family: 'Montserrat';
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 10px;
