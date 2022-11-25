@@ -74,6 +74,7 @@
 
   .isotipo {
     order: 2;
+    justify-content: center;
     /* height: 45%; */
   }
 
