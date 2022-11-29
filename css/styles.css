@@ -507,15 +507,6 @@ a:active {
   text-align: center;
 }
 
-.input__box {
-  padding: 5px;
-  border: none;
-  outline: none;
-  border-radius: 7px;
-  height: 30px;
-  width: 90%;
-  background-color: #9ca299;
-}
 .contact__data,
 .contact__data .data {
   display: flex;

@@ -130,6 +130,10 @@
     font-size: 0.8rem ;
   }
 
+  .container__features {
+    gap: 45px;
+  }
+
   .footer {
     padding: 0 1%;
     flex-direction: column;
