@@ -265,52 +265,8 @@ a:active {
 }
 
 /* Cards albums */
-.release--img1 {
-  background: url(../assets/img/tapestry_of_life.jpg) no-repeat center/cover;
-}
-
-.release--img2 {
-  background: url(../assets/img/spoon.jpg) no-repeat center/cover;
-}
-
-.release--img3 {
-  background: url(../assets/img/all_stars_aligned.jpg) no-repeat center/cover;
-}
-
-.release--img4 {
-  background: url(../assets/img/endless_era.jpg) no-repeat center/cover;
-}
-
-.release--img5 {
-  background: url(../assets/img/love_hearted.jpg) no-repeat center/cover;
-}
-
-.release--img6 {
-  background: url(../assets/img/endless_tapes.jpg) no-repeat center/cover;
-}
-
-.release--img7 {
-  background: url(../assets/img/sweet_evil_sun.jpg) no-repeat center/cover;
-}
-
-.release--img8 {
-  background: url(../assets/img/punisher.jpg) no-repeat center/cover;
-}
-
-.release--img9 {
-  background: url(../assets/img/dream_better.jpg) no-repeat center/cover;
-}
-
-.release--img10 {
-  background: url(../assets/img/atalaya.jpg) no-repeat center/cover;
-}
-
-.release--img11 {
-  background: url(../assets/img/alfa_zulu.jpg) no-repeat center/cover;
-}
-
-.release--img12 {
-  background: url(../assets/img/capricorn_sun.jpg) no-repeat center/cover;
+.release-img {
+  height: 300px;
 }
 
 .albums__release {
@@ -376,17 +332,23 @@ a:active {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  /* max-width: 140px; */
 }
 
 .release__data .album-name {
   font-family: 'Montserrat';
   font-weight: 500;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 209px;
 }
 .release__data .artist {
   font-size: 0.7rem;
   font-family: 'Montserrat';
-  font-weight: 300;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 209px;
 }
 .release__data .tracks {
   font-size: 0.5rem;
