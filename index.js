@@ -103,11 +103,13 @@ const changeFilterState = (e) => {
 
 // Aplicar filtro de géneros
 const applyFilter = (e) => {
-  e.target.classList.contains('genre') ? changeFilterState(e) : false;
-  !e.target.dataset.genre
-    ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
-    : (renderAlbumsSection(0, e.target.dataset.genre),
-      (productsController.nextAbumsIndex = 1));
+  e.target.classList.contains('genre')
+    ? !e.target.dataset.genre
+      ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
+      : (changeFilterState(e),
+        renderAlbumsSection(0, e.target.dataset.genre),
+        (productsController.nextAbumsIndex = 1))
+    : false;
 };
 
 const albumsLimit = () => {
