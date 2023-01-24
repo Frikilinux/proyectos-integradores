@@ -29,3 +29,9 @@ html {
 .trans-5 {
   transition: all 0.5s ease-in-out;
 }
+
+.toggle_menu {
+  /* display: flex; */
+  transform: translateY(0%);
+  transition: all 0.5s ease-in-out;
+}

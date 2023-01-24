@@ -49,7 +49,7 @@ a:active {
   justify-content: space-between;
   width: 100%;
   height: calc(45px + 1vw);
-  padding: 0 9%;
+  padding: 0 5%;
 }
 
 .header::before {
@@ -94,13 +94,11 @@ a:active {
   justify-content: flex-end;
 }
 
-.cart__label,
 .navbar__label {
   color: var(--fg1);
   display: none;
 }
 
-.cart__label,
 .menu {
   color: var(--fg1);
   width: 100%;
@@ -116,12 +114,12 @@ a:active {
   font-weight: 600;
 }
 
-#user-toggle,
+/* #user-toggle,
 .user__label {
   cursor: pointer;
   color: var(--fg1);
   display: none;
-}
+} */
 
 .btn {
   /* text-align: center; */
@@ -603,11 +601,7 @@ a:active {
   display: none;
 }
 
-.show_menu {
-  /* display: flex; */
-  transform: translateY(0%);
-  transition: all 0.5s ease-in-out;
-}
+
 
 /* Cart */
 
@@ -667,10 +661,11 @@ a:active {
   position: absolute;
   right: 5%;
   top: calc(45px + 1vw);
-  width: 90%;
+  width: 70%;
   height: calc(50vh - 45px);
-  z-index: 2;
+  z-index: -2;
   backdrop-filter: blur(20px);
-  /* transform: translateY(-100%); */
+  transform: translateY(-150%);
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
 }
+

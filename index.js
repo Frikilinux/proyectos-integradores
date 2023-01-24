@@ -2,6 +2,10 @@ const albumsContainer = document.querySelector('.container--albums');
 const genreConatainer = document.querySelector('.genres');
 const btnGenreList = document.querySelectorAll('.genre');
 const btnLoad = document.querySelector('.btn-load');
+const cartBtn = document.querySelector('.cart__label');
+const cartMenu = document.querySelector('.cart');
+const burgerBtn = document.querySelector('.navbar__label');
+const linksMenu = document.querySelector('.menu');
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -100,7 +104,6 @@ const changeFilterState = (e) => {
 // Aplicar filtro de géneros
 const applyFilter = (e) => {
   e.target.classList.contains('genre') ? changeFilterState(e) : false;
-
   !e.target.dataset.genre
     ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
     : (renderAlbumsSection(0, e.target.dataset.genre),
@@ -118,10 +121,28 @@ const showMoreAlbums = () => {
   albumsLimit() ? btnLoad.classList.add('hidden') : '';
 };
 
+const toggleMenus = (e) => {
+  console.log(e);
+  if (
+    e.target.classList.contains('cart-icon') ||
+    e.target.parentNode.classList.contains('cart-icon')
+  ) {
+    cartMenu.classList.toggle('toggle_menu');
+    linksMenu.classList.remove('toggle_menu');
+    console.log('cartttttt');
+  } else if (e.target.classList.contains('fa-bars')) {
+    linksMenu.classList.toggle('toggle_menu');
+    cartMenu.classList.remove('toggle_menu');
+    console.log('menuuuuuu');
+  }
+};
+
 const init = () => {
   renderAlbumsSection();
   genreConatainer.addEventListener('click', applyFilter);
   btnLoad.addEventListener('click', showMoreAlbums);
+  cartBtn.addEventListener('click', toggleMenus);
+  burgerBtn.addEventListener('click', toggleMenus);
 };
 
 init();
