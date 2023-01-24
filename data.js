@@ -235,6 +235,6 @@ const splitAbums = (size) => {
 
 const productsController = {
   dividedAlbums: splitAbums(6),
-  nextProductsIndex: 1,
-  productsLimit: splitAbums(6).length,
+  nextAlbumsIndex: 1,
+  albumsLimit: splitAbums(6).length,
 };

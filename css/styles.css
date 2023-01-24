@@ -236,7 +236,27 @@ a:active {
 
 /* Abums Section */
 
+.genres {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px;
+}
+
+.genre {
+  font-weight: 600;
+  color: var(--fg);
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--bg2);
+}
+
 .albums {
+  padding: 30px 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -247,7 +267,7 @@ a:active {
 
 .albums__title {
   font-family: 'Montserrat',sans-serif;
-  padding: 50px 0;
+  padding: 10px 0;
   font-size: 2.5rem;
   color: var(--bg);
   text-align: center;
@@ -571,4 +591,13 @@ a:active {
   position: fixed;
   right: 2vw;
   bottom: 2vh;
+}
+
+.active {
+  color: var(--fg1);
+  background-color: var(--bg-btn);
+}
+
+.hidden {
+  display: none;
 }
