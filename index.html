@@ -20,10 +20,9 @@
     </a>
     <nav class="navbar">
       <!-- Menú hamburguesa -->
-      <label for="menu-toggle" class="navbar__label">
+      <div class="navbar__label">
         <i class="fas fa-bars"></i>
-      </label>
-      <input type="checkbox" id="menu-toggle" name="toggle">
+      </div>
 
       <ul class="menu trans-5">
         <li class="menu__item">
@@ -38,10 +37,39 @@
         <li class="menu__item">
           <a class="menu__link trans-5" href="#contact">Contacto</a>
         </li>
+        <li class="menu__item">
+          <a href="./pages/login.html" class="header__login trans-5">Acceder</a>
+        </li>
+        <li class="menu__item">
+          <a href="./pages/register.html" class="header__register">
+            <button class="btn">Registrate gratis</button>
+          </a>
+        </li>
       </ul>
+      
+
     </nav>
 
-    <label for="user-toggle" class="user__label">
+    <div class="cart__label">
+      <i class="fa-solid fa-cart-shopping cart-icon">
+        <div class="cart-bubble">0</div>
+      </i>
+    </div>
+
+    <div class="cart">
+      <h2>Albumes</h2>
+      <div class="cart-container">
+
+      </div>
+      <div class="cart-total">
+        <p>Total:</p>
+        <span class="total">$ 1600H</span>
+      </div>
+      <button class="btn-buy btn">Comprar</button>
+      <button class="btn-delete btn ">Vaciar carrito</button>
+    </div>
+
+    <!-- <label for="user-toggle" class="user__label">
       <i class="fas fa-user"></i>
     </label>
     <input type="checkbox" id="user-toggle" name="toggle">
@@ -50,7 +78,7 @@
       <a href="./pages/register.html" class="header__register">
         <button class="btn">Registrate gratis</button>
       </a>
-    </div>
+    </div> -->
   </header>
 
   <main class="main">

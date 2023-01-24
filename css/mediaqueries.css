@@ -78,12 +78,11 @@
     /* height: 45%; */
   }
 
-  .user__label {
+  .cart__label {
     order: 3;
   }
 
-  .menu,
-  .header__user {
+  .menu {
     align-items: center;
     box-shadow: 0px 40px 30px -30px var(--bg_p);
     background: rgba(24, 7, 7, 0.548); 
@@ -102,20 +101,9 @@
     backdrop-filter: blur(20px);
     transform: translateY(-150%);
     box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
-    
   }
-
-  .user__label {
-    display: flex;
-  }
-  #menu-toggle:checked + .menu,
-  #user-toggle:checked + .header__user {
-    /* display: flex; */
-    transform: translateY(0%);
-    transition: all 0.5s ease-in-out;
-  }
-
 }  
+
 @media (max-width: 576px) {
   .hero__text {
     width: 98%;
