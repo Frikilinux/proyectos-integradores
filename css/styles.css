@@ -662,7 +662,7 @@ a:active {
   /* gap: 25px; */
   right: 0;
   opacity: 0.96;
-  padding: 1rem;
+  padding: 0.5rem;
   top: calc(45px + 1vw);
   width: 50%;
   max-width: 450px;
@@ -675,10 +675,18 @@ a:active {
 }
 
 .cart-container {
+  /* padding: 10px; */
   display: flex;
+  flex-direction: column;
   width: 100%;
-  background-color: #8D99AE;
+  /* background-color: #8d99ae34; */
+  overflow-y: scroll;
   min-height: 70%;
+  gap: 10px;
+}
+
+.cart-container::-webkit-scrollbar {
+  display: none;
 }
 
 .cart h2,
@@ -690,4 +698,122 @@ a:active {
   align-items: center;
   justify-content: center;
   gap: 30%;
+}
+
+/* Cart items */
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  background-color: #2b2d428f;
+  border-radius: 5px;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.cart-item img {
+  width: 25%;
+}
+
+.album-data {
+  width: 70%;
+}
+
+.item-album {
+  color: var(--fg1);
+  font-weight: 600;
+  font-size: calc(10px + 1.5vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-artist {
+  color: var(--fg1);
+  font-size: calc(10px + 1vw);
+  font-weight: 300;
+}
+
+.item-tracks {
+  padding: 4px 0;
+  color: var(--fg1);
+  font-size: calc(8px + .6vw);
+  font-weight: 300;
+}
+
+.item-price {
+  color: var(--fg1);
+  font-size: calc(15px + 1vw);
+  font-weight: 700;
+}
+
+.item-handler {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.quantity-handler {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  font-family: 'Montserrat';
+  padding: 2px 8px;
+  border-radius: 5px;
+  color: var(--fg1);
+  background-color: var(--red);
+  font-weight: 700;
+}
+
+.up {
+  border: 1px solid var(--electric);
+}
+
+.down {
+  border: 1px solid var(--electric);
+}
+
+.item-quantity {
+  text-align: center;
+  color: var(--fg1);
+  width: 15px;
+}
+
+.divider {
+  margin-top: 20px;
+  border: 0.5px solid var(--electric);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.cart-total p {
+  color: var(--text-white);
+  font-weight: 700;
+}
+
+.cart-total span {
+  color: var(--text-white);
+  font-weight: 400;
+  font-size: 18px;
 }

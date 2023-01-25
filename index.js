@@ -53,6 +53,7 @@ const renderAlbum = (album) => {
         data-name="${name}"
         data-bid="${price}"
         data-img="${albumImg}">
+        data-tracks="${totalTracks}"
           Comprar
       </button>
     </div>
