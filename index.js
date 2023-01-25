@@ -52,8 +52,8 @@ const renderAlbum = (album) => {
         data-artist="${artist}"
         data-name="${name}"
         data-bid="${price}"
-        data-img="${albumImg}">
-        data-tracks="${totalTracks}"
+        data-img="${albumImg}"
+        data-tracks="${totalTracks}">
           Comprar
       </button>
     </div>
