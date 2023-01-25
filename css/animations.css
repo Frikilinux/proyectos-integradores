@@ -35,3 +35,23 @@ html {
   transform: translateY(0%);
   transition: all 0.5s ease-in-out;
 }
+
+.active {
+  color: var(--fg1);
+  background-color: var(--bg-btn);
+}
+
+.hidden {
+  display: none;
+}
+
+.btn-disabled:hover,
+.btn-disabled {
+  transition: none;
+  color: var(--fg2);
+  background-color: var(--bg2);
+  transform: none;
+  cursor: not-allowed;
+  border: none;
+
+}
