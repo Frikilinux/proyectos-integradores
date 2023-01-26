@@ -9,7 +9,8 @@ const linksMenu = document.querySelector('.menu');
 const cartItemsContainer = document.querySelector('.cart-container');
 const totalPrice = document.querySelector('.total-price');
 const cartItemsQty = document.querySelector('.cart-bubble');
-const cartBtns = document.querySelectorAll('.cart-btns > .btn');
+const cartBtnContainer = document.querySelector('.cart-btns');
+const cartBtns = cartBtnContainer.querySelectorAll('.btn');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -163,9 +164,9 @@ const renderItem = (cartItem) => {
       <span class="item-price">$ ${price}</span>
       <div class="quantity-container">
         <span>Qty</span>
-        <span class="quantity-handler down" data-id="${id}"> - </span>
+        <button class="quantity-handler down btn" data-id="${id}"> - </button>
         <span class="item-quantity"> ${quantity} </span>
-        <span class="quantity-handler up data-id="${id}""> + </span>
+        <button class="quantity-handler up btn" data-id="${id}"> + </button>
       </div>
     </div>
 </div>`;
@@ -217,9 +218,7 @@ const addAlbum = (e) => {
 
   const album = albumData(id, artist, name, price, img, tracks);
 
-  albumAdded(album)
-    ? sumAddedAlbums(album)
-    : createAlbumItem(album)
+  albumAdded(album) ? sumAddedAlbums(album) : createAlbumItem(album);
 
   cartStateCheck();
 };
@@ -250,8 +249,80 @@ const showFeedback = (msg) => {
 
 // Crear cart
 
-const createAlbumItem = (item) =>
-  (cart = [...cart, { ...item, quantity: 1 }]);
+const createAlbumItem = (item) => (cart = [...cart, { ...item, quantity: 1 }]);
+
+// Botones - y +
+
+const itemBtnPlus = (id) => {
+  const itemExist = cart.find((item) => item.id === id);
+  sumAddedAlbums(itemExist);
+};
+
+const itemBtnMinus = (id) => {
+  const itemExist = cart.find((item) => item.id === id);
+  itemExist.quantity === 1
+    ? window.confirm('¿Elimino el album?')
+      ? deleteCartItem(itemExist)
+      : false
+    : decItemQty(itemExist);
+};
+
+const deleteCartItem = (itemExist) => {
+  console.log('entro en delete');
+  cart = cart.filter((item) => itemExist.id !== item.id);
+  cartStateCheck();
+};
+
+const decItemQty = (itemExist) => {
+  cart = cart.map((item) => {
+    return item.id === itemExist.id
+      ? { ...item, quantity: Number(item.quantity) - 1 }
+      : item;
+  });
+};
+
+const setItemQty = (e) => {
+  console.log(e);
+  console.log(e.target.dataset.id);
+  e.target.classList.contains('down')
+    ? itemBtnMinus(e.target.dataset.id)
+    : e.target.classList.contains('up')
+    ? itemBtnPlus(e.target.dataset.id)
+    : false;
+  cartStateCheck();
+};
+
+// Compra y borrado de carrito
+
+const resetCart = () => {
+  cart = [];
+  cartStateCheck();
+};
+
+const confirmCartAction = (confirmMsg, feedbackMsg) => {
+  cart.length
+    ? window.confirm(confirmMsg)
+      ? (resetCart(), alert(feedbackMsg))
+      : false
+    : false;
+};
+
+const buyCart = () => {
+  confirmCartAction('¿Desea comprar todo?', 'Todo comprado');
+};
+
+const emptyCart = () => {
+  confirmCartAction('¿Desea borrar todo?', 'Todo comprado');
+};
+
+const cartBtnAction = (e) => {
+  console.log(e);
+  e.target.classList.contains('btn-buy')
+    ? buyCart()
+    : e.target.classList.contains('btn-delete')
+    ? emptyCart()
+    : false;
+};
 
 // Inicialización como Rodri manda
 
@@ -261,11 +332,13 @@ const init = () => {
   btnLoad.addEventListener('click', showMoreAlbums);
   cartBtn.addEventListener('click', toggleMenus);
   burgerBtn.addEventListener('click', toggleMenus);
-  document.addEventListener('DOMContentLoaded', renderCartItems);
-  document.addEventListener('DOMContentLoaded', renderTotalPrice);
-  document.addEventListener('DOMContentLoaded', renderCartBubble);
-  disableBtns(cartBtns);
-  albumsContainer.addEventListener('click', addAlbum)
+  document.addEventListener('DOMContentLoaded', cartStateCheck);
+  // document.addEventListener('DOMContentLoaded', renderTotalPrice);
+  // document.addEventListener('DOMContentLoaded', renderCartBubble);
+  // disableBtns(cartBtns);
+  albumsContainer.addEventListener('click', addAlbum);
+  cartItemsContainer.addEventListener('click', setItemQty);
+  cartBtnContainer.addEventListener('click', cartBtnAction);
 };
 
 init();
