@@ -1,6 +1,5 @@
 const albumsContainer = document.querySelector('.container--albums');
-const genreConatainer = document.querySelector('.genres');
-const btnGenreList = document.querySelectorAll('.genre');
+const genreContainer = document.querySelector('.genres');
 const btnLoad = document.querySelector('.btn-load');
 const cartBtn = document.querySelector('.cart-label');
 const cartBubble = document.querySelector('.cart-bubble');
@@ -88,14 +87,25 @@ const renderAlbumsSection = (index = 0, genre = undefined) => {
 };
 
 // Añade clase hiddenal botón "Ver más"
-const toggleBtnLoad = (category) => {
-  !category
+const toggleBtnLoad = (genre) => {
+  !genre
     ? btnLoad.classList.remove('hidden')
     : btnLoad.classList.add('hidden');
 };
 
+// Crea categorías géneros
+
+const renderCatGenre = (genre) => {
+  return `<button class="genre" data-genre="${genre}">${genre}</button>`;
+};
+
+const renderGenreBtns = (genreList) => {
+  genreContainer.innerHTML += genreList.map(renderCatGenre).join('');
+};
+
 // Añade la clase active al boton de genero
 const changeBtnState = (selectedGenre) => {
+  const btnGenreList = document.querySelectorAll('.genre');
   const genresList = [...btnGenreList];
   genresList.forEach((genreBtn) => {
     console.log(genreBtn.dataset.genre !== selectedGenre);
@@ -143,6 +153,8 @@ const toggleMenus = (e) => {
     cartMenu.classList.remove('toggle_menu');
   }
 };
+
+
 
 // Carrito
 
@@ -298,7 +310,7 @@ const setItemQty = (e) => {
     e.target.classList.contains('trash')
   )
     deleteCartAlbum(e.target.dataset.id);
-  
+
   cartStateCheck();
 };
 
@@ -338,11 +350,14 @@ const cartBtnAction = (e) => {
 
 const init = () => {
   renderAlbumsSection();
-  genreConatainer.addEventListener('click', applyFilter);
   btnLoad.addEventListener('click', showMoreAlbums);
   cartBtn.addEventListener('click', toggleMenus);
   burgerBtn.addEventListener('click', toggleMenus);
-  document.addEventListener('DOMContentLoaded', cartStateCheck);
+  document.addEventListener('DOMContentLoaded', () => {
+    cartStateCheck();
+    renderGenreBtns(genreList);
+  });
+  genreContainer.addEventListener('click', applyFilter);
   // document.addEventListener('DOMContentLoaded', renderTotalPrice);
   // document.addEventListener('DOMContentLoaded', renderCartBubble);
   // disableBtns(cartBtns);

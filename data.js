@@ -20,7 +20,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273ed19f33217bec32cc4029a97',
     releaseDate: '2011-05-02',
-    genre: null,
+    genre: 'sad',
     label: 'Play It Again Sam',
   },
   {
@@ -32,7 +32,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273aaf8c068ffe217db825a1945',
     releaseDate: '2005-01-01',
-    genre: null,
+    genre: 'rock',
     label: null,
   },
   {
@@ -44,7 +44,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273babbea87ac485679a24b0afa',
     releaseDate: '2010-01-01',
-    genre: null,
+    genre: 'rock',
     label: null,
     time: 228311,
   },
@@ -57,7 +57,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b2739eec33b045d88f87b9b06e67',
     releaseDate: '2002-01-01',
-    genre: null,
+    genre: 'grunge',
     label: null,
     time: 187146,
   },
@@ -70,7 +70,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b2733e4b009b608c55a30256d85c',
     releaseDate: '2021-04-23',
-    genre: null,
+    genre: 'classic',
     label: 'Daughters of Cain Records',
     time: 271280,
   },
@@ -83,7 +83,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273285b2a832ecd2db0c87a310d',
     releaseDate: '2022-09-08',
-    genre: null,
+    genre: 'alternative',
     label: 'Sub Pop Records',
   },
   {
@@ -95,7 +95,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273b7d35506e6a2b6e524c43814',
     releaseDate: '2019-02-22',
-    genre: null,
+    genre: 'rock',
     label: 'Transgressive',
   },
   {
@@ -107,7 +107,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b2730fdfb62956211c999c39a5a3',
     releaseDate: '2022-07-29',
-    genre: null,
+    genre: 'rock',
     label: 'Capitol Records',
   },
   {
@@ -119,7 +119,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273af4f070d3683d9b5027059ab',
     releaseDate: '2022-06-24',
-    genre: null,
+    genre: 'rock',
     label: 'Loma Vista Recordings',
   },
   {
@@ -131,7 +131,7 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273961d278ff072bc251b22ae1c',
     releaseDate: '2022-09-30',
-    genre: null,
+    genre: 'rock',
     label: 'One Little Independent Records',
   },
   {
@@ -143,85 +143,8 @@ const albumsData = [
     albumImg:
       'https://i.scdn.co/image/ab67616d0000b273d370fdc4dbc47778b9b667c3',
     releaseDate: '2022-04-08',
-    genre: null,
+    genre: 'rock',
     label: 'Harbour Artists & Music',
-  },
-  {
-    id: 13,
-    name: '',
-    artist: '',
-    totalTracks: '',
-    price: '',
-    albumImg: '',
-    releaseDate: null,
-    genre: null,
-    label: null,
-  },
-  {
-    id: 14,
-    name: '',
-    artist: '',
-    totalTracks: '',
-    price: '',
-    albumImg: '',
-    releaseDate: null,
-    genre: null,
-    label: null,
-  },
-  {
-    id: 15,
-    name: '',
-    artist: '',
-    totalTracks: '',
-    price: '',
-    albumImg: '',
-    releaseDate: null,
-    genre: null,
-    label: null,
-  },
-  {
-    id: 16,
-    name: '',
-    artist: '',
-    totalTracks: '',
-    price: '',
-    albumImg: '',
-    releaseDate: null,
-    genre: null,
-    label: null,
-  },
-  {
-    id: 17,
-    name: '',
-    artist: '',
-    totalTracks: '',
-    price: '',
-    albumImg: '',
-    releaseDate: null,
-    genre: null,
-    label: null,
-  },
-  {
-    id: 18,
-    name: '',
-    artist: '',
-    totalTracks: '',
-    price: '',
-    albumImg: '',
-    releaseDate: null,
-    genre: null,
-    label: null,
-  },
-  {
-    id: 19,
-    name: '',
-    artist: '',
-    totalTracks: '',
-    price: '',
-    albumImg: '',
-    releaseDate: null,
-    genre: null,
-    label: null,
   },
 ];
 
@@ -232,6 +155,16 @@ const splitAbums = (size) => {
   }
   return dividedAlbums;
 };
+
+const getGenreBtns = (data) => {
+  let genreBtns = []
+  data.forEach(e => {
+    if (!genreBtns.some(gen => gen === e.genre)) genreBtns.push(e.genre)
+  });
+  return genreBtns
+}
+
+const genreList = getGenreBtns(albumsData)
 
 const productsController = {
   dividedAlbums: splitAbums(6),

@@ -250,6 +250,7 @@ a:active {
 }
 
 .genre {
+  text-transform: capitalize;
   font-weight: 600;
   color: var(--fg);
   border: none;
