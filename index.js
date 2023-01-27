@@ -106,9 +106,8 @@ const changeBtnState = (selectedGenre) => {
 };
 
 const changeFilterState = (e) => {
-  const selectedGenre = e.target.dataset.genre;
-  toggleBtnLoad(selectedGenre);
-  changeBtnState(selectedGenre);
+  toggleBtnLoad(e.target.dataset.genre);
+  changeBtnState(e.target.dataset.genre);
 };
 
 const applyFilter = (e) => {
@@ -139,11 +138,9 @@ const toggleMenus = (e) => {
   ) {
     cartMenu.classList.toggle('toggle_menu');
     linksMenu.classList.remove('toggle_menu');
-    // console.log('cartttttt');
   } else if (e.target.classList.contains('fa-bars')) {
     linksMenu.classList.toggle('toggle_menu');
     cartMenu.classList.remove('toggle_menu');
-    // console.log('menuuuuuu');
   }
 };
 
@@ -272,13 +269,12 @@ const itemBtnMinus = (id) => {
     : decItemQty(itemExist);
 };
 
+// Borra un album directamente del la lista
 const deleteCartAlbum = (id) => {
   const itemExist = cart.find((item) => item.id === id);
-  itemExist
-    ? window.confirm('¿Elimino el album?')
-      ? deleteCartItem(itemExist)
-      : false
-    : false;
+  if (itemExist) {
+    if (window.confirm('¿Elimino el album?')) deleteCartItem(itemExist);
+  }
 };
 
 const deleteCartItem = (itemExist) => {
