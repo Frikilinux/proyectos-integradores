@@ -291,16 +291,14 @@ const decItemQty = (itemExist) => {
 };
 
 const setItemQty = (e) => {
-  console.log(e);
-  console.log(e.target.dataset.id);
-  e.target.classList.contains('down')
-    ? itemBtnMinus(e.target.dataset.id)
-    : e.target.classList.contains('up')
-    ? itemBtnPlus(e.target.dataset.id)
-    : e.target.classList.contains('fa-trash-can') ||
-      e.target.classList.contains('trash')
-    ? deleteCartAlbum(e.target.dataset.id)
-    : false;
+  if (e.target.classList.contains('down')) itemBtnMinus(e.target.dataset.id);
+  if (e.target.classList.contains('up')) itemBtnPlus(e.target.dataset.id);
+  if (
+    e.target.classList.contains('fa-trash-can') ||
+    e.target.classList.contains('trash')
+  )
+    deleteCartAlbum(e.target.dataset.id);
+  
   cartStateCheck();
 };
 
