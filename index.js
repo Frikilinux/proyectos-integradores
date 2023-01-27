@@ -111,24 +111,13 @@ const changeFilterState = (e) => {
   changeBtnState(selectedGenre);
 };
 
-// Aplicar filtro de géneros
-// const applyFilter = (e) => {
-//   e.target.classList.contains('genre')
-//     ? !e.target.dataset.genre
-//       ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
-//       : (changeFilterState(e),
-//         renderAlbumsSection(0, e.target.dataset.genre),
-//         (productsController.nextAbumsIndex = 1))
-//     : false;
-// };
-
 const applyFilter = (e) => {
-  e.target.classList.contains('genre')
-    ? changeFilterState(e)
-    : !e.target.dataset.genre
+  if (!e.target.classList.contains('genre')) return;
+  !e.target.dataset.genre
     ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
     : (renderAlbumsSection(0, e.target.dataset.genre),
       (productsController.nextAbumsIndex = 1));
+  changeFilterState(e);
 };
 
 const albumsLimit = () => {
