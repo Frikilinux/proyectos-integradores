@@ -353,17 +353,17 @@ const init = () => {
   btnLoad.addEventListener('click', showMoreAlbums);
   cartBtn.addEventListener('click', toggleMenus);
   burgerBtn.addEventListener('click', toggleMenus);
+  genreContainer.addEventListener('click', applyFilter);
+  albumsContainer.addEventListener('click', addAlbum);
+  cartItemsContainer.addEventListener('click', setItemQty);
+  cartBtnContainer.addEventListener('click', cartBtnAction);
   document.addEventListener('DOMContentLoaded', () => {
     cartStateCheck();
     renderGenreBtns(genreList);
   });
-  genreContainer.addEventListener('click', applyFilter);
   // document.addEventListener('DOMContentLoaded', renderTotalPrice);
   // document.addEventListener('DOMContentLoaded', renderCartBubble);
   // disableBtns(cartBtns);
-  albumsContainer.addEventListener('click', addAlbum);
-  cartItemsContainer.addEventListener('click', setItemQty);
-  cartBtnContainer.addEventListener('click', cartBtnAction);
 };
 
 init();
