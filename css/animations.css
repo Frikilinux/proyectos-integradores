@@ -53,5 +53,10 @@ html {
   transform: none;
   cursor: not-allowed;
   border: none;
+}
 
+.show-bubble {
+  display: flex;
+  color: var(--bg-btn);
+  background-color: var(--bg-bubble);
 }

@@ -2,7 +2,8 @@ const albumsContainer = document.querySelector('.container--albums');
 const genreConatainer = document.querySelector('.genres');
 const btnGenreList = document.querySelectorAll('.genre');
 const btnLoad = document.querySelector('.btn-load');
-const cartBtn = document.querySelector('.cart__label');
+const cartBtn = document.querySelector('.cart-label');
+const cartBubble = document.querySelector('.cart-bubble');
 const cartMenu = document.querySelector('.cart');
 const burgerBtn = document.querySelector('.navbar__label');
 const linksMenu = document.querySelector('.menu');
@@ -97,6 +98,7 @@ const toggleBtnLoad = (category) => {
 const changeBtnState = (selectedGenre) => {
   const genresList = [...btnGenreList];
   genresList.forEach((genreBtn) => {
+    console.log(genreBtn.dataset.genre !== selectedGenre);
     genreBtn.dataset.genre !== selectedGenre
       ? genreBtn.classList.remove('active')
       : genreBtn.classList.add('active');
@@ -110,14 +112,23 @@ const changeFilterState = (e) => {
 };
 
 // Aplicar filtro de géneros
+// const applyFilter = (e) => {
+//   e.target.classList.contains('genre')
+//     ? !e.target.dataset.genre
+//       ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
+//       : (changeFilterState(e),
+//         renderAlbumsSection(0, e.target.dataset.genre),
+//         (productsController.nextAbumsIndex = 1))
+//     : false;
+// };
+
 const applyFilter = (e) => {
   e.target.classList.contains('genre')
-    ? !e.target.dataset.genre
-      ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
-      : (changeFilterState(e),
-        renderAlbumsSection(0, e.target.dataset.genre),
-        (productsController.nextAbumsIndex = 1))
-    : false;
+    ? changeFilterState(e)
+    : !e.target.dataset.genre
+    ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
+    : (renderAlbumsSection(0, e.target.dataset.genre),
+      (productsController.nextAbumsIndex = 1));
 };
 
 const albumsLimit = () => {
@@ -134,8 +145,8 @@ const showMoreAlbums = () => {
 const toggleMenus = (e) => {
   console.log(e);
   if (
-    e.target.classList.contains('cart-icon') ||
-    e.target.parentNode.classList.contains('cart-icon')
+    e.target.parentNode.classList.contains('cart-label') ||
+    e.target.classList.contains('cart-label')
   ) {
     cartMenu.classList.toggle('toggle_menu');
     linksMenu.classList.remove('toggle_menu');
@@ -167,6 +178,7 @@ const renderItem = (cartItem) => {
         <button class="quantity-handler down btn" data-id="${id}"> - </button>
         <span class="item-quantity"> ${quantity} </span>
         <button class="quantity-handler up btn" data-id="${id}"> + </button>
+        <button class="delete-item trash btn" data-id="${id}"><i class="fa-solid fa-trash-can"></i></button>
       </div>
     </div>
 </div>`;
@@ -195,8 +207,12 @@ const renderCartBubble = () => {
 const disableBtns = (btns) => {
   btns = [...btns];
   !cart.length
-    ? btns.forEach((e) => e.classList.add('btn-disabled'))
-    : btns.forEach((e) => e.classList.remove('btn-disabled'));
+    ? (btns.forEach((e) => e.classList.add('btn-disabled')),
+      cartBubble.classList.remove('show-bubble'),
+      cartBtn.classList.remove('show-bubble'))
+    : (btns.forEach((e) => e.classList.remove('btn-disabled')),
+      cartBubble.classList.add('show-bubble'),
+      cartBtn.classList.add('show-bubble'));
 };
 
 // Chequeo del carrito para cada acción
@@ -267,8 +283,16 @@ const itemBtnMinus = (id) => {
     : decItemQty(itemExist);
 };
 
+const deleteCartAlbum = (id) => {
+  const itemExist = cart.find((item) => item.id === id);
+  itemExist
+    ? window.confirm('¿Elimino el album?')
+      ? deleteCartItem(itemExist)
+      : false
+    : false;
+};
+
 const deleteCartItem = (itemExist) => {
-  console.log('entro en delete');
   cart = cart.filter((item) => itemExist.id !== item.id);
   cartStateCheck();
 };
@@ -288,6 +312,9 @@ const setItemQty = (e) => {
     ? itemBtnMinus(e.target.dataset.id)
     : e.target.classList.contains('up')
     ? itemBtnPlus(e.target.dataset.id)
+    : e.target.classList.contains('fa-trash-can') ||
+      e.target.classList.contains('trash')
+    ? deleteCartAlbum(e.target.dataset.id)
     : false;
   cartStateCheck();
 };
