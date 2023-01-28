@@ -86,7 +86,7 @@
   .menu {
     align-items: center;
     box-shadow: 0px 40px 30px -30px var(--bg_p);
-    background: rgba(24, 7, 7, 0.548); 
+    background: var(--bg-menu); 
     border-radius: 0px 0px 10px 10px;
     flex-direction: column;
     left: 5%;

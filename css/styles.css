@@ -10,8 +10,9 @@
   --fg3: #48608b;
   --red: #EF233C;
   --bg-btn: #D90429;
-  --bg-bubble: #9ced10;
-  --orange: rgb(232, 103, 48);
+  --bg-bubble: #f7e76bd5;
+  --orange: #e86730;
+  --bg-menu: #1807078c;
 }
 
 * {
@@ -618,16 +619,8 @@ a:active {
   cursor: pointer;
 }
 
-.cart-icon {
-  font-weight: 600;
-  border-radius: 16px;
-  position: relative;
-}
-
 .cart-bubble {
   text-align: center;
-  height: 100%;
-  color: var(--fg3);
   font-family: 'Montserrat';
   font-weight: 700;
 }
@@ -637,23 +630,19 @@ a:active {
   display: flex;
   color: var(--fg1);
   align-items: center;
-  box-shadow: 0px 40px 30px -30px var(--bg_p);
-  background: rgba(24, 7, 7, 0.548); 
-  border-radius: 0px 0px 0px 10px;
+  background: var(--bg-menu); 
   flex-direction: column;
   justify-content: space-between;
   /* gap: 25px; */
   right: 0;
-  opacity: 0.96;
   padding: 0.5rem;
   top: calc(45px + 1vw);
   width: 50%;
-  max-width: 450px;
+  max-width: 500px;
   height: calc(100vh - 45px);
   z-index: -2;
   backdrop-filter: blur(20px);
-  /* transform: translateY(-150%); */
-  transform: translate(200%);
+  transform: translate(110%);
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
 }
 
@@ -699,6 +688,7 @@ a:active {
   gap: 10px;
   padding: 10px;
   background-color: #2b2d428f;
+  /* background-color: #5f77a566; */
   border-radius: 5px;
 }
 
@@ -712,6 +702,7 @@ a:active {
 
 .cart-item img {
   width: 25%;
+  border-radius: 5px;
 }
 
 .album-data {
@@ -761,7 +752,7 @@ a:active {
 
 .trash {
   cursor: pointer;
-  color: var(--orange);
+  color: var(--bg-bubble);
   padding: 0 5px;
   font-size: 1.1rem;
 }
@@ -775,25 +766,12 @@ a:active {
   font-weight: 900;
 }
 
-.up {
-  border: 1px solid var(--electric);
-}
-
-.down {
-  border: 1px solid var(--electric);
-}
-
 .item-quantity {
   font-family: 'Montserrat';
   font-weight: 700;
   text-align: center;
   color: var(--fg1);
   width: 20px;
-}
-
-.divider {
-  margin-top: 20px;
-  border: 0.5px solid var(--electric);
 }
 
 .cart-total {
@@ -803,12 +781,11 @@ a:active {
 }
 
 .cart-total p {
-  color: var(--text-white);
+  color: var(--fg1);
   font-weight: 700;
 }
 
 .cart-total span {
-  color: var(--text-white);
-  font-weight: 400;
-  font-size: 18px;
+  color: var(--fg1);
+  font-weight: 600;
 }

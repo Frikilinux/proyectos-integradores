@@ -139,14 +139,18 @@ const showMoreAlbums = () => {
 };
 
 const toggleMenus = (e) => {
-  console.log(e);
-  if (
+  if (e.type === 'scroll')
+  {
+    linksMenu.classList.remove('toggle_menu');
+    cartMenu.classList.remove('toggle_menu');
+  } else if (
     e.target.parentNode.classList.contains('cart-label') ||
     e.target.classList.contains('cart-label')
   ) {
     cartMenu.classList.toggle('toggle_menu');
     linksMenu.classList.remove('toggle_menu');
-  } else if (e.target.classList.contains('fa-bars')) {
+  } else if (e.target.classList.contains('fa-bars'))
+  {
     linksMenu.classList.toggle('toggle_menu');
     cartMenu.classList.remove('toggle_menu');
   }
@@ -202,10 +206,10 @@ const disableBtns = (btns) => {
   btns = [...btns];
   !cart.length
     ? (btns.forEach((e) => e.classList.add('btn-disabled')),
-      cartBubble.classList.remove('show-bubble'),
+      // cartBubble.classList.remove('show-bubble'),
       cartBtn.classList.remove('show-bubble'))
     : (btns.forEach((e) => e.classList.remove('btn-disabled')),
-      cartBubble.classList.add('show-bubble'),
+      // cartBubble.classList.add('show-bubble'),
       cartBtn.classList.add('show-bubble'));
 };
 
@@ -303,7 +307,6 @@ const setItemQty = (e) => {
   if (e.target.classList.contains('up')) itemBtnPlus(e.target.dataset.id);
   if (e.target.classList.contains('trash'))
     deleteCartAlbum(e.target.dataset.id);
-
   cartStateCheck();
 };
 
@@ -315,28 +318,21 @@ const resetCart = () => {
 };
 
 const confirmCartAction = (confirmMsg, feedbackMsg) => {
-  cart.length
-    ? window.confirm(confirmMsg)
-      ? (resetCart(), alert(feedbackMsg))
-      : false
-    : false;
+  if (!cart.length) return;
+  if (window.confirm(confirmMsg)) resetCart(), alert(feedbackMsg);
 };
 
 const buyCart = () => {
-  confirmCartAction('¿Desea comprar todo?', 'Todo comprado');
+  confirmCartAction('¿Desea comprar todo?', 'Carrito comprado');
 };
 
 const emptyCart = () => {
-  confirmCartAction('¿Desea borrar todo?', 'Todo comprado');
+  confirmCartAction('¿Desea borrar todo?', 'Carrito vaciado');
 };
 
 const cartBtnAction = (e) => {
-  console.log(e);
-  e.target.classList.contains('btn-buy')
-    ? buyCart()
-    : e.target.classList.contains('btn-delete')
-    ? emptyCart()
-    : false;
+  if (e.target.classList.contains('btn-buy')) buyCart();
+  if (e.target.classList.contains('btn-delete')) emptyCart();
 };
 
 // Inicialización como Rodri manda
@@ -346,6 +342,7 @@ const init = () => {
   btnLoad.addEventListener('click', showMoreAlbums);
   cartBtn.addEventListener('click', toggleMenus);
   burgerBtn.addEventListener('click', toggleMenus);
+  window.addEventListener('scroll', toggleMenus)
   genreContainer.addEventListener('click', applyFilter);
   albumsContainer.addEventListener('click', addAlbum);
   cartItemsContainer.addEventListener('click', setItemQty);
