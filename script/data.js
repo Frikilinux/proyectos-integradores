@@ -216,15 +216,15 @@ const splitAlbums = (size) => {
   return dividedAlbums;
 };
 
-const getGenreBtns = (data) => {
-  let genreBtns = [];
+const getGenres = (data) => {
+  let genreList = [];
   data.forEach((e) => {
-    if (!genreBtns.some((gen) => gen === e.genre)) genreBtns.push(e.genre);
+    if (!genreList.some((genre) => genre === e.genre)) genreList.push(e.genre);
   });
-  return genreBtns;
+  return genreList;
 };
 
-const genreList = getGenreBtns(albumsData);
+const genreList = getGenres(albumsData);
 
 const productsController = {
   dividedAlbums: splitAlbums(6),
