@@ -88,9 +88,7 @@ const renderAlbumsSection = (index = 0, genre = undefined) => {
 
 // Añade clase hiddenal botón "Ver más"
 const toggleBtnLoad = (genre) => {
-  !genre
-    ? btnLoad.classList.remove('hidden')
-    : btnLoad.classList.add('hidden');
+  !genre ? btnLoad.classList.remove('hidden') : btnLoad.classList.add('hidden');
 };
 
 // Crea categorías géneros
@@ -154,8 +152,6 @@ const toggleMenus = (e) => {
   }
 };
 
-
-
 // Carrito
 
 const renderItem = (cartItem) => {
@@ -176,7 +172,7 @@ const renderItem = (cartItem) => {
         <button class="quantity-handler down btn" data-id="${id}"> - </button>
         <span class="item-quantity"> ${quantity} </span>
         <button class="quantity-handler up btn" data-id="${id}"> + </button>
-        <button class="delete-item trash btn" data-id="${id}"><i class="fa-solid fa-trash-can"></i></button>
+        <i class="trash delete-item fa-solid fa-trash-can" data-id="${id}"></i>
       </div>
     </div>
 </div>`;
@@ -305,10 +301,7 @@ const decItemQty = (itemExist) => {
 const setItemQty = (e) => {
   if (e.target.classList.contains('down')) itemBtnMinus(e.target.dataset.id);
   if (e.target.classList.contains('up')) itemBtnPlus(e.target.dataset.id);
-  if (
-    e.target.classList.contains('fa-trash-can') ||
-    e.target.classList.contains('trash')
-  )
+  if (e.target.classList.contains('trash'))
     deleteCartAlbum(e.target.dataset.id);
 
   cartStateCheck();

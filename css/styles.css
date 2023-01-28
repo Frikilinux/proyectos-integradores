@@ -11,6 +11,7 @@
   --red: #EF233C;
   --bg-btn: #D90429;
   --bg-bubble: #9ced10;
+  --orange: rgb(232, 103, 48);
 }
 
 * {
@@ -758,11 +759,17 @@ a:active {
   gap: 10px
 }
 
-.trash,
+.trash {
+  cursor: pointer;
+  color: var(--orange);
+  padding: 0 5px;
+  font-size: 1.1rem;
+}
 .quantity-handler {
   font-family: 'Montserrat';
+  width: 1.5rem;
   padding: 2px 8px;
-  border-radius: 5px;
+  border-radius: 3px;
   color: var(--fg1);
   background-color: var(--red);
   font-weight: 900;
@@ -777,9 +784,11 @@ a:active {
 }
 
 .item-quantity {
+  font-family: 'Montserrat';
+  font-weight: 700;
   text-align: center;
   color: var(--fg1);
-  width: 15px;
+  width: 20px;
 }
 
 .divider {
