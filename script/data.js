@@ -146,9 +146,69 @@ const albumsData = [
     genre: 'rock',
     label: 'Harbour Artists & Music',
   },
+  {
+    id: 13,
+    name: 'Honey',
+    artist: 'Samia',
+    totalTracks: '11',
+    price: 1500,
+    albumImg:
+      'https://i.scdn.co/image/ab67616d0000b27339896528d75115f89b4a2563',
+    releaseDate: '2023-01-27',
+    genre: 'alternative',
+    label: 'Grand Jury Music',
+  },
+  {
+    id: 14,
+    name: 'Today Is Another Day',
+    artist: 'Chihiro Yamanaka',
+    totalTracks: '10',
+    price: 1100,
+    albumImg:
+      'https://i.scdn.co/image/ab67616d0000b2734c221cef1c9dac06472065e7',
+    releaseDate: '2022-12-21',
+    genre: 'jazz',
+    label: 'Universal Music LLC',
+  },
+  {
+    id: 15,
+    name: 'Berlin Baritone',
+    artist: 'Kurt Rosenwinkel',
+    totalTracks: '9',
+    price: 1290,
+    albumImg:
+      'https://i.scdn.co/image/ab67616d0000b273baf1c4aefdeef0d5631f0992',
+    releaseDate: '2022-12-02',
+    genre: 'jazz',
+    label: 'Heartcore Records',
+  },
+  {
+    id: 16,
+    name: 'Linger Awhile',
+    artist: 'Samara Joy',
+    totalTracks: '10',
+    price: 1300,
+    albumImg:
+      'https://i.scdn.co/image/ab67616d0000b273d96b881ba9b752c88754106d',
+    releaseDate: '2022-09-16',
+    genre: 'jazz',
+    label: 'Verve',
+  },
+  {
+    id: 17,
+    name: '12 Stars',
+    artist: 'Melissa Aldana',
+    totalTracks: '8',
+    price: 1480,
+    albumImg:
+      'https://i.scdn.co/image/ab67616d0000b27335dbeeb272e3d507919ec80c',
+    releaseDate: '2022-03-04',
+    genre: 'jazz',
+    label: 'Blue Note Records',
+  },
 ];
 
-const splitAbums = (size) => {
+const splitAlbums = (size) => {
   let dividedAlbums = [];
   for (let i = 0; i < albumsData.length; i += size) {
     dividedAlbums.push(albumsData.slice(i, i + size));
@@ -157,17 +217,17 @@ const splitAbums = (size) => {
 };
 
 const getGenreBtns = (data) => {
-  let genreBtns = []
-  data.forEach(e => {
-    if (!genreBtns.some(gen => gen === e.genre)) genreBtns.push(e.genre)
+  let genreBtns = [];
+  data.forEach((e) => {
+    if (!genreBtns.some((gen) => gen === e.genre)) genreBtns.push(e.genre);
   });
-  return genreBtns
-}
+  return genreBtns;
+};
 
-const genreList = getGenreBtns(albumsData)
+const genreList = getGenreBtns(albumsData);
 
 const productsController = {
-  dividedAlbums: splitAbums(6),
+  dividedAlbums: splitAlbums(6),
   nextAlbumsIndex: 1,
-  albumsLimit: splitAbums(6).length,
+  albumsLimit: splitAlbums(6).length,
 };
