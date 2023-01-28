@@ -140,17 +140,17 @@ const showMoreAlbums = () => {
 
 const toggleMenus = (e) => {
   if (e.type === 'scroll') {
-    linksMenu.classList.remove('toggle_menu');
-    cartMenu.classList.remove('toggle_menu');
+    linksMenu.classList.remove('show-menu');
+    cartMenu.classList.remove('show-menu');
   } else if (
     e.target.parentNode.classList.contains('cart-label') ||
     e.target.classList.contains('cart-label')
   ) {
-    cartMenu.classList.toggle('toggle_menu');
-    linksMenu.classList.remove('toggle_menu');
+    cartMenu.classList.toggle('show-menu');
+    linksMenu.classList.remove('show-menu');
   } else if (e.target.classList.contains('fa-bars')) {
-    linksMenu.classList.toggle('toggle_menu');
-    cartMenu.classList.remove('toggle_menu');
+    linksMenu.classList.toggle('show-menu');
+    cartMenu.classList.remove('show-menu');
   }
 };
 
