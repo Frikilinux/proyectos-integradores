@@ -49,7 +49,7 @@ const albumsData = [
     time: 228311,
   },
   {
-    id: '5',
+    id: 5,
     name: 'Songs For The Deaf',
     artist: 'Queens of the Stone Age',
     totalTracks: 16,

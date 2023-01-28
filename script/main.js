@@ -123,7 +123,7 @@ const applyFilter = (e) => {
   !e.target.dataset.genre
     ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
     : (renderAlbumsSection(0, e.target.dataset.genre),
-      (productsController.nextAbumsIndex = 1));
+      (productsController.nextAlbumsIndex = 1));
   changeFilterState(e);
 };
 
@@ -135,12 +135,11 @@ const albumsLimit = () => {
 const showMoreAlbums = () => {
   renderAlbumsSection(productsController.nextAlbumsIndex);
   productsController.nextAlbumsIndex++;
-  albumsLimit() ? btnLoad.classList.add('hidden') : '';
+  if (albumsLimit()) btnLoad.classList.add('hidden');
 };
 
 const toggleMenus = (e) => {
-  if (e.type === 'scroll')
-  {
+  if (e.type === 'scroll') {
     linksMenu.classList.remove('toggle_menu');
     cartMenu.classList.remove('toggle_menu');
   } else if (
@@ -149,8 +148,7 @@ const toggleMenus = (e) => {
   ) {
     cartMenu.classList.toggle('toggle_menu');
     linksMenu.classList.remove('toggle_menu');
-  } else if (e.target.classList.contains('fa-bars'))
-  {
+  } else if (e.target.classList.contains('fa-bars')) {
     linksMenu.classList.toggle('toggle_menu');
     cartMenu.classList.remove('toggle_menu');
   }
@@ -342,7 +340,7 @@ const init = () => {
   btnLoad.addEventListener('click', showMoreAlbums);
   cartBtn.addEventListener('click', toggleMenus);
   burgerBtn.addEventListener('click', toggleMenus);
-  window.addEventListener('scroll', toggleMenus)
+  window.addEventListener('scroll', toggleMenus);
   genreContainer.addEventListener('click', applyFilter);
   albumsContainer.addEventListener('click', addAlbum);
   cartItemsContainer.addEventListener('click', setItemQty);
