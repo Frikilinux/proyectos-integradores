@@ -2,7 +2,7 @@ const albumsContainer = document.querySelector('.container--albums');
 const genreContainer = document.querySelector('.genres');
 const btnLoad = document.querySelector('.btn-load');
 const cartBtn = document.querySelector('.cart-label');
-const cartBubble = document.querySelector('.cart-bubble');
+// const cartBubble = document.querySelector('.cart-bubble');
 const cartMenu = document.querySelector('.cart');
 const burgerBtn = document.querySelector('.navbar__label');
 const linksMenu = document.querySelector('.menu');
@@ -11,6 +11,7 @@ const totalPrice = document.querySelector('.total-price');
 const cartItemsQty = document.querySelector('.cart-bubble');
 const cartBtnContainer = document.querySelector('.cart-btns');
 const cartBtns = cartBtnContainer.querySelectorAll('.btn');
+const feedbackModal = document.querySelector('.feedback-modal');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -221,7 +222,6 @@ const cartStateCheck = () => {
 };
 
 const addAlbum = (e) => {
-  console.log(e.target.dataset);
   if (!e.target.classList.contains('btn--buy')) {
     return;
   }
@@ -230,7 +230,8 @@ const addAlbum = (e) => {
 
   const album = albumData(id, artist, name, price, img, tracks);
 
-  albumAdded(album) ? sumAddedAlbums(album) : createAlbumItem(album);
+  albumAdded(album) ? sumAddedAlbums(album) : (createAlbumItem(album),
+    showFeedback('info', 'Nuevo album añadido'));
 
   cartStateCheck();
 };
@@ -252,11 +253,22 @@ const sumAddedAlbums = (item) => {
   });
 };
 
+// Mostrar según la importancia
+const feedbackRelevancy = (type, msg) => {
+  if (type === 'alert')
+    return `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
+  if (type === 'info')
+    return `<i class="fa-solid fa-circle-info"></i></i> ${msg}`;
+};
+
 // Mostrar feedback al usuario
-const showFeedback = (msg) => {
-  feedbackModal.textContent = msg;
-  feedbackModal.classList.add('active-feedback');
-  setTimeout(() => feedbackModal.classList.remove('active-feedback'), 2000);
+const showFeedback = (type, msg) => {
+  feedbackModal.innerHTML = feedbackRelevancy(type, msg);
+  feedbackModal.classList.add(`show-feedback-${type}`);
+  setTimeout(
+    () => feedbackModal.classList.remove(`show-feedback-${type}`),
+    2000
+  );
 };
 
 // Crear cart
@@ -283,7 +295,9 @@ const itemBtnMinus = (id) => {
 const deleteCartAlbum = (id) => {
   const itemExist = cart.find((item) => item.id === id);
   if (itemExist) {
-    if (window.confirm('¿Elimino el album?')) deleteCartItem(itemExist);
+    if (window.confirm('¿Elimino el album?')) {
+      deleteCartItem(itemExist), showFeedback('alert', 'Album Eliminado');
+    }
   }
 };
 
@@ -317,15 +331,16 @@ const resetCart = () => {
 
 const confirmCartAction = (confirmMsg, feedbackMsg) => {
   if (!cart.length) return;
-  if (window.confirm(confirmMsg)) resetCart(), alert(feedbackMsg);
+  if (window.confirm(confirmMsg))
+    resetCart(), showFeedback('alert', feedbackMsg);
 };
 
 const buyCart = () => {
-  confirmCartAction('¿Desea comprar todo?', 'Carrito comprado');
+  confirmCartAction('¿Desea comprar todo?', 'Carrito comprado!');
 };
 
 const emptyCart = () => {
-  confirmCartAction('¿Desea borrar todo?', 'Carrito vaciado');
+  confirmCartAction('¿Desea borrar todo?', 'Carrito eliminado!');
 };
 
 const cartBtnAction = (e) => {

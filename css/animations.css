@@ -36,10 +36,29 @@ html {
   transition: all 0.5s ease-in-out;
 }
 
+.fback-icon {
+  color: var(--fg3);
+}
+
+.show-feedback-alert {
+  color: var(--bg);
+  background-color: var(--orange);
+  transform: translate(-50%, 0%);
+  transition: all 0.5s ease-in-out;
+}
+
+.show-feedback-info {
+  color: var(--bg);
+  background-color: rgb(92, 235, 111);
+  transform: translate(-50%, 0%);
+  transition: all 0.5s ease-in-out;
+}
+
 .active {
   color: var(--fg1);
   background-color: var(--bg-btn);
 }
+
 
 .hidden {
   display: none;

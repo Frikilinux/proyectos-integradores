@@ -96,8 +96,9 @@ a:active {
   display: flex;
   width: 50%;
   gap: 40px;
-  justify-content: flex-end;
+  justify-content: center;
 }
+
 
 .navbar__label {
   color: var(--fg1);
@@ -640,7 +641,7 @@ a:active {
   width: 50%;
   max-width: 500px;
   height: calc(100vh - 45px);
-  z-index: -2;
+  z-index: -3;
   backdrop-filter: blur(20px);
   transform: translate(110%);
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
@@ -788,4 +789,28 @@ a:active {
 .cart-total span {
   color: var(--fg1);
   font-weight: 600;
+}
+
+/* Notify modal */
+
+.feedback-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* align-self: flex-end; */
+  text-align: center;
+  margin: 0 auto;
+  top: calc(45px + 1vw);
+  /* right: 5%; */
+  padding: 5px 20px;
+  border-radius: 0px 0 5px 5px;
+  position: absolute;
+  height: calc(45px + 1vw);
+  width: 80%;
+  max-width: 700px;
+  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
+  z-index: -2;
+  left: 50%;
+  transform: translate(-50%, -220%);
 }
