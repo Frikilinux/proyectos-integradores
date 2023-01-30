@@ -286,7 +286,7 @@ const itemBtnMinus = (id) => {
   const itemExist = cart.find((item) => item.id === id);
   itemExist.quantity === 1
     ? window.confirm('¿Elimino el album?')
-      ? deleteCartItem(itemExist)
+      ? (deleteCartItem(itemExist), showFeedback('alert', 'Album Eliminado'))
       : false
     : decItemQty(itemExist);
 };
