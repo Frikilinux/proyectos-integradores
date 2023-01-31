@@ -29,12 +29,12 @@ const feedbackRelevancy = (type, msg) => {
 };
 
 // Mostrar feedback al usuario
-const showFeedback = (type, msg) => {
+const showFeedback = (type, msg, time = 1500) => {
   feedbackModal.innerHTML = feedbackRelevancy(type, msg);
   feedbackModal.classList.add(`show-feedback-${type}`);
   setTimeout(
     () => feedbackModal.classList.remove(`show-feedback-${type}`),
-    1250
+    time
   );
 };
 
@@ -54,9 +54,11 @@ const login = (e) => {
   // user()
   // console.log(loginUser);
   checkUserInDb(userDb)
-    ? (showFeedback('info', 'login exitoso'),
+    ? (showFeedback('info', 'Login exitoso, redireccionado a la pagina pricipal', 3500),
       saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
-      formLogin.reset())
+      formLogin.reset(),
+      setTimeout(() => window.location.href = '/', 4000))
+
     : showFeedback('alert', 'No se encotró el ussuario');
 };
 

@@ -15,7 +15,7 @@ const feedbackModal = document.querySelector('.feedback-modal');
 const userBtns = document.querySelector('.user');
 const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
-const userNameContainer = document.querySelector('.user-name') 
+const userNameContainer = document.querySelector('.user-name');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -94,7 +94,7 @@ const renderAlbumsSection = (index = 0, genre = undefined) => {
   !genre ? renderDividedAlbums(index) : renderFilteredAlbum(genre);
 };
 
-// Añade clase hiddenal botón "Ver más"
+// Añade clase hidden al botón "Ver más"
 const toggleBtnLoad = (genre) => {
   !genre ? btnLoad.classList.remove('hidden') : btnLoad.classList.add('hidden');
 };
@@ -151,8 +151,9 @@ const toggleMenus = (e) => {
     linksMenu.classList.remove('show-menu');
     cartMenu.classList.remove('show-menu');
   } else if (
-    e.target.parentNode.classList.contains('cart-label') ||
-    e.target.classList.contains('cart-label')
+    (e.target.parentNode.classList.contains('cart-label') &&
+      loginUser.length) ||
+    (e.target.classList.contains('cart-label') && loginUser.length)
   ) {
     cartMenu.classList.toggle('show-menu');
     linksMenu.classList.remove('show-menu');
@@ -210,7 +211,8 @@ const renderCartBubble = () => {
 // reccibe un NodeList como parámetro
 const disableBtns = (btns) => {
   btns = [...btns];
-  !cart.length
+
+  !cart.length || !loginUser.length
     ? (btns.forEach((e) => e.classList.add('btn-disabled')),
       // cartBubble.classList.remove('show-bubble'),
       cartBtn.classList.remove('show-bubble'))
@@ -230,6 +232,11 @@ const cartStateCheck = () => {
 
 const addAlbum = (e) => {
   if (!e.target.classList.contains('btn--buy')) {
+    return;
+  }
+
+  if (!loginUser.length) {
+    showFeedback('alert', 'Por favor inicie sesión o Registrese');
     return;
   }
 
@@ -270,12 +277,12 @@ const feedbackRelevancy = (type, msg) => {
 };
 
 // Mostrar feedback al usuario
-const showFeedback = (type, msg) => {
+const showFeedback = (type, msg, time = 1500) => {
   feedbackModal.innerHTML = feedbackRelevancy(type, msg);
   feedbackModal.classList.add(`show-feedback-${type}`);
   setTimeout(
     () => feedbackModal.classList.remove(`show-feedback-${type}`),
-    1250
+    time
   );
 };
 
@@ -361,15 +368,13 @@ const cartBtnAction = (e) => {
 // Login stuff
 
 const checkIfLogin = () => {
-  if (!loginUser.length)
-  {
+  if (!loginUser.length) {
     console.log('NO HAY');
     userBtns.classList.remove('hidden');
     userLoginName.classList.add('hidden');
-  } else
-  {
+  } else {
     console.log('HAY');
-    userNameContainer.textContent = `Hola, ${loginUser[0].name}`
+    userNameContainer.textContent = `Hola, ${loginUser[0].name}`;
     userBtns.classList.add('hidden');
     userLoginName.classList.remove('hidden');
   }
@@ -378,8 +383,9 @@ const checkIfLogin = () => {
 const logout = () => {
   loginUser = [];
   localStorage.setItem('loginUser', JSON.stringify(loginUser));
-  showFeedback('alert', 'Sesion cerada')
+  showFeedback('alert', 'Sesion cerada');
   checkIfLogin();
+  cartStateCheck();
 };
 
 // Inicialización como Rodri manda
