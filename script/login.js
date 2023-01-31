@@ -13,13 +13,12 @@ const saveLoginStorage = (loginUser) => {
   localStorage.setItem('loginUser', JSON.stringify(loginUser));
 };
 
-
-const user = () => {
-  loginUser = {
-    pass: inputPass.value,
-    email: inputEmail.value,
-  };
-};
+// const user = () => {
+//   loginUser = {
+//     pass: inputPass.value,
+//     email: inputEmail.value,
+//   };
+// };
 
 // Mostrar según la importancia
 const feedbackRelevancy = (type, msg) => {
@@ -41,21 +40,24 @@ const showFeedback = (type, msg) => {
 
 // Login Section
 
-
-
-const checkUserInDb = (loginUser) =>
+const checkUserInDb = (userDb) =>
   userDb.find((user) => {
-    return user.email === loginUser.email && user.pass === loginUser.pass;
+    return user.email === inputEmail.value && user.pass === inputPass.value;
   });
+
+const getUserData = (userDb, mail, pass) => {
+  return userDb.filter((e) => e.email === mail && e.pass === pass);
+};
 
 const login = (e) => {
   e.preventDefault();
-  user()
-  console.log(loginUser);
-  checkUserInDb(loginUser)
-    ? (showFeedback('info', 'login exitoso'), saveLoginStorage(userDb), formLogin.reset())
-    : showFeedback('alert', 'No se encotró el ussuario')
-  
+  // user()
+  // console.log(loginUser);
+  checkUserInDb(userDb)
+    ? (showFeedback('info', 'login exitoso'),
+      saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
+      formLogin.reset())
+    : showFeedback('alert', 'No se encotró el ussuario');
 };
 
 const init = () => {

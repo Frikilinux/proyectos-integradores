@@ -15,6 +15,7 @@ const feedbackModal = document.querySelector('.feedback-modal');
 const userBtns = document.querySelector('.user');
 const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
+const userNameContainer = document.querySelector('.user-name') 
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -368,6 +369,7 @@ const checkIfLogin = () => {
   } else
   {
     console.log('HAY');
+    userNameContainer.textContent = `Hola, ${loginUser[0].name}`
     userBtns.classList.add('hidden');
     userLoginName.classList.remove('hidden');
   }
