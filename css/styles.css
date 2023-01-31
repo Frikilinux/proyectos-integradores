@@ -41,8 +41,6 @@ a:active {
 .header__login:hover,
 .menu__link:hover {
   color: var(--bg-btn);
-  border-left: none;
-  border-right: none;
 }
 
 .header {
@@ -114,15 +112,38 @@ a:active {
   gap: 8%;
 }
 
+.login-user,
 .user {
+  min-width: 190px;
   padding: 6px 10px;
   display: flex;
   gap: 15px;
   align-items: center;
+  justify-content: space-between;
   background-color: #5f77a566;
   border-radius: 5px;
 }
 
+.login-user {
+  gap: 5px;
+  font-size: 0.8rem;
+  display: flex;
+}
+
+.login-user .btn {
+  font-size: 0.6rem;
+  padding: 3px 7px;
+}
+
+.login-user .fa-user-check {
+  color: greenyellow;
+}
+
+.user-name {
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .link--home {
   font-weight: 600;
@@ -812,5 +833,5 @@ a:active {
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
   z-index: -2;
   left: 50%;
-  transform: translate(-50%, -220%);
+  transform: translate(-50%, -400%);
 }

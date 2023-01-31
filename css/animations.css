@@ -59,6 +59,9 @@ html {
   background-color: var(--bg-btn);
 }
 
+.visible {
+  display: flex;
+}
 
 .hidden {
   display: none;
