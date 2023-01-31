@@ -58,7 +58,6 @@ const login = (e) => {
       saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
       formLogin.reset(),
       setTimeout(() => window.location.href = '/', 4000))
-
     : showFeedback('alert', 'No se encotró el ussuario');
 };
 

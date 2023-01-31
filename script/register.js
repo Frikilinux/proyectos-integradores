@@ -34,21 +34,22 @@ const feedbackRelevancy = (type, msg) => {
 };
 
 // Mostrar feedback al usuario
-const showFeedback = (type, msg) => {
+const showFeedback = (type, msg, time = 1500) => {
   feedbackModal.innerHTML = feedbackRelevancy(type, msg);
   feedbackModal.classList.add(`show-feedback-${type}`);
   setTimeout(
     () => feedbackModal.classList.remove(`show-feedback-${type}`),
-    1250
+    time
   );
 };
 
 const register = (e) => {
   e.preventDefault();
-  dbSave()
-  saveLocalStorage(userDb)
-  showFeedback('info', 'Registro exitoso')
-  formRegister.reset()
+  dbSave();
+  saveLocalStorage(userDb);
+  showFeedback('info', 'Registro exitoso, redirecccionando para iniciar sesión', 3500);
+  formRegister.reset();
+  setTimeout(() => (window.location.href = '/pages/login.html'), 4000);
 };
 
 const init = () => {
