@@ -43,16 +43,12 @@ const showFeedback = (type, msg) => {
   );
 };
 
-
-
-
-
-
 const register = (e) => {
   e.preventDefault();
   dbSave()
   saveLocalStorage(userDb)
-  form.reset()
+  showFeedback('info', 'Registro exitoso')
+  formRegister.reset()
 };
 
 const init = () => {
