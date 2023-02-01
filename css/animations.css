@@ -37,7 +37,8 @@ html {
 }
 
 .fback-icon {
-  color: var(--fg3);
+  font-size: 1.5rem;
+  color: var(--fback-icon);
 }
 
 .show-feedback-alert {
@@ -49,7 +50,7 @@ html {
 
 .show-feedback-info {
   color: var(--bg);
-  background-color: rgb(92, 235, 111);
+  background-color: var(--success);
   transform: translate(-50%, 0%);
   transition: all 0.5s ease-in-out;
 }
@@ -78,6 +79,7 @@ html {
 }
 
 .show-bubble {
+  cursor: pointer;
   display: flex;
   color: var(--bg-btn);
   background-color: var(--bg-bubble);

@@ -3,7 +3,7 @@ const registerBtn = document.getElementById('send');
 const formLogin = document.querySelector('.form-login');
 const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
-const feedbackModal = document.querySelector('.feedback-modal-user');
+const feedbackModal = document.querySelector('.feedback-modal');
 
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 
@@ -23,9 +23,9 @@ const saveLoginStorage = (loginUser) => {
 // Mostrar según la importancia
 const feedbackRelevancy = (type, msg) => {
   if (type === 'alert')
-    return `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
+    return `<i class="fa-solid fa-triangle-exclamation fback-icon"></i> ${msg}`;
   if (type === 'info')
-    return `<i class="fa-solid fa-circle-info"></i></i> ${msg}`;
+    return `<i class="fa-solid fa-circle-info fback-icon"></i></i> ${msg}`;
 };
 
 // Mostrar feedback al usuario
@@ -49,16 +49,24 @@ const getUserData = (userDb, mail, pass) => {
   return userDb.filter((e) => e.email === mail && e.pass === pass);
 };
 
+// Check email
+const isEmailValid = (email) => {
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  return regex.test(email);
+};
+
 const login = (e) => {
   e.preventDefault();
-  // user()
-  // console.log(loginUser);
+  if (!isEmailValid(inputEmail.value)) {
+    showFeedback('alert', 'El email no es válido', 2000);
+    return;
+  }
   checkUserInDb(userDb)
-    ? (showFeedback('info', 'Login exitoso, redireccionado a la pagina pricipal', 3500),
+    ? (showFeedback('info', 'Login exitoso, redireccionando a la página principal', 3500),
       saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
       formLogin.reset(),
       setTimeout(() => window.location.href = '/', 4000))
-    : showFeedback('alert', 'No se encotró el ussuario');
+    : showFeedback('alert', 'No se encontró el usuario');
 };
 
 const init = () => {

@@ -4,7 +4,7 @@ const inputUser = document.getElementById('name');
 const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
 const inputEula = document.getElementById('eula');
-const feedbackModal = document.querySelector('.feedback-modal-user');
+const feedbackModal = document.querySelector('.feedback-modal');
 
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 
@@ -26,7 +26,6 @@ const dbSave = () => {
 };
 
 // Check email
-
 const isEmailValid = (email) => {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
   return regex.test(email);
@@ -37,9 +36,9 @@ const emailExist = (email) => userDb.some((user) => user.email === email);
 // Mostrar según la importancia
 const feedbackRelevancy = (type, msg) => {
   if (type === 'alert')
-    return `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
+    return `<i class="fa-solid fa-triangle-exclamation fback-icon"></i> ${msg}`;
   if (type === 'info')
-    return `<i class="fa-solid fa-circle-info"></i></i> ${msg}`;
+    return `<i class="fa-solid fa-circle-info fback-icon"></i></i> ${msg}`;
 };
 
 // Mostrar feedback al usuario

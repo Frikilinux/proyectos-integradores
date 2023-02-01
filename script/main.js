@@ -4,7 +4,7 @@ const btnLoad = document.querySelector('.btn-load');
 const cartBtn = document.querySelector('.cart-label');
 // const cartBubble = document.querySelector('.cart-bubble');
 const cartMenu = document.querySelector('.cart');
-const burgerBtn = document.querySelector('.navbar__label');
+const burgerBtn = document.querySelector('.fa-bars');
 const linksMenu = document.querySelector('.menu');
 const cartItemsContainer = document.querySelector('.cart-container');
 const totalPrice = document.querySelector('.total-price');
@@ -16,6 +16,7 @@ const userBtns = document.querySelector('.user');
 const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
 const userNameContainer = document.querySelector('.user-name');
+const btnUp = document.querySelector('.btn--up');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -148,6 +149,11 @@ const showMoreAlbums = () => {
 
 const toggleMenus = (e) => {
   if (e.type === 'scroll') {
+    if (scrollY < 500) {
+      btnUp.style.transform = 'translateY(150%)';
+    } else {
+      btnUp.style.transform = 'translateY(0%)';
+    }
     linksMenu.classList.remove('show-menu');
     cartMenu.classList.remove('show-menu');
   } else if (
@@ -236,7 +242,7 @@ const addAlbum = (e) => {
   }
 
   if (!loginUser.length) {
-    showFeedback('alert', 'Por favor inicie sesión o Registrese');
+    notLoggedIn();
     return;
   }
 
@@ -271,9 +277,9 @@ const sumAddedAlbums = (item) => {
 // Mostrar según la importancia
 const feedbackRelevancy = (type, msg) => {
   if (type === 'alert')
-    return `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
+    return `<i class="fa-solid fa-triangle-exclamation fback-icon"></i> ${msg}`;
   if (type === 'info')
-    return `<i class="fa-solid fa-circle-info"></i></i> ${msg}`;
+    return `<i class="fa-solid fa-circle-info fback-icon"></i></i> ${msg}`;
 };
 
 // Mostrar feedback al usuario
@@ -367,6 +373,14 @@ const cartBtnAction = (e) => {
 
 // Login stuff
 
+const notLoggedIn = () => {
+  showFeedback(
+    'alert',
+    'Por favor <a href="./pages/login.html" class="menu__link trans-5">inicia sesión</a> o <a href="./pages/register.html" class="menu__link trans-5">registrate</a>',
+    4000
+  );
+};
+
 const checkIfLogin = () => {
   if (!loginUser.length) {
     console.log('NO HAY');
@@ -383,7 +397,7 @@ const checkIfLogin = () => {
 const logout = () => {
   loginUser = [];
   localStorage.setItem('loginUser', JSON.stringify(loginUser));
-  showFeedback('alert', 'Sesion cerada');
+  showFeedback('alert', 'Sesion cerrada');
   checkIfLogin();
   cartStateCheck();
 };
