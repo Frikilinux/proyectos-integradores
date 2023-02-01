@@ -25,6 +25,15 @@ const dbSave = () => {
   ];
 };
 
+// Check email
+
+const isEmailValid = (email) => {
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  return regex.test(email);
+};
+
+const emailExist = (email) => userDb.some((user) => user.email === email);
+
 // Mostrar según la importancia
 const feedbackRelevancy = (type, msg) => {
   if (type === 'alert')
@@ -45,9 +54,21 @@ const showFeedback = (type, msg, time = 1500) => {
 
 const register = (e) => {
   e.preventDefault();
+  if (!isEmailValid(inputEmail.value)) {
+    showFeedback('alert', 'El email no es válido', 2000);
+    return;
+  }
+  if (emailExist(inputEmail.value)) {
+    showFeedback('alert', 'El email ya existe, probá con otro', 2000);
+    return;
+  }
   dbSave();
   saveLocalStorage(userDb);
-  showFeedback('info', 'Registro exitoso, redirecccionando para iniciar sesión', 3500);
+  showFeedback(
+    'info',
+    'Registro exitoso, redirecccionando para iniciar sesión',
+    3500
+  );
   formRegister.reset();
   setTimeout(() => (window.location.href = '/pages/login.html'), 4000);
 };
