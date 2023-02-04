@@ -21,12 +21,33 @@ const btnUp = document.querySelector('.btn--up');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
 // trayendo lo guardado
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let getCart = () => {
+  return !userDb.length || !loggedUser.length
+    ? []
+    : userDb.filter((user) => user.id === loggedUser[0].id)[0].cart;
+};
+
+// let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
-let loginUser = JSON.parse(localStorage.getItem('loginUser')) || [];
+let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
+let cart = getCart();
 
 const saveLocalStorage = (cartList) => {
   localStorage.setItem('cart', JSON.stringify(cartList));
+};
+
+const saveCartToLoggedUser = (userDb) => {
+  localStorage.setItem('userDb', JSON.stringify(userDb));
+};
+
+const saveCartToUser = (loggedUser) => {
+  userDb = userDb.map((user) => {
+    return user.id === loggedUser[0].id ? { ...user, cart: [...cart] } : user;
+  });
+};
+
+const saveLoginStorage = (loggedUser) => {
+  localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
 };
 
 const renderAlbum = (album) => {
@@ -148,6 +169,7 @@ const showMoreAlbums = () => {
 };
 
 const toggleMenus = (e) => {
+  console.log(e);
   if (e.type === 'scroll') {
     if (scrollY < 500) {
       btnUp.style.transform = 'translateY(150%)';
@@ -156,12 +178,10 @@ const toggleMenus = (e) => {
     }
     linksMenu.classList.remove('show-menu');
     cartMenu.classList.remove('show-menu');
-  }
-  if (e.target.dataset.name === 'cart-btn' && loginUser.length) {
+  } else if (e.target.dataset.name === 'cart-btn' && loggedUser.length) {
     cartMenu.classList.toggle('show-menu');
     linksMenu.classList.remove('show-menu');
-  }
-  if (e.target.classList.contains('fa-bars')) {
+  } else if (e.target.classList.contains('fa-bars')) {
     linksMenu.classList.toggle('show-menu');
     cartMenu.classList.remove('show-menu');
   }
@@ -216,7 +236,7 @@ const renderCartQty = () => {
 const disableBtns = (btns) => {
   btns = [...btns];
 
-  !cart.length || !loginUser.length
+  !cart.length || !loggedUser.length
     ? (btns.forEach((e) => e.classList.add('btn-disabled')),
       // cartBubble.classList.remove('show-qty'),
       cartBtn.classList.remove('show-qty'))
@@ -227,7 +247,9 @@ const disableBtns = (btns) => {
 
 // Chequeo del carrito para cada acción
 const cartStateCheck = () => {
-  saveLocalStorage(cart);
+  // saveLocalStorage(cart);
+  if (loggedUser.length) saveCartToUser(loggedUser);
+  if (loggedUser.length) saveCartToLoggedUser(userDb);
   renderCartItems();
   renderTotalPrice();
   disableBtns(cartBtns);
@@ -239,7 +261,7 @@ const addAlbum = (e) => {
     return;
   }
 
-  if (!loginUser.length) {
+  if (!loggedUser.length) {
     notLoggedIn();
     return;
   }
@@ -380,21 +402,22 @@ const notLoggedIn = () => {
 };
 
 const checkIfLogin = () => {
-  if (!loginUser.length) {
+  if (!loggedUser.length) {
     console.log('NO HAY');
     userBtns.classList.remove('hidden');
     userLoginName.classList.add('hidden');
   } else {
     console.log('HAY');
-    userNameContainer.textContent = `Hola, ${loginUser[0].name}`;
+    userNameContainer.textContent = `Hola, ${loggedUser[0].name}`;
     userBtns.classList.add('hidden');
     userLoginName.classList.remove('hidden');
   }
 };
 
 const logout = () => {
-  loginUser = [];
-  localStorage.setItem('loginUser', JSON.stringify(loginUser));
+  loggedUser = [];
+  cart = [];
+  localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
   showFeedback('alert', 'Sesion cerrada');
   checkIfLogin();
   cartStateCheck();

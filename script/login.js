@@ -7,10 +7,10 @@ const feedbackModal = document.querySelector('.feedback-modal');
 
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 
-let loginUser = JSON.parse(localStorage.getItem('loginUser')) || [];
+let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
 
-const saveLoginStorage = (loginUser) => {
-  localStorage.setItem('loginUser', JSON.stringify(loginUser));
+const saveLoginStorage = (loggedUser) => {
+  localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
 };
 
 // const user = () => {

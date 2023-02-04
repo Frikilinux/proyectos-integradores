@@ -21,6 +21,7 @@ const dbSave = () => {
       email: inputEmail.value,
       pass: inputPass.value,
       eula: inputEula.value,
+      cart: [],
     },
   ];
 };
@@ -63,11 +64,7 @@ const register = (e) => {
   }
   dbSave();
   saveLocalStorage(userDb);
-  showFeedback(
-    'info',
-    'Registro exitoso, inicia sesión',
-    3500
-  );
+  showFeedback('info', 'Registro exitoso, inicia sesión', 3500);
   formRegister.reset();
   setTimeout(() => (window.location.href = '/pages/login.html'), 4000);
 };
