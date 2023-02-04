@@ -45,8 +45,19 @@ const checkUserInDb = (userDb) =>
     return user.email === inputEmail.value && user.pass === inputPass.value;
   });
 
+// Trae todos los datos del usuario
 const getUserData = (userDb, mail, pass) => {
   return userDb.filter((e) => e.email === mail && e.pass === pass);
+};
+
+// Check usuario
+const isMailInDd = (userDb, mail) => {
+  return userDb.find((e) => e.email === mail);
+};
+
+// check password
+const isUserPass = (userDb, mail, pass) => {
+  return userDb.find((e) => e.email === mail && e.pass === pass);
 };
 
 // Check email
@@ -61,11 +72,19 @@ const login = (e) => {
     showFeedback('alert', 'El email no es válido', 2000);
     return;
   }
+  if (!isMailInDd(userDb, inputEmail.value)) {
+    showFeedback('alert', 'Usuario no encontrado', 2000);
+    return;
+  }
+  if (!isUserPass(userDb, inputEmail.value, inputPass.value)) {
+    showFeedback('alert', 'Password incorrecto', 2000);
+    return;
+  }
   checkUserInDb(userDb)
-    ? (showFeedback('info', 'Login exitoso, redireccionando a la página principal', 3500),
+    ? (showFeedback('info', 'Login exitoso', 3500),
       saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
       formLogin.reset(),
-      setTimeout(() => window.location.href = '/', 4000))
+      setTimeout(() => (window.location.href = '/'), 4000))
     : showFeedback('alert', 'No se encontró el usuario');
 };
 

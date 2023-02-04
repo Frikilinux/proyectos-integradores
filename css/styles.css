@@ -814,6 +814,8 @@ a:active {
 /* Notify modal */
 
 .feedback-modal {
+  font-size: 0.9rem;
+
   font-family: 'Montserrat';
   font-weight: 600;
   display: flex;

@@ -65,7 +65,7 @@ const register = (e) => {
   saveLocalStorage(userDb);
   showFeedback(
     'info',
-    'Registro exitoso, redirecccionando para iniciar sesión',
+    'Registro exitoso, inicia sesión',
     3500
   );
   formRegister.reset();

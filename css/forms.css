@@ -58,9 +58,9 @@
   gap: 10px;
 }
 
-.form__check .checkbox {
+.checkbox {
+  accent-color: red;
   height: 18px;
-  /* vertical-align: middle; */
   width: 18px;
 }
 
