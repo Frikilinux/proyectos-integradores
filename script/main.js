@@ -8,7 +8,7 @@ const burgerBtn = document.querySelector('.fa-bars');
 const linksMenu = document.querySelector('.menu');
 const cartItemsContainer = document.querySelector('.cart-container');
 const totalPrice = document.querySelector('.total-price');
-const cartItemsQty = document.querySelector('.cart-bubble');
+const cartItemsQty = document.querySelector('.cart-qty');
 const cartBtnContainer = document.querySelector('.cart-btns');
 const cartBtns = cartBtnContainer.querySelectorAll('.btn');
 const feedbackModal = document.querySelector('.feedback-modal');
@@ -156,14 +156,12 @@ const toggleMenus = (e) => {
     }
     linksMenu.classList.remove('show-menu');
     cartMenu.classList.remove('show-menu');
-  } else if (
-    (e.target.parentNode.classList.contains('cart-label') &&
-      loginUser.length) ||
-    (e.target.classList.contains('cart-label') && loginUser.length)
-  ) {
+  }
+  if (e.target.dataset.name === 'cart-btn' && loginUser.length) {
     cartMenu.classList.toggle('show-menu');
     linksMenu.classList.remove('show-menu');
-  } else if (e.target.classList.contains('fa-bars')) {
+  }
+  if (e.target.classList.contains('fa-bars')) {
     linksMenu.classList.toggle('show-menu');
     cartMenu.classList.remove('show-menu');
   }
@@ -209,7 +207,7 @@ const renderTotalPrice = () => {
   totalPrice.innerHTML = `$ ${totalItemsPrice().toFixed(2)}`;
 };
 
-const renderCartBubble = () => {
+const renderCartQty = () => {
   // cartItemsQty.textContent = cart.length;
   cartItemsQty.textContent = cart.reduce((acc, e) => acc + e.quantity, 0);
 };
@@ -220,11 +218,11 @@ const disableBtns = (btns) => {
 
   !cart.length || !loginUser.length
     ? (btns.forEach((e) => e.classList.add('btn-disabled')),
-      // cartBubble.classList.remove('show-bubble'),
-      cartBtn.classList.remove('show-bubble'))
+      // cartBubble.classList.remove('show-qty'),
+      cartBtn.classList.remove('show-qty'))
     : (btns.forEach((e) => e.classList.remove('btn-disabled')),
-      // cartBubble.classList.add('show-bubble'),
-      cartBtn.classList.add('show-bubble'));
+      // cartBubble.classList.add('show-qty'),
+      cartBtn.classList.add('show-qty'));
 };
 
 // Chequeo del carrito para cada acción
@@ -233,7 +231,7 @@ const cartStateCheck = () => {
   renderCartItems();
   renderTotalPrice();
   disableBtns(cartBtns);
-  renderCartBubble();
+  renderCartQty();
 };
 
 const addAlbum = (e) => {
@@ -421,7 +419,7 @@ const init = () => {
   });
   logoutBtn.addEventListener('click', logout);
   // document.addEventListener('DOMContentLoaded', renderTotalPrice);
-  // document.addEventListener('DOMContentLoaded', renderCartBubble);
+  // document.addEventListener('DOMContentLoaded', renderCartQty);
   // disableBtns(cartBtns);
 };
 

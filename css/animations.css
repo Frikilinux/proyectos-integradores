@@ -78,7 +78,7 @@ html {
   border: none;
 }
 
-.show-bubble {
+.show-qty {
   cursor: pointer;
   display: flex;
   color: var(--bg-btn);

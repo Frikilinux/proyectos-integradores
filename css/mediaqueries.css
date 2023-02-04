@@ -175,6 +175,7 @@
   }
 
   .cart {
-    width: 100%;
+    max-width: unset;
+    width: 100vw;
   }
 }
