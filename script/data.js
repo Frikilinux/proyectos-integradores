@@ -642,10 +642,23 @@ const albumsData = [
 },
 ];
 
+
+// Desordena los albumes para que sea más divertido ...
+const shuffleAlbums = (arr) => {
+  let newAlbumsData = [...arr]
+  for (let i = newAlbumsData.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newAlbumsData[i], newAlbumsData[j]] = [newAlbumsData[j], newAlbumsData[i]];
+  }
+  return newAlbumsData
+}
+
+// Dividiendo en arrays
 const splitAlbums = (size) => {
+  let newAlbumsData = shuffleAlbums(albumsData)
   let dividedAlbums = [];
-  for (let i = 0; i < albumsData.length; i += size) {
-    dividedAlbums.push(albumsData.slice(i, i + size));
+  for (let i = 0; i < newAlbumsData.length; i += size) {
+    dividedAlbums.push(newAlbumsData.slice(i, i + size));
   }
   return dividedAlbums;
 };

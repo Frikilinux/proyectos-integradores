@@ -103,7 +103,7 @@ const renderDividedAlbums = (i = 0) => {
 };
 
 const renderFilteredAlbum = (genre) => {
-  const albumList = albumsData.filter((album) => {
+  const albumList = shuffleAlbums(albumsData).filter((album) => {
     return album.genre === genre;
   });
   albumsContainer.innerHTML = albumList.map(renderAlbum).join('');
@@ -144,8 +144,11 @@ const changeFilterState = (e) => {
   changeBtnState(e.target.dataset.genre);
 };
 
+// Botones de género
 const applyFilter = (e) => {
+  if (e.target.classList.contains('active')) return;
   if (!e.target.classList.contains('genre')) return;
+  console.log(e);
   !e.target.dataset.genre
     ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
     : (renderAlbumsSection(0, e.target.dataset.genre),
