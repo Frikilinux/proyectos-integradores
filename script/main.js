@@ -27,27 +27,48 @@ let getUserCart = () => {
     : userDb.filter((user) => user.id === loggedUser[0].id)[0].cart;
 };
 
+// const isLogged = (loggedUser) => {
+//   return JSON.stringify(loggedUser) !== '{}';
+// };
+
+// let getUserCart2 = () => {
+//   return !userDb.length || !isLogged(loggedUser)
+//     ? []
+//     : userDb.filter((user) => user.id === loggedUser.id)[0].cart;
+// };
+
 // let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
+let loggedUser2 = JSON.parse(localStorage.getItem('loggedUser')) || {};
 let cart = getUserCart();
 
-const saveLocalStorage = (cartList) => {
-  localStorage.setItem('cart', JSON.stringify(cartList));
-};
+// const saveLocalStorage = (cartList) => {
+//   localStorage.setItem('cart', JSON.stringify(cartList));
+// };
 
 const saveUserDb = (userDb) => {
   localStorage.setItem('userDb', JSON.stringify(userDb));
 };
 
-const updateCartOfLoggedUser = (loggedUser) => {
+const saveLoginStorage = (loggedUser) => {
+  localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+};
+
+// const updateCartOfLoggedUser = (loggedUser) => {
+//   userDb = userDb.map((user) => {
+//     return user.id === loggedUser[0].id ? { ...user, cart: [...cart] } : user;
+//   });
+// };
+
+const updateUserDb = (loggedUser) => {
   userDb = userDb.map((user) => {
-    return user.id === loggedUser[0].id ? { ...user, cart: [...cart] } : user;
+    return user.id === loggedUser[0].id ? loggedUser[0] : user;
   });
 };
 
-const saveLoginStorage = (loggedUser) => {
-  localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+const updateCartOfLoggedUser = (user) => {
+  loggedUser = user.map((user) => ({ ...user, cart: [...cart] }));
 };
 
 const renderAlbum = (album) => {
@@ -248,10 +269,7 @@ const disableBtns = (btns) => {
 // Chequeo del carrito para cada acción
 const cartStateCheck = () => {
   // saveLocalStorage(cart);
-  if (loggedUser.length) {
-    updateCartOfLoggedUser(loggedUser);
-    saveUserDb(userDb);
-  }
+  loggedUser.length && updateCartOfLoggedUser(loggedUser);
   renderCartItems();
   renderTotalPrice();
   disableBtns(cartBtns);
@@ -418,9 +436,11 @@ const checkIfLogin = () => {
 
 const logout = () => {
   cartMenu.classList.remove('show-menu');
+  updateUserDb(loggedUser);
+  saveUserDb(userDb);
   loggedUser = [];
   cart = [];
-  localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+  // localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
   showFeedback('alert', 'Sesion cerrada');
   checkIfLogin();
   cartStateCheck();
