@@ -83,4 +83,13 @@ html {
   display: flex;
   color: var(--bg-btn);
   background-color: var(--bg-bubble);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.show-qty:active {
+  box-shadow: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 4px inset, rgba(0, 0, 0, 0.23) 0px 3px 4px inset;
+
 }
