@@ -22,44 +22,20 @@ const btnUp = document.querySelector('.btn--up');
 
 // Trayendo cart guardado
 let getUserCart = () => {
-  return !userDb.length || !loggedUser.length
-    ? []
-    : userDb.filter((user) => user.id === loggedUser[0].id)[0].cart;
+  return !loggedUser.length ? [] : loggedUser[0].cart;
 };
 
-// const isLogged = (loggedUser) => {
-//   return JSON.stringify(loggedUser) !== '{}';
-// };
-
-// let getUserCart2 = () => {
-//   return !userDb.length || !isLogged(loggedUser)
-//     ? []
-//     : userDb.filter((user) => user.id === loggedUser.id)[0].cart;
-// };
-
-// let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
-let loggedUser2 = JSON.parse(localStorage.getItem('loggedUser')) || {};
 let cart = getUserCart();
 
-// const saveLocalStorage = (cartList) => {
-//   localStorage.setItem('cart', JSON.stringify(cartList));
-// };
-
-const saveUserDb = (userDb) => {
+const saveUserDbStorage = (userDb) => {
   localStorage.setItem('userDb', JSON.stringify(userDb));
 };
 
 const saveLoginStorage = (loggedUser) => {
   localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
 };
-
-// const updateCartOfLoggedUser = (loggedUser) => {
-//   userDb = userDb.map((user) => {
-//     return user.id === loggedUser[0].id ? { ...user, cart: [...cart] } : user;
-//   });
-// };
 
 const updateUserDb = (loggedUser) => {
   userDb = userDb.map((user) => {
@@ -142,8 +118,7 @@ const toggleBtnLoad = (genre) => {
   !genre ? btnLoad.classList.remove('hidden') : btnLoad.classList.add('hidden');
 };
 
-// Crea categorías géneros
-
+// Crea categorías con los géneros
 const renderCatGenre = (genre) => {
   return `<button class="genre" data-genre="${genre}">${genre}</button>`;
 };
@@ -190,7 +165,7 @@ const showMoreAlbums = () => {
 };
 
 const toggleMenus = (e) => {
-  console.log(e);
+  // console.log(e);
   if (e.type === 'scroll') {
     if (scrollY < 500) {
       btnUp.style.transform = 'translateY(150%)';
@@ -209,7 +184,6 @@ const toggleMenus = (e) => {
 };
 
 // Carrito
-
 const renderItem = (cartItem) => {
   const { id, artist, name, price, img, tracks, quantity } = cartItem;
   return `<div class="cart-item">
@@ -256,20 +230,19 @@ const renderCartQty = () => {
 // reccibe un NodeList como parámetro
 const disableBtns = (btns) => {
   btns = [...btns];
-
   !cart.length || !loggedUser.length
     ? (btns.forEach((e) => e.classList.add('btn-disabled')),
-      // cartBubble.classList.remove('show-qty'),
       cartBtn.classList.remove('show-qty'))
     : (btns.forEach((e) => e.classList.remove('btn-disabled')),
-      // cartBubble.classList.add('show-qty'),
       cartBtn.classList.add('show-qty'));
 };
 
 // Chequeo del carrito para cada acción
 const cartStateCheck = () => {
-  // saveLocalStorage(cart);
-  loggedUser.length && updateCartOfLoggedUser(loggedUser);
+  if (loggedUser.length) {
+    updateCartOfLoggedUser(loggedUser);
+    saveLoginStorage(loggedUser);
+  }
   renderCartItems();
   renderTotalPrice();
   disableBtns(cartBtns);
@@ -386,7 +359,6 @@ const setItemQty = (e) => {
 };
 
 // Compra y borrado de carrito
-
 const resetCart = () => {
   cart = [];
   cartStateCheck();
@@ -412,7 +384,6 @@ const cartBtnAction = (e) => {
 };
 
 // Login stuff
-
 const notLoggedIn = () => {
   showFeedback(
     'alert',
@@ -423,11 +394,9 @@ const notLoggedIn = () => {
 
 const checkIfLogin = () => {
   if (!loggedUser.length) {
-    console.log('NO HAY');
     userBtns.classList.remove('hidden');
     userLoginName.classList.add('hidden');
   } else {
-    console.log('HAY');
     userNameContainer.textContent = `Hola, ${loggedUser[0].name}`;
     userBtns.classList.add('hidden');
     userLoginName.classList.remove('hidden');
@@ -437,10 +406,10 @@ const checkIfLogin = () => {
 const logout = () => {
   cartMenu.classList.remove('show-menu');
   updateUserDb(loggedUser);
-  saveUserDb(userDb);
+  saveUserDbStorage(userDb);
   loggedUser = [];
   cart = [];
-  // localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+  saveLoginStorage(loggedUser);
   showFeedback('alert', 'Sesion cerrada');
   checkIfLogin();
   cartStateCheck();
