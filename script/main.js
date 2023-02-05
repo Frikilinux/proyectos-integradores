@@ -20,8 +20,8 @@ const btnUp = document.querySelector('.btn--up');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
-// trayendo lo guardado
-let getCart = () => {
+// Trayendo cart guardado
+let getUserCart = () => {
   return !userDb.length || !loggedUser.length
     ? []
     : userDb.filter((user) => user.id === loggedUser[0].id)[0].cart;
@@ -30,17 +30,17 @@ let getCart = () => {
 // let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
-let cart = getCart();
+let cart = getUserCart();
 
 const saveLocalStorage = (cartList) => {
   localStorage.setItem('cart', JSON.stringify(cartList));
 };
 
-const saveCartToLoggedUser = (userDb) => {
+const saveUserDb = (userDb) => {
   localStorage.setItem('userDb', JSON.stringify(userDb));
 };
 
-const saveCartToUser = (loggedUser) => {
+const updateCartOfLoggedUser = (loggedUser) => {
   userDb = userDb.map((user) => {
     return user.id === loggedUser[0].id ? { ...user, cart: [...cart] } : user;
   });
@@ -248,8 +248,10 @@ const disableBtns = (btns) => {
 // Chequeo del carrito para cada acción
 const cartStateCheck = () => {
   // saveLocalStorage(cart);
-  if (loggedUser.length) saveCartToUser(loggedUser);
-  if (loggedUser.length) saveCartToLoggedUser(userDb);
+  if (loggedUser.length) {
+    updateCartOfLoggedUser(loggedUser);
+    saveUserDb(userDb);
+  }
   renderCartItems();
   renderTotalPrice();
   disableBtns(cartBtns);
@@ -415,6 +417,7 @@ const checkIfLogin = () => {
 };
 
 const logout = () => {
+  cartMenu.classList.remove('show-menu');
   loggedUser = [];
   cart = [];
   localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
