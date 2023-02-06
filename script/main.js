@@ -17,6 +17,7 @@ const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
 const userNameContainer = document.querySelector('.user-name');
 const btnUp = document.querySelector('.btn--up');
+const trackPreviewContainer = document.querySelector('.track-preview');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -190,7 +191,8 @@ const toggleMenus = (e) => {
 
 // Carrito
 const renderItem = (cartItem) => {
-  const { id, artist, name, price, img, tracks, quantity, date, label } = cartItem;
+  const { id, artist, name, price, img, tracks, quantity, date, label } =
+    cartItem;
   return `<div class="cart-item">
   <div class="item-info">
     <img src="${img}" alt="Imagen del album" />
@@ -265,7 +267,8 @@ const addAlbum = (e) => {
     notLoggedIn();
     return;
   }
-  const { id, artist, name, price, img, tracks, date, label } = e.target.dataset;
+  const { id, artist, name, price, img, tracks, date, label } =
+    e.target.dataset;
   const album = albumData(id, artist, name, price, img, tracks, date, label);
   albumAdded(album)
     ? sumAddedAlbums(album)
@@ -274,7 +277,7 @@ const addAlbum = (e) => {
 };
 
 // Crea un objeto con album añadido
-const albumData = (id, artist, name, price, img, tracks, date,label) => {
+const albumData = (id, artist, name, price, img, tracks, date, label) => {
   return { id, artist, name, price, img, tracks, date, label };
 };
 
@@ -369,8 +372,7 @@ const resetCart = () => {
 
 const confirmCartAction = (confirmMsg, feedbackMsg, type) => {
   if (!cart.length) return;
-  if (window.confirm(confirmMsg))
-    resetCart(), showFeedback(type, feedbackMsg);
+  if (window.confirm(confirmMsg)) resetCart(), showFeedback(type, feedbackMsg);
 };
 
 const buyCart = () => {
@@ -417,6 +419,52 @@ const logout = () => {
   checkIfLogin();
   cartStateCheck();
 };
+
+// Constructor de tracks preview
+class TrackPreview {
+  constructor(name, url, img) {
+    this.createTrackPreview(name, url, img);
+  }
+  createTrackPreview(name, url, img) {
+    const div = document.createElement('div');
+    div.classList.add('track');
+
+    const trackName = document.createElement('p')
+    trackName.classList.add('track-preview-name')
+    trackName.textContent = 'Nombre de la pista media larga para probar si corta el parrafo'
+
+
+    // const albumImg = document.createElement('img');
+    // albumImg.src =
+    //   'https://i.scdn.co/image/ab67616d0000b27313951ee1ac53d65c5ed43724';
+    // albumImg.alt = 'Album cover';
+
+    const btnPlayPause = document.createElement('button');
+    btnPlayPause.innerHTML = '<i class="fa-regular fa-circle-play">';
+    btnPlayPause.classList.add('play-pause');
+
+    const audioTrack = document.createElement('audio');
+    audioTrack.classList.add('song');
+    audioTrack.src =
+      'https://p.scdn.co/mp3-preview/72eb15bbfe48ccee581e06ec5da52f974d5884f2?cid=774b29d4f13844c495f206cafdad9c86';
+
+    trackPreviewContainer.appendChild(div);
+    div.append(btnPlayPause, trackName, audioTrack);
+
+    const togglePlay = () => {
+      audioTrack.paused ? audioTrack.play() : audioTrack.pause();
+    };
+
+    btnPlayPause.addEventListener('click', togglePlay);
+
+    audioTrack.onplaying = () => {
+      btnPlayPause.innerHTML = '<i class="fa-regular fa-circle-pause"></i>';
+    };
+    audioTrack.onpause = () => {
+      btnPlayPause.innerHTML = '<i class="fa-regular fa-circle-play"></i>';
+    };
+  }
+}
 
 // Inicialización como Rodri manda
 

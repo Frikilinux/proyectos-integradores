@@ -857,3 +857,107 @@ a:active {
   left: 50%;
   transform: translate(-50%, -400%);
 }
+
+.track-preview {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 500px;
+  color: var(--fg1);
+  background: var(--bg-menu); 
+  background: url(../assets/img/capricorn_sun.jpg) no-repeat center/cover ;
+  gap: 10px;
+  opacity: 0.97;
+  z-index: -3;
+  /* transform: translate(-200%); */
+  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
+  left: 0;
+  top: calc(45px + 1vw);
+  width: 50%;
+  max-width: 500px;
+  height: calc(100vh - calc(45px + 1vw));
+  backdrop-filter: blur(20px);
+}
+
+
+
+.cart {
+  position: absolute;
+  display: flex;
+  color: var(--fg1);
+  align-items: center;
+  background: var(--bg-menu); 
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  right: 0;
+  padding: 15px 8px;
+  top: calc(45px + 1vw);
+  width: 50%;
+  max-width: 500px;
+  height: calc(100vh - calc(45px + 1vw));
+  z-index: -3;
+  backdrop-filter: blur(20px);
+  transform: translate(200%);
+  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
+}
+
+
+
+
+
+
+.preview-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.preview-data {
+  padding: 15px;
+  background-color: #2b2d42d5;
+  width: 100%;
+  z-index: 2;
+}
+
+.track-preview .track {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 10px;
+  width: 95%;
+  /* opacity: 0.8; */
+  background-color: #2b2d42d5;
+}
+
+.preview-album,
+.preview-artist {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.preview-artist{
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.track-preview-name {
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.play-pause {
+  font-size: 1.2rem;
+  color: var(--bg2);
+  background-color: transparent;
+  border: none;
+}
