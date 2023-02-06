@@ -118,20 +118,8 @@
 
   .login-user {
     gap: 5px;
-    font-size: 1.2rem;
     display: flex;
   }
-  
-  .login-user .btn {
-    font-size: 1rem;
-    padding: 5px 12px;
-    border-radius: 5px;
-  }
-  
-  .login-user .fa-user-check {
-    color: greenyellow;
-  }
-
 }
 
 @media (max-width: 576px) {

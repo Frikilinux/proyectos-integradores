@@ -122,7 +122,7 @@ const toggleBtnLoad = (genre) => {
 
 // Crea categorías con los géneros
 const renderCatGenre = (genre) => {
-  return `<button class="genre" data-genre="${genre}">${genre}</button>`;
+  return `<button class="genre trans-5" data-genre="${genre}">${genre}</button>`;
 };
 
 const renderGenreBtns = (genreList) => {
