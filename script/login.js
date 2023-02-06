@@ -81,10 +81,10 @@ const login = (e) => {
     return;
   }
   checkUserInDb(userDb)
-    ? (showFeedback('info', 'Login exitoso', 3500),
+    ? (showFeedback('info', 'Login exitoso', 1500),
       saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
       formLogin.reset(),
-      setTimeout(() => (window.location.href = '/'), 4000))
+      setTimeout(() => (window.location.href = '/'), 2000))
     : showFeedback('alert', 'No se encontró el usuario');
 };
 

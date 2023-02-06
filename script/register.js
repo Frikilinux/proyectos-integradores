@@ -64,9 +64,9 @@ const register = (e) => {
   }
   dbSave();
   saveLocalStorage(userDb);
-  showFeedback('info', 'Registro exitoso, inicia sesión', 3500);
+  showFeedback('info', 'Registro exitoso, inicia sesión', 1500);
   formRegister.reset();
-  setTimeout(() => (window.location.href = '/pages/login.html'), 4000);
+  setTimeout(() => (window.location.href = '/pages/login.html'), 2000);
 };
 
 const init = () => {
