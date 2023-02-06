@@ -657,11 +657,11 @@ a:active {
   justify-content: space-between;
   gap: 10px;
   right: 0;
-  padding: 0.5rem;
+  padding: 15px 8px;
   top: calc(45px + 1vw);
   width: 50%;
   max-width: 500px;
-  height: calc(100vh - 45px);
+  height: calc(100vh - calc(45px + 1vw));
   z-index: -3;
   backdrop-filter: blur(20px);
   transform: translate(200%);
@@ -676,7 +676,7 @@ a:active {
   width: 100%;
   /* background-color: #8d99ae34; */
   overflow-y: scroll;
-  min-height: 70%;
+  min-height: 85%;
   gap: 10px;
 }
 
@@ -693,7 +693,7 @@ a:active {
 .cart-total,
 .cart-btns {
   width: 80%;
-  height: 10%;
+  /* height: 10%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -723,7 +723,8 @@ a:active {
 }
 
 .cart-item img {
-  width: 25%;
+  max-width: 105px;
+  width: 26%;
   border-radius: 5px;
 }
 
@@ -734,7 +735,7 @@ a:active {
 .item-album {
   color: var(--fg1);
   font-weight: 600;
-  font-size: calc(10px + 1.5vw);
+  font-size: clamp(13px, calc(9px + 0.7vw), 1rem);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -742,20 +743,28 @@ a:active {
 
 .item-artist {
   color: var(--fg1);
-  font-size: calc(10px + 1vw);
+  font-size: clamp(13px, calc(9px + 0.7vw), 1rem);
   font-weight: 300;
 }
 
-.item-tracks {
-  padding: 4px 0;
+.item-data {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: clamp(2px, 0.1vw, 4px) 0;
   color: var(--fg1);
-  font-size: calc(8px + .6vw);
+  font-size: clamp(0.5rem, calc(8px + 0.2vw), 0.65rem);
   font-weight: 300;
+}
+
+.item-data>i {
+  text-align: center;
+  width: clamp(0.5rem, calc(8px + 0.2vw), 0.65rem);
 }
 
 .item-price {
   color: var(--fg1);
-  font-size: calc(15px + 1vw);
+  font-size: clamp(14px, calc(14px + 0.8vw), 1.25rem);
   font-weight: 700;
 }
 
@@ -807,8 +816,19 @@ a:active {
 }
 
 .cart-total span {
+  font-size: 1.4rem;
   color: var(--success);
   font-weight: 800;
+}
+
+.cart-btns .btn-buy {
+  color: var(--fg2);
+  background-color: var(--success);
+}
+
+.cart-btns .btn-buy:hover {
+  color: var(--fg2);
+  background-color: var(--success);
 }
 
 /* Notify modal */

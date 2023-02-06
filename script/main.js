@@ -76,7 +76,7 @@ const renderAlbum = (album) => {
     <div class="release__data">
       <p class="album-name">${name}</p>
       <p class="artist">${artist}</p>
-      <p class="tracks">${totalTracks} pistas</p>
+      <p class="tracks">${totalTracks} pistas - Release ${releaseDate}</p>
     </div>
     <div class="release__price">
       <p class="price">$ ${price}</p>
@@ -87,7 +87,9 @@ const renderAlbum = (album) => {
         data-name="${name}"
         data-price="${price}"
         data-img="${albumImg}"
-        data-tracks="${totalTracks}">
+        data-tracks="${totalTracks}"
+        data-date="${releaseDate}"
+        data-label="${label}">
           Comprar
       </button>
     </div>
@@ -188,14 +190,16 @@ const toggleMenus = (e) => {
 
 // Carrito
 const renderItem = (cartItem) => {
-  const { id, artist, name, price, img, tracks, quantity } = cartItem;
+  const { id, artist, name, price, img, tracks, quantity, date, label } = cartItem;
   return `<div class="cart-item">
   <div class="item-info">
     <img src="${img}" alt="Imagen del album" />
     <div class="album-data">
       <p class="item-album">${name}</p>
       <p class="item-artist">${artist}</p>
-      <p class="item-tracks">${tracks} Tracks</p>
+      <p class="item-data">${tracks} Pistas</p>
+      <p class="item-data"><i class="fa-regular fa-calendar"></i>${date}</p>
+      <p class="item-data"><i class="fa-solid fa-record-vinyl"></i>${label}</p>
     </div> 
   </div>
     <div class="item-handler">
@@ -252,30 +256,26 @@ const cartStateCheck = () => {
   renderCartQty();
 };
 
+// Añade el album
 const addAlbum = (e) => {
   if (!e.target.classList.contains('btn--buy')) {
     return;
   }
-
   if (!loggedUser.length) {
     notLoggedIn();
     return;
   }
-
-  const { id, artist, name, price, img, tracks } = e.target.dataset;
-
-  const album = albumData(id, artist, name, price, img, tracks);
-
+  const { id, artist, name, price, img, tracks, date, label } = e.target.dataset;
+  const album = albumData(id, artist, name, price, img, tracks, date, label);
   albumAdded(album)
     ? sumAddedAlbums(album)
     : (createAlbumItem(album), showFeedback('info', 'Nuevo album añadido'));
-
   cartStateCheck();
 };
 
-// Creo un objeto con album añadido
-const albumData = (id, artist, name, price, img, tracks) => {
-  return { id, artist, name, price, img, tracks };
+// Crea un objeto con album añadido
+const albumData = (id, artist, name, price, img, tracks, date,label) => {
+  return { id, artist, name, price, img, tracks, date, label };
 };
 
 // Chequea si ya está el album añadido
@@ -367,18 +367,18 @@ const resetCart = () => {
   cartStateCheck();
 };
 
-const confirmCartAction = (confirmMsg, feedbackMsg) => {
+const confirmCartAction = (confirmMsg, feedbackMsg, type) => {
   if (!cart.length) return;
   if (window.confirm(confirmMsg))
-    resetCart(), showFeedback('alert', feedbackMsg);
+    resetCart(), showFeedback(type, feedbackMsg);
 };
 
 const buyCart = () => {
-  confirmCartAction('¿Desea comprar todo?', 'Carrito comprado!');
+  confirmCartAction('¿Desea comprar todo?', 'Carrito comprado!', 'info');
 };
 
 const emptyCart = () => {
-  confirmCartAction('¿Desea borrar todo?', 'Carrito eliminado!');
+  confirmCartAction('¿Desea borrar todo?', 'Carrito eliminado!', 'alert');
 };
 
 const cartBtnAction = (e) => {

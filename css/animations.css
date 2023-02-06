@@ -68,8 +68,8 @@ html {
   display: none;
 }
 
-.btn-disabled:hover,
-.btn-disabled {
+.cart-btns .btn-disabled:hover,
+.cart-btns .btn-disabled {
   transition: none;
   color: var(--fg2);
   background-color: var(--bg2);
