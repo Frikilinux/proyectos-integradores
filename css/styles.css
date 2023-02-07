@@ -861,7 +861,6 @@ a:active {
   height: 100vh;
   width: 500px;
   color: var(--fg1);
-  background: url(../assets/img/capricorn_sun.jpg) no-repeat center/cover;
   gap: 10px;
   opacity: 0.95;
   z-index: -3;
