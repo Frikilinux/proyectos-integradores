@@ -3,13 +3,13 @@
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap);
 :root {
-  --bg: #2B2D42;
-  --bg2: #8D99AE;
-  --fg1: #EDF2F4;
+  --bg: #2b2d42;
+  --bg2: #8d99ae;
+  --fg1: #edf2f4;
   --fg2: #1d1d1f;
   --fg3: #48608b;
-  --red: #EF233C;
-  --bg-btn: #D90429;
+  --red: #ef233c;
+  --bg-btn: #d90429;
   --bg-bubble: #f7e76bd5;
   --orange: #ef885c;
   --bg-menu: #1807078c;
@@ -55,7 +55,6 @@ a:active {
   width: 100%;
   height: calc(45px + 1vw);
   padding: 0 5%;
-  
 }
 
 .header::before {
@@ -69,9 +68,7 @@ a:active {
   backdrop-filter: blur(7px);
   background-color: #2b2d42f0;
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px,
-      rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;
-
-
+    rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;
 }
 
 .isotipo {
@@ -101,7 +98,6 @@ a:active {
   gap: 40px;
   justify-content: center;
 }
-
 
 .navbar__label {
   display: none;
@@ -148,7 +144,7 @@ a:active {
 }
 
 .user-name {
-  overflow:hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -294,7 +290,7 @@ a:active {
 }
 
 .albums__title {
-  font-family: 'Montserrat',sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 10px 0;
   font-size: 2.5rem;
   color: var(--bg);
@@ -345,7 +341,7 @@ a:active {
   background-color: #1d1d1fd2;
   border-radius: 8px 0 0 8px;
   /* backdrop-filter: blur(10px); */
-    /* -webkit-backdrop-filter: blur(10px); */
+  /* -webkit-backdrop-filter: blur(10px); */
 }
 
 .format .format-img {
@@ -359,7 +355,7 @@ a:active {
 }
 
 .img-select:hover {
-  background-color: #D90429;
+  background-color: #d90429;
 }
 
 .release__info {
@@ -387,7 +383,7 @@ a:active {
 .release__data .album-name {
   font-family: 'Montserrat';
   font-weight: 500;
-  overflow:hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 200px;
@@ -395,7 +391,7 @@ a:active {
 .release__data .artist {
   font-size: 0.7rem;
   font-family: 'Montserrat';
-  overflow:hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 209px;
@@ -419,7 +415,6 @@ a:active {
   color: var(--fg1);
   font-family: 'Montserrat';
   font-weight: 600;
-
 }
 
 .btn--buy {
@@ -484,7 +479,6 @@ a:active {
   font-size: 1.15rem;
 }
 
-
 /* Section Contact */
 .contact {
   width: 100%;
@@ -494,7 +488,6 @@ a:active {
   padding: 25px 0;
   /* height: 250px; */
 }
-
 
 .container__contact {
   width: 80%;
@@ -626,9 +619,6 @@ a:active {
   transform: translateY(150%);
 }
 
-
-
-
 /* Cart */
 .cart-label {
   color: var(--fg3);
@@ -653,7 +643,7 @@ a:active {
   display: flex;
   color: var(--fg1);
   align-items: center;
-  background: var(--bg-menu); 
+  background: var(--bg-menu);
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
@@ -666,7 +656,8 @@ a:active {
   z-index: -3;
   backdrop-filter: blur(20px);
   transform: translate(200%);
-  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
+  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;
 }
 
 .cart-container {
@@ -758,7 +749,7 @@ a:active {
   font-weight: 300;
 }
 
-.item-data>i {
+.item-data > i {
   text-align: center;
   width: clamp(0.5rem, calc(8px + 0.2vw), 0.65rem);
 }
@@ -779,7 +770,7 @@ a:active {
 .quantity-container {
   display: flex;
   align-items: center;
-  gap: 10px
+  gap: 10px;
 }
 
 .trash {
@@ -852,30 +843,34 @@ a:active {
   height: calc(45px + 1vw);
   width: 80%;
   max-width: 700px;
-  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
+  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;
   z-index: -2;
   left: 50%;
   transform: translate(-50%, -400%);
 }
+
+/* Tracks preview */
 
 .track-preview {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   height: 100vh;
   width: 500px;
   color: var(--fg1);
-  background: var(--bg-menu); 
-  background: url(../assets/img/capricorn_sun.jpg) no-repeat center/cover ;
+  background: url(../assets/img/capricorn_sun.jpg) no-repeat center/cover;
   gap: 10px;
-  opacity: 0.90;
+  opacity: 0.95;
   z-index: -3;
   /* transform: translate(-200%); */
-  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
+  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;
   left: 0;
   top: calc(45px + 1vw);
-  width: 40%;
+  width: 50%;
   max-width: 400px;
   height: calc(100vh - calc(45px + 1vw));
   backdrop-filter: blur(20px);
@@ -891,53 +886,32 @@ a:active {
   z-index: 1;
   /* transform: translate(-200%); */
   width: 100%;
+  min-height: 70%;
   overflow-y: scroll;
 }
 
-
-
-.cart {
-  position: absolute;
-  display: flex;
-  color: var(--fg1);
-  align-items: center;
-  background: var(--bg-menu); 
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-  right: 0;
-  padding: 15px 8px;
-  top: calc(45px + 1vw);
-  width: 50%;
-  max-width: 500px;
-  height: calc(100vh - calc(45px + 1vw));
-  z-index: -3;
-  backdrop-filter: blur(20px);
-  transform: translate(200%);
-  box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
+.track-preview-container::-webkit-scrollbar {
+  display: none;
 }
-
-
-
-
-
 
 .preview-overlay {
   position: absolute;
   height: 100%;
   width: 100%;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(1px);
   z-index: 1;
 }
 
 .preview-data {
   padding: 15px;
-  background-color: #2b2d42d5;
+  background-color: var(--bg-menu);
+  backdrop-filter: blur(10px);
   width: 100%;
   z-index: 2;
 }
 
 .track-preview .track {
+  cursor: pointer;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -945,8 +919,9 @@ a:active {
   border-radius: 5px;
   padding: 10px;
   width: 95%;
-  /* opacity: 0.8; */
-  background-color: #2b2d42d5;
+  backdrop-filter: blur(10px);
+  background-color: var(--bg-menu);
+  user-select: none;
 }
 
 .preview-album,
@@ -956,7 +931,7 @@ a:active {
   font-size: 1.5rem;
 }
 
-.preview-artist{
+.preview-artist {
   font-weight: 400;
   font-size: 1.1rem;
 }
@@ -969,8 +944,23 @@ a:active {
 }
 
 .play-pause {
-  font-size: 1.2rem;
+  font-size: 1.3em;
   color: var(--bg2);
-  background-color: transparent;
-  border: none;
+  /* background-color: transparent; */
+  /* border: none; */
+}
+
+.track-preview .playing {
+  opacity: 0.7;
+  color: var(--fg2);
+  background-color: var(--bg2);
+}
+
+.track-preview .playing .play-pause {
+  color: var(--success);
+}
+
+.preview-buy {
+  z-index: 2;
+  padding: 15px 0;
 }

@@ -17,9 +17,13 @@ const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
 const userNameContainer = document.querySelector('.user-name');
 const btnUp = document.querySelector('.btn--up');
-const trackPreviewContainer = document.querySelector('.track-preview-container');
-const previewAlbumName = document.querySelector('.preview-album')
-const previewArtistName = document.querySelector('.preview-artist')
+const trackPreview = document.querySelector('.track-preview');
+const trackPreviewContainer = document.querySelector(
+  '.track-preview-container'
+);
+const previewAlbumName = document.querySelector('.preview-album');
+const previewArtistName = document.querySelector('.preview-artist');
+const previewbtnBuy = document.querySelector('.preview-buy');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -429,54 +433,89 @@ class TrackPreview {
   constructor(name, url, img) {
     this.createTrackPreview(name, url, img);
   }
-  createTrackPreview(name, url, img) {
+  createTrackPreview(name, url, trackNumber) {
     const div = document.createElement('div');
-    div.classList.add('track');
+    div.classList.add('track', 'trans-5');
 
     const trackName = document.createElement('p');
     trackName.classList.add('track-preview-name');
-    trackName.textContent =
-      'Nombre de la pista media larga para probar si corta el parrafo';
+    trackName.textContent = `${trackNumber
+      .toString()
+      .padStart(2, 0)} | ${name}`;
 
-    const btnPlayPause = document.createElement('button');
-    btnPlayPause.innerHTML = '<i class="fa-regular fa-circle-play">';
-    btnPlayPause.classList.add('play-pause');
+    const btnPlayPause = document.createElement('i');
+    btnPlayPause.classList.add('play-pause', 'fa-regular', 'fa-circle-play');
 
     const audioTrack = document.createElement('audio');
     audioTrack.classList.add('song');
     audioTrack.src = url;
 
-    trackPreviewContainer.appendChild(div);
+    trackPreviewContainer.append(div);
     div.append(btnPlayPause, trackName, audioTrack);
 
     const togglePlay = () => {
-      audioTrack.paused ? audioTrack.play() : audioTrack.pause();
+      const allSongs = [...document.querySelectorAll('.song')];
+      if (audioTrack.paused) {
+        allSongs.forEach((e) => (e.pause(), (e.currentTime = 0)));
+        audioTrack.play();
+      } else {
+        audioTrack.pause();
+      }
     };
 
-    btnPlayPause.addEventListener('click', togglePlay);
+    // btnPlayPause.addEventListener('click', togglePlay);
+    div.addEventListener('click', togglePlay);
 
     audioTrack.onplaying = () => {
-      btnPlayPause.innerHTML = '<i class="fa-regular fa-circle-pause"></i>';
+      div.classList.add('playing');
+      btnPlayPause.classList.add('fa-circle-pause');
+      btnPlayPause.classList.remove('fa-circle-play');
     };
     audioTrack.onpause = () => {
-      btnPlayPause.innerHTML = '<i class="fa-regular fa-circle-play"></i>';
+      div.classList.remove('playing');
+      btnPlayPause.classList.add('fa-circle-play');
+      btnPlayPause.classList.remove('fa-circle-pause');
     };
   }
 }
 
 // Busca el album y retorna su objeto
 
-const getAlbumData = (id) => albumsData.find((e) => (e.id === id));
+const getAlbumData = (id) => albumsData.find((e) => e.id === id);
 
 // Iterar sobre el album
 
-const createPreviewList = (obj) => {
-  previewAlbumName.textContent = obj.name
-  previewArtistName.textContent = obj.artist
-  trackPreviewContainer.textContent = ''
-  obj.tracks.forEach((e) => {
-    new TrackPreview(0, e, 0)
-  })
+const createPreviewList = (album) => {
+  const {
+    id,
+    artist,
+    name,
+    price,
+    albumImg,
+    totalTracks,
+    releaseDate,
+    label,
+    tracks,
+  } = album;
+  trackPreview.style.background = `url(${albumImg}) no-repeat center/cover`;
+  previewAlbumName.textContent = name;
+  previewArtistName.textContent = artist;
+  trackPreviewContainer.textContent = '';
+  tracks.forEach((e) => {
+    new TrackPreview(e.name, e.url, e.number);
+  });
+  previewbtnBuy.innerHTML = `<button
+    class="btn--buy btn"
+    data-id="${id}"
+    data-artist="${artist}"
+    data-name="${name}"
+    data-price="${price}"
+    data-img="${albumImg}"
+    data-tracks="${totalTracks}"
+    data-date="${releaseDate}"
+    data-label="${label}">
+      Comprar
+  </button>`;
 };
 
 // Inicialización como Rodri manda
@@ -489,6 +528,7 @@ const init = () => {
   window.addEventListener('scroll', toggleMenus);
   genreContainer.addEventListener('click', applyFilter);
   albumsContainer.addEventListener('click', addAlbum);
+  previewbtnBuy.addEventListener('click', addAlbum);
   cartItemsContainer.addEventListener('click', setItemQty);
   cartBtnContainer.addEventListener('click', cartBtnAction);
   document.addEventListener('DOMContentLoaded', () => {
