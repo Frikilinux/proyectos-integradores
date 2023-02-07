@@ -344,6 +344,12 @@ a:active {
   /* -webkit-backdrop-filter: blur(10px); */
 }
 
+.preview-btn {
+  position: absolute;
+  top: 0;
+  padding: 10px;
+}
+
 .format .format-img {
   width: 80%;
 }
@@ -864,7 +870,7 @@ a:active {
   gap: 10px;
   opacity: 0.95;
   z-index: -3;
-  /* transform: translate(-200%); */
+  transform: translate(-200%);
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;
   left: 0;

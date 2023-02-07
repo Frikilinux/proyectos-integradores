@@ -79,6 +79,7 @@ const renderAlbum = (album) => {
       <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
     </div>
   </div>
+  <div class="preview-btn"><button data-id="${id}" class="btn btn-show-preview">Previsualizar</buttton></div>
   <div class="release__info">
     <div class="release__data">
       <p class="album-name">${name}</p>
@@ -177,6 +178,7 @@ const showMoreAlbums = () => {
 };
 
 const toggleMenus = (e) => {
+  const allSongs = [...document.querySelectorAll('.song')];
   // console.log(e);
   if (e.type === 'scroll') {
     if (scrollY < 500) {
@@ -189,8 +191,16 @@ const toggleMenus = (e) => {
   } else if (e.target.dataset.name === 'cart-btn' && loggedUser.length) {
     cartMenu.classList.toggle('show-menu');
     linksMenu.classList.remove('show-menu');
+    trackPreview.classList.remove('show-menu');
+    allSongs.forEach((e) => e.pause());
   } else if (e.target.classList.contains('fa-bars')) {
     linksMenu.classList.toggle('show-menu');
+    cartMenu.classList.remove('show-menu');
+    trackPreview.classList.remove('show-menu');
+    allSongs.forEach((e) => e.pause());
+  } else if (e.target.classList.contains('btn-show-preview')) {
+    trackPreview.classList.toggle('show-menu');
+    linksMenu.classList.remove('show-menu');
     cartMenu.classList.remove('show-menu');
   }
 };
@@ -518,6 +528,18 @@ const createPreviewList = (album) => {
   </button>`;
 };
 
+const showPreview = (e) => {
+  if (!e.target.classList.contains('btn-show-preview')) {
+    return;
+  }
+  let id = e.target.dataset.id
+  let album 
+  console.log(id);
+  console.log(album);
+  createPreviewList(getAlbumData(Number(id)));
+  toggleMenus(e)
+};
+
 // Inicialización como Rodri manda
 
 const init = () => {
@@ -528,6 +550,7 @@ const init = () => {
   window.addEventListener('scroll', toggleMenus);
   genreContainer.addEventListener('click', applyFilter);
   albumsContainer.addEventListener('click', addAlbum);
+  albumsContainer.addEventListener('click', showPreview);
   previewbtnBuy.addEventListener('click', addAlbum);
   cartItemsContainer.addEventListener('click', setItemQty);
   cartBtnContainer.addEventListener('click', cartBtnAction);
