@@ -869,16 +869,29 @@ a:active {
   background: var(--bg-menu); 
   background: url(../assets/img/capricorn_sun.jpg) no-repeat center/cover ;
   gap: 10px;
-  opacity: 0.97;
+  opacity: 0.90;
   z-index: -3;
   /* transform: translate(-200%); */
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px, rgba(0, 0, 0, 0.461)  0px 8px 16px -8px;
   left: 0;
   top: calc(45px + 1vw);
-  width: 50%;
-  max-width: 500px;
+  width: 40%;
+  max-width: 400px;
   height: calc(100vh - calc(45px + 1vw));
   backdrop-filter: blur(20px);
+}
+
+.track-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* color: var(--fg1); */
+  gap: 10px;
+  /* opacity: 0.90; */
+  z-index: 1;
+  /* transform: translate(-200%); */
+  width: 100%;
+  overflow-y: scroll;
 }
 
 

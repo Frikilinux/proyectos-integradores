@@ -17,7 +17,9 @@ const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
 const userNameContainer = document.querySelector('.user-name');
 const btnUp = document.querySelector('.btn--up');
-const trackPreviewContainer = document.querySelector('.track-preview');
+const trackPreviewContainer = document.querySelector('.track-preview-container');
+const previewAlbumName = document.querySelector('.preview-album')
+const previewArtistName = document.querySelector('.preview-artist')
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -420,7 +422,9 @@ const logout = () => {
   cartStateCheck();
 };
 
-// Constructor de tracks preview
+// Tracks preview
+
+// Constructor
 class TrackPreview {
   constructor(name, url, img) {
     this.createTrackPreview(name, url, img);
@@ -429,15 +433,10 @@ class TrackPreview {
     const div = document.createElement('div');
     div.classList.add('track');
 
-    const trackName = document.createElement('p')
-    trackName.classList.add('track-preview-name')
-    trackName.textContent = 'Nombre de la pista media larga para probar si corta el parrafo'
-
-
-    // const albumImg = document.createElement('img');
-    // albumImg.src =
-    //   'https://i.scdn.co/image/ab67616d0000b27313951ee1ac53d65c5ed43724';
-    // albumImg.alt = 'Album cover';
+    const trackName = document.createElement('p');
+    trackName.classList.add('track-preview-name');
+    trackName.textContent =
+      'Nombre de la pista media larga para probar si corta el parrafo';
 
     const btnPlayPause = document.createElement('button');
     btnPlayPause.innerHTML = '<i class="fa-regular fa-circle-play">';
@@ -445,8 +444,7 @@ class TrackPreview {
 
     const audioTrack = document.createElement('audio');
     audioTrack.classList.add('song');
-    audioTrack.src =
-      'https://p.scdn.co/mp3-preview/72eb15bbfe48ccee581e06ec5da52f974d5884f2?cid=774b29d4f13844c495f206cafdad9c86';
+    audioTrack.src = url;
 
     trackPreviewContainer.appendChild(div);
     div.append(btnPlayPause, trackName, audioTrack);
@@ -465,6 +463,21 @@ class TrackPreview {
     };
   }
 }
+
+// Busca el album y retorna su objeto
+
+const getAlbumData = (id) => albumsData.find((e) => (e.id === id));
+
+// Iterar sobre el album
+
+const createPreviewList = (obj) => {
+  previewAlbumName.textContent = obj.name
+  previewArtistName.textContent = obj.artist
+  trackPreviewContainer.textContent = ''
+  obj.tracks.forEach((e) => {
+    new TrackPreview(0, e, 0)
+  })
+};
 
 // Inicialización como Rodri manda
 
