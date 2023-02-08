@@ -23,10 +23,10 @@
     <nav class="navbar">
       <!-- Menú hamburguesa -->
       <div class="navbar__label">
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars" data-type="btnMenu" data-name="navMenu"></i>
       </div>
 
-      <ul class="menu trans-5">
+      <ul class="menu trans-5" data-type="menu" data-menu="navMenu">
         <li class="menu__item">
           <a class="menu__link link--home trans-5" href="#">Home</a>
         </li>
@@ -58,12 +58,12 @@
 
     </nav>
 
-    <div class="cart-label show-bubble trans-5" data-name="cart-btn">
-      <i class="fa-solid fa-cart-shopping cart-icon" data-name="cart-btn"></i>
-      <span class="cart-qty" data-name="cart-btn"></span>
+    <div class="cart-label show-bubble trans-5" data-name="cartMenu" data-type="btnMenu">
+      <i class="fa-solid fa-cart-shopping cart-icon" data-name="cartMenu"></i>
+      <span class="cart-qty" data-name="cartMenu"></span>
     </div>
 
-    <div class="cart trans-5">
+    <div class="cart trans-5" data-type="menu" data-menu="cartMenu">
       <!-- <h2>Albumes</h2> -->
       <div class="cart-container">
 
@@ -98,7 +98,7 @@
       </div>
     </div>
     
-    <div class="track-preview trans-5">
+    <div class="track-preview trans-5" data-type="menu" data-menu="previewMenu">
       <div class="preview-data">
         <p class="preview-album"></p>
         <p class="preview-artist"></p>

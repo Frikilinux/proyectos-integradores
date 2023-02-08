@@ -79,7 +79,7 @@ const renderAlbum = (album) => {
       <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
     </div>
   </div>
-  <div class="preview-btn"><button data-id="${id}" class="btn btn-show-preview">Previsualizar</buttton></div>
+  <div class="preview-btn"><button data-id="${id}" data-name="previewMenu" data-type="btnMenu" class="btn btn-show-preview">Previsualizar</buttton></div>
   <div class="release__info">
     <div class="release__data">
       <p class="album-name">${name}</p>
@@ -178,6 +178,8 @@ const showMoreAlbums = () => {
 };
 
 const toggleMenus = (e) => {
+  console.log(e.target.dataset.name);
+
   const allSongs = [...document.querySelectorAll('.song')];
   // console.log(e);
   if (e.type === 'scroll') {
@@ -186,23 +188,25 @@ const toggleMenus = (e) => {
     } else {
       btnUp.style.transform = 'translateY(0%)';
     }
-    linksMenu.classList.remove('show-menu');
-    cartMenu.classList.remove('show-menu');
-  } else if (e.target.dataset.name === 'cart-btn' && loggedUser.length) {
-    cartMenu.classList.toggle('show-menu');
-    linksMenu.classList.remove('show-menu');
-    trackPreview.classList.remove('show-menu');
-    allSongs.forEach((e) => e.pause());
-  } else if (e.target.classList.contains('fa-bars')) {
-    linksMenu.classList.toggle('show-menu');
-    cartMenu.classList.remove('show-menu');
-    trackPreview.classList.remove('show-menu');
-    allSongs.forEach((e) => e.pause());
-  } else if (e.target.classList.contains('btn-show-preview')) {
-    trackPreview.classList.toggle('show-menu');
-    linksMenu.classList.remove('show-menu');
-    cartMenu.classList.remove('show-menu');
   }
+    // linksMenu.classList.remove('show-menu');
+    // cartMenu.classList.remove('show-menu');
+  // } else if (e.target.dataset.name === 'cartMenu' && loggedUser.length) {
+  //   // console.log(e.target.dataset.name);
+  //   cartMenu.classList.toggle('show-menu');
+  //   linksMenu.classList.remove('show-menu');
+  //   trackPreview.classList.remove('show-menu');
+  //   allSongs.forEach((e) => e.pause());
+  // } else if (e.target.classList.contains('fa-bars')) {
+  //   linksMenu.classList.toggle('show-menu');
+  //   cartMenu.classList.remove('show-menu');
+  //   trackPreview.classList.remove('show-menu');
+  //   allSongs.forEach((e) => e.pause());
+  // } else if (e.target.classList.contains('btn-show-preview')) {
+  //   trackPreview.classList.toggle('show-menu');
+  //   linksMenu.classList.remove('show-menu');
+  //   cartMenu.classList.remove('show-menu');
+  // }
 };
 
 // Carrito
@@ -532,12 +536,41 @@ const showPreview = (e) => {
   if (!e.target.classList.contains('btn-show-preview')) {
     return;
   }
-  let id = e.target.dataset.id
-  let album 
+  let id = e.target.dataset.id;
+  let album;
   console.log(id);
   console.log(album);
   createPreviewList(getAlbumData(Number(id)));
-  toggleMenus(e)
+  toggleMenus2(e.target.dataset.name);
+};
+
+const menues = document.querySelectorAll("[data-type='menu']");
+const btnMenues = document.querySelectorAll("[data-type='btnMenu']");
+
+const hideAllMenus = (dataName) => {
+  const allSongs = [...document.querySelectorAll('.song')];
+  const menus = [...menues];
+  menus.forEach((e) => {
+    if (e.dataset.menu !== dataName) e.classList.remove('show-menu');
+  });
+  allSongs.forEach((e) => e.pause());
+};
+
+const toggleMenus2 = (name) => {
+  let menu = document.querySelector(`[data-menu="${name}"]`);
+  console.log(menu);
+  hideAllMenus(name);
+  menu.classList.toggle('show-menu');
+};
+
+const btnsMenuEvent = () => {
+  const btnsMenu = [...btnMenues];
+  btnsMenu.forEach((e) => {
+    e.addEventListener('click', (e) => {
+      console.log(e);
+      toggleMenus2(e.target.dataset.name);
+    });
+  });
 };
 
 // Inicialización como Rodri manda
@@ -545,9 +578,10 @@ const showPreview = (e) => {
 const init = () => {
   renderAlbumsSection();
   btnLoad.addEventListener('click', showMoreAlbums);
-  cartBtn.addEventListener('click', toggleMenus);
-  burgerBtn.addEventListener('click', toggleMenus);
-  window.addEventListener('scroll', toggleMenus);
+  // cartBtn.addEventListener('click', toggleMenus);
+
+  // burgerBtn.addEventListener('click', toggleMenus);
+  window.addEventListener('scroll', hideAllMenus);
   genreContainer.addEventListener('click', applyFilter);
   albumsContainer.addEventListener('click', addAlbum);
   albumsContainer.addEventListener('click', showPreview);
@@ -558,6 +592,7 @@ const init = () => {
     cartStateCheck();
     renderGenreBtns(genreList);
     checkIfLogin();
+    btnsMenuEvent();
   });
   logoutBtn.addEventListener('click', logout);
   // document.addEventListener('DOMContentLoaded', renderTotalPrice);
