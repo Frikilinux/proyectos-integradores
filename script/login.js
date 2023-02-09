@@ -3,17 +3,9 @@ const formLogin = document.querySelector('.form-login');
 const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
 
-let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
-
-let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
-
-const saveLoginStorage = (loggedUser) => {
-  localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-};
-
-// Trae todos los datos del usuario 
+// Trae todos los datos del usuario en un array
 const getUserData = (userDb, mail, pass) => {
-  return userDb.find((e) => e.email === mail && e.pass === pass);
+  return userDb.filter((e) => e.email === mail && e.pass === pass);
 };
 
 const login = (e) => {
@@ -31,6 +23,7 @@ const login = (e) => {
     return;
   }
   const userData = getUserData(userDb, inputEmail.value, inputPass.value);
+  console.log(userData);
   !userData.length // Double Tap
     ? showFeedback('xmark', 'Algo malió sal')
     : (showFeedback('check', 'Login exitoso'),

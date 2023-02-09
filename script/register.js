@@ -5,12 +5,7 @@ const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
 const inputEula = document.getElementById('eula');
 
-let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
-
-const saveLocalStorage = (userDb) => {
-  localStorage.setItem('userDb', JSON.stringify(userDb));
-};
-
+// Crea un nuevo usuario
 const dbSave = () => {
   userDb = [
     ...userDb,
