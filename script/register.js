@@ -4,7 +4,6 @@ const inputUser = document.getElementById('name');
 const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
 const inputEula = document.getElementById('eula');
-const feedbackModal = document.querySelector('.feedback-modal');
 
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 
@@ -34,37 +33,19 @@ const isEmailValid = (email) => {
 
 const emailExist = (email) => userDb.some((user) => user.email === email);
 
-// Mostrar según la importancia
-const feedbackRelevancy = (type, msg) => {
-  if (type === 'alert')
-    return `<i class="fa-solid fa-triangle-exclamation fback-icon"></i> ${msg}`;
-  if (type === 'info')
-    return `<i class="fa-solid fa-circle-info fback-icon"></i></i> ${msg}`;
-};
-
-// Mostrar feedback al usuario
-const showFeedback = (type, msg, time = 1500) => {
-  feedbackModal.innerHTML = feedbackRelevancy(type, msg);
-  feedbackModal.classList.add(`show-feedback-${type}`);
-  setTimeout(
-    () => feedbackModal.classList.remove(`show-feedback-${type}`),
-    time
-  );
-};
-
 const register = (e) => {
   e.preventDefault();
   if (!isEmailValid(inputEmail.value)) {
-    showFeedback('alert', 'El email no es válido', 2000);
+    showFeedback('xmark', 'El email no es válido');
     return;
   }
   if (emailExist(inputEmail.value)) {
-    showFeedback('alert', 'El email ya existe, probá con otro', 2000);
+    showFeedback('xmark', 'El email ya existe, probá con otro');
     return;
   }
   dbSave();
   saveLocalStorage(userDb);
-  showFeedback('info', 'Registro exitoso, inicia sesión', 1500);
+  showFeedback('check', 'Registro exitoso, inicia sesión');
   formRegister.reset();
   setTimeout(() => (window.location.href = '/pages/login.html'), 2000);
 };

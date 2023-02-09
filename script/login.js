@@ -3,7 +3,6 @@ const registerBtn = document.getElementById('send');
 const formLogin = document.querySelector('.form-login');
 const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
-const feedbackModal = document.querySelector('.feedback-modal');
 
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
 
@@ -19,24 +18,6 @@ const saveLoginStorage = (loggedUser) => {
 //     email: inputEmail.value,
 //   };
 // };
-
-// Mostrar según la importancia
-const feedbackRelevancy = (type, msg) => {
-  if (type === 'alert')
-    return `<i class="fa-solid fa-triangle-exclamation fback-icon"></i> ${msg}`;
-  if (type === 'info')
-    return `<i class="fa-solid fa-circle-info fback-icon"></i></i> ${msg}`;
-};
-
-// Mostrar feedback al usuario
-const showFeedback = (type, msg, time = 1500) => {
-  feedbackModal.innerHTML = feedbackRelevancy(type, msg);
-  feedbackModal.classList.add(`show-feedback-${type}`);
-  setTimeout(
-    () => feedbackModal.classList.remove(`show-feedback-${type}`),
-    time
-  );
-};
 
 // Login Section
 
@@ -69,23 +50,23 @@ const isEmailValid = (email) => {
 const login = (e) => {
   e.preventDefault();
   if (!isEmailValid(inputEmail.value)) {
-    showFeedback('alert', 'El email no es válido', 2000);
+    showFeedback('xmark', 'El email no es válido');
     return;
   }
   if (!isMailInDd(userDb, inputEmail.value)) {
-    showFeedback('alert', 'Usuario no encontrado', 2000);
+    showFeedback('xmark', 'Usuario no encontrado');
     return;
   }
   if (!isUserPass(userDb, inputEmail.value, inputPass.value)) {
-    showFeedback('alert', 'Password incorrecto', 2000);
+    showFeedback('xmark', 'Password incorrecto');
     return;
   }
   checkUserInDb(userDb)
-    ? (showFeedback('info', 'Login exitoso', 1500),
+    ? (showFeedback('check', 'Login exitoso'),
       saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
       formLogin.reset(),
       setTimeout(() => (window.location.href = '/'), 2000))
-    : showFeedback('alert', 'No se encontró el usuario');
+    : showFeedback('xmark', 'No se encontró el usuario');
 };
 
 const init = () => {

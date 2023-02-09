@@ -36,24 +36,28 @@ html {
   transition: all 0.5s ease-in-out;
 }
 
-.fback-icon {
-  font-size: 1.5rem;
-  color: var(--fback-icon);
-}
-
-.show-feedback-alert {
+.show-feedback-info,
+.show-feedback-check,
+.show-feedback-xmark {
   color: var(--bg);
-  background-color: var(--orange);
+  background-color: var(--bg-btn);
   transform: translate(-50%, 0%);
   transition: all 0.5s ease-in-out;
 }
 
 .show-feedback-info {
-  color: var(--bg);
-  background-color: var(--success);
-  transform: translate(-50%, 0%);
-  transition: all 0.5s ease-in-out;
+  background-color: var(--orange);
 }
+
+.show-feedback-check {
+  background-color: var(--success);
+}
+
+.fas.modal-icon {
+  font-size: 1.5rem;
+  color: var(--bg);
+}
+
 
 .active {
   color: var(--fg1);

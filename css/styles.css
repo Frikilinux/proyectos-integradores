@@ -843,11 +843,11 @@ a:active {
   text-align: center;
   margin: 0 auto;
   top: calc(45px + 1vw);
-  padding: 5px 20px;
+  padding: 5px 50px;
   border-radius: 0px 0 5px 5px;
   position: absolute;
   height: calc(45px + 1vw);
-  width: 80%;
+  /* width: 80%; */
   max-width: 700px;
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;

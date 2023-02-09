@@ -11,7 +11,6 @@ const totalPrice = document.querySelector('.total-price');
 const cartItemsQty = document.querySelector('.cart-qty');
 const cartBtnContainer = document.querySelector('.cart-btns');
 const cartBtns = cartBtnContainer.querySelectorAll('.btn');
-const feedbackModal = document.querySelector('.feedback-modal');
 const userBtns = document.querySelector('.user');
 const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
@@ -177,11 +176,7 @@ const showMoreAlbums = () => {
   if (albumsLimit()) btnLoad.classList.add('hidden');
 };
 
-const toggleMenus = (e) => {
-  console.log(e.target.dataset.name);
-
-  const allSongs = [...document.querySelectorAll('.song')];
-  // console.log(e);
+const showBtnUp = (e) => {
   if (e.type === 'scroll') {
     if (scrollY < 500) {
       btnUp.style.transform = 'translateY(150%)';
@@ -189,24 +184,6 @@ const toggleMenus = (e) => {
       btnUp.style.transform = 'translateY(0%)';
     }
   }
-    // linksMenu.classList.remove('show-menu');
-    // cartMenu.classList.remove('show-menu');
-  // } else if (e.target.dataset.name === 'cartMenu' && loggedUser.length) {
-  //   // console.log(e.target.dataset.name);
-  //   cartMenu.classList.toggle('show-menu');
-  //   linksMenu.classList.remove('show-menu');
-  //   trackPreview.classList.remove('show-menu');
-  //   allSongs.forEach((e) => e.pause());
-  // } else if (e.target.classList.contains('fa-bars')) {
-  //   linksMenu.classList.toggle('show-menu');
-  //   cartMenu.classList.remove('show-menu');
-  //   trackPreview.classList.remove('show-menu');
-  //   allSongs.forEach((e) => e.pause());
-  // } else if (e.target.classList.contains('btn-show-preview')) {
-  //   trackPreview.classList.toggle('show-menu');
-  //   linksMenu.classList.remove('show-menu');
-  //   cartMenu.classList.remove('show-menu');
-  // }
 };
 
 // Carrito
@@ -292,7 +269,7 @@ const addAlbum = (e) => {
   const album = albumData(id, artist, name, price, img, tracks, date, label);
   albumAdded(album)
     ? sumAddedAlbums(album)
-    : (createAlbumItem(album), showFeedback('info', 'Nuevo album añadido'));
+    : (createAlbumItem(album), showFeedback('check', 'Nuevo album añadido'));
   cartStateCheck();
 };
 
@@ -313,24 +290,6 @@ const sumAddedAlbums = (item) => {
   });
 };
 
-// Mostrar según la importancia
-const feedbackRelevancy = (type, msg) => {
-  if (type === 'alert')
-    return `<i class="fa-solid fa-triangle-exclamation fback-icon"></i> ${msg}`;
-  if (type === 'info')
-    return `<i class="fa-solid fa-circle-info fback-icon"></i></i> ${msg}`;
-};
-
-// Mostrar feedback al usuario
-const showFeedback = (type, msg, time = 1500) => {
-  feedbackModal.innerHTML = feedbackRelevancy(type, msg);
-  feedbackModal.classList.add(`show-feedback-${type}`);
-  setTimeout(
-    () => feedbackModal.classList.remove(`show-feedback-${type}`),
-    time
-  );
-};
-
 // Crear cart
 
 const createAlbumItem = (item) => (cart = [...cart, { ...item, quantity: 1 }]);
@@ -346,7 +305,7 @@ const itemBtnMinus = (id) => {
   const itemExist = cart.find((item) => item.id === id);
   if (itemExist.quantity === 1) {
     if (window.confirm('¿Elimino el album?')) {
-      deleteCartItem(itemExist), showFeedback('alert', 'Album Eliminado');
+      deleteCartItem(itemExist), showFeedback('info', 'Album Eliminado');
     }
   } else {
     decItemQty(itemExist);
@@ -358,7 +317,7 @@ const deleteCartAlbum = (id) => {
   const itemExist = cart.find((item) => item.id === id);
   if (itemExist) {
     if (window.confirm('¿Elimino el album?')) {
-      deleteCartItem(itemExist), showFeedback('alert', 'Album Eliminado');
+      deleteCartItem(itemExist), showFeedback('info', 'Album Eliminado');
     }
   }
 };
@@ -411,7 +370,7 @@ const cartBtnAction = (e) => {
 // Login stuff
 const notLoggedIn = () => {
   showFeedback(
-    'alert',
+    'xmark',
     'Por favor <a href="./pages/login.html" class="menu__link trans-5">inicia sesión</a> o <a href="./pages/register.html" class="menu__link trans-5">registrate</a>',
     4000
   );
@@ -435,7 +394,7 @@ const logout = () => {
   loggedUser = [];
   cart = [];
   saveLoginStorage(loggedUser);
-  showFeedback('alert', 'Sesion cerrada');
+  showFeedback('xmark', 'Sesion cerrada');
   checkIfLogin();
   cartStateCheck();
 };
@@ -581,7 +540,10 @@ const init = () => {
   // cartBtn.addEventListener('click', toggleMenus);
 
   // burgerBtn.addEventListener('click', toggleMenus);
-  window.addEventListener('scroll', hideAllMenus);
+  window.addEventListener('scroll', (e) => {
+    hideAllMenus()
+    showBtnUp(e)
+  });
   genreContainer.addEventListener('click', applyFilter);
   albumsContainer.addEventListener('click', addAlbum);
   albumsContainer.addEventListener('click', showPreview);
