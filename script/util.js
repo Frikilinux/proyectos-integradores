@@ -11,8 +11,13 @@ const showFeedback = (type, msg, time = 1500) => {
   );
 };
 
-// Check email
+// Chequea si el email es válido
 const isEmailValid = (email) => {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
   return regex.test(email);
+};
+
+// Chequea si exite el usuario
+const isMailInDd = (userDb, mail) => {
+  return userDb.some((e) => e.email === mail);
 };

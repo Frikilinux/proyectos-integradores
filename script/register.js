@@ -25,16 +25,14 @@ const dbSave = () => {
   ];
 };
 
-const emailExist = (email) => userDb.some((user) => user.email === email);
-
 const register = (e) => {
   e.preventDefault();
   if (!isEmailValid(inputEmail.value)) {
     showFeedback('xmark', 'El email no es válido');
     return;
   }
-  if (emailExist(inputEmail.value)) {
-    showFeedback('xmark', 'El email ya existe, probá con otro');
+  if (isMailInDd(userDb, inputEmail.value)) {
+    showFeedback('xmark', 'El email ya existe');
     return;
   }
   dbSave();

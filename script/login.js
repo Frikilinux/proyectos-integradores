@@ -23,10 +23,6 @@ const getUserData = (userDb, mail, pass) => {
   return userDb.filter((e) => e.email === mail && e.pass === pass);
 };
 
-// Check usuario
-const isMailInDd = (userDb, mail) => {
-  return userDb.find((e) => e.email === mail);
-};
 
 // check password
 const isUserPass = (userDb, mail, pass) => {
