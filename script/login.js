@@ -11,21 +11,8 @@ const saveLoginStorage = (loggedUser) => {
   localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
 };
 
-// Login Section
-
-const checkUserInDb = (userDb) =>
-  userDb.find((user) => {
-    return user.email === inputEmail.value && user.pass === inputPass.value;
-  });
-
-// Trae todos los datos del usuario
+// Trae todos los datos del usuario 
 const getUserData = (userDb, mail, pass) => {
-  return userDb.filter((e) => e.email === mail && e.pass === pass);
-};
-
-
-// check password
-const isUserPass = (userDb, mail, pass) => {
   return userDb.find((e) => e.email === mail && e.pass === pass);
 };
 
@@ -43,12 +30,13 @@ const login = (e) => {
     showFeedback('xmark', 'Password incorrecto');
     return;
   }
-  checkUserInDb(userDb)
-    ? (showFeedback('check', 'Login exitoso'),
-      saveLoginStorage(getUserData(userDb, inputEmail.value, inputPass.value)),
+  const userData = getUserData(userDb, inputEmail.value, inputPass.value);
+  !userData.length // Double Tap
+    ? showFeedback('xmark', 'Algo malió sal')
+    : (showFeedback('check', 'Login exitoso'),
+      saveLoginStorage(userData),
       formLogin.reset(),
-      setTimeout(() => (window.location.href = '/'), 2000))
-    : showFeedback('xmark', 'No se encontró el usuario');
+      setTimeout(() => (window.location.href = '/'), 2000));
 };
 
 const init = () => {

@@ -21,3 +21,8 @@ const isEmailValid = (email) => {
 const isMailInDd = (userDb, mail) => {
   return userDb.some((e) => e.email === mail);
 };
+
+// Cheque asi el pass es el mismo del usuario
+const isUserPass = (userDb, mail, pass) => {
+  return userDb.some((e) => e.email === mail && e.pass === pass);
+};
