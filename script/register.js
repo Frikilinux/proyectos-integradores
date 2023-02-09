@@ -25,12 +25,6 @@ const dbSave = () => {
   ];
 };
 
-// Check email
-const isEmailValid = (email) => {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-  return regex.test(email);
-};
-
 const emailExist = (email) => userDb.some((user) => user.email === email);
 
 const register = (e) => {

@@ -1,5 +1,4 @@
 const registerBtn = document.getElementById('send');
-
 const formLogin = document.querySelector('.form-login');
 const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
@@ -11,13 +10,6 @@ let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
 const saveLoginStorage = (loggedUser) => {
   localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
 };
-
-// const user = () => {
-//   loginUser = {
-//     pass: inputPass.value,
-//     email: inputEmail.value,
-//   };
-// };
 
 // Login Section
 
@@ -39,12 +31,6 @@ const isMailInDd = (userDb, mail) => {
 // check password
 const isUserPass = (userDb, mail, pass) => {
   return userDb.find((e) => e.email === mail && e.pass === pass);
-};
-
-// Check email
-const isEmailValid = (email) => {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-  return regex.test(email);
 };
 
 const login = (e) => {
