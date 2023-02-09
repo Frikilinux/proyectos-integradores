@@ -355,11 +355,11 @@ const confirmCartAction = (confirmMsg, feedbackMsg, type) => {
 };
 
 const buyCart = () => {
-  confirmCartAction('¿Desea comprar todo?', 'Carrito comprado!', 'info');
+  confirmCartAction('¿Desea comprar todo?', 'Carrito comprado!', 'check');
 };
 
 const emptyCart = () => {
-  confirmCartAction('¿Desea borrar todo?', 'Carrito eliminado!', 'alert');
+  confirmCartAction('¿Desea borrar todo?', 'Carrito eliminado!', 'info');
 };
 
 const cartBtnAction = (e) => {
