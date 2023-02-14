@@ -488,6 +488,7 @@ const hideAllMenus = (dataName) => {
   });
   allSongs.forEach((e) => e.pause());
   overlay.classList.remove('visible2');
+  document.body.style.overflowY = 'visible';
 };
 
 const toggleMenus = (name) => {
@@ -496,8 +497,10 @@ const toggleMenus = (name) => {
   menu.classList.toggle('show-menu');
   const menus = [...menues];
   menus.some((e) => e.classList.contains('show-menu'))
-    ? overlay.classList.add('visible2')
-    : overlay.classList.remove('visible2');
+    ? (overlay.classList.add('visible2'),
+      (document.body.style.overflowY = 'hidden'))
+    : (overlay.classList.remove('visible2'),
+      (document.body.style.overflowY = 'visible'));
 };
 
 const btnsMenuEvent = () => {
