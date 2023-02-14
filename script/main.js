@@ -24,6 +24,7 @@ const previewAlbumName = document.querySelector('.preview-album');
 const previewArtistName = document.querySelector('.preview-artist');
 const previewbtnBuy = document.querySelector('.preview-buy');
 const overlay = document.querySelector('.overlay');
+const btnCloseMenu = document.querySelectorAll('.close-menu')
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -517,6 +518,11 @@ const btnsMenuEvent = () => {
   });
 };
 
+const closeMenus = (btnCloseMenu) => {
+  buttons = [...btnCloseMenu]
+  buttons.forEach(e => e.addEventListener('click', hideAllMenus))
+} 
+
 // Inicialización como Rodri manda
 
 const init = () => {
@@ -541,6 +547,7 @@ const init = () => {
     renderGenreBtns(genreList);
     checkIfLogin();
     btnsMenuEvent();
+    closeMenus(btnCloseMenu)
   });
   logoutBtn.addEventListener('click', logout);
   // document.addEventListener('DOMContentLoaded', renderTotalPrice);

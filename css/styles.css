@@ -677,6 +677,7 @@ a:active {
   overflow-y: scroll;
   min-height: 85%;
   gap: 10px;
+  border-radius: 5px;
 }
 
 .empty-cart-msg {
@@ -890,9 +891,10 @@ a:active {
   /* opacity: 0.90; */
   z-index: 1;
   /* transform: translate(-200%); */
-  width: 100%;
+  width: 95%;
   min-height: 70%;
   overflow-y: scroll;
+  border-radius: 5px;
 }
 
 .track-preview-container::-webkit-scrollbar {
@@ -904,7 +906,7 @@ a:active {
   height: 100%;
   width: 100%;
   backdrop-filter: blur(10px);
-  z-index: 1;
+  z-index: -1;
 }
 
 .preview-data {
@@ -923,7 +925,7 @@ a:active {
   justify-content: space-between;
   border-radius: 5px;
   padding: 10px;
-  width: 95%;
+  width: 100%;
   /* backdrop-filter: blur(10px); */
   background-color: var(--bg-menu);
   user-select: none;
@@ -982,4 +984,22 @@ a:active {
   height: 100vh;
   background-color: #2b2d42c1;
   z-index: -3;
+}
+
+.close-menu {
+  position: absolute;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--fg1);
+  opacity: 0.5;
+  border: none;
+  align-self: flex-end;
+  top: 15px;
+  right: 15px;
+  /* padding: 5px; */
+  border-radius: 50%;
+}
+
+.close-menu:hover {
+color: var(--bg-btn);
 }
