@@ -23,6 +23,7 @@ const trackPreviewContainer = document.querySelector(
 const previewAlbumName = document.querySelector('.preview-album');
 const previewArtistName = document.querySelector('.preview-artist');
 const previewbtnBuy = document.querySelector('.preview-buy');
+const overlay = document.querySelector('.overlay');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -473,7 +474,7 @@ const showPreview = (e) => {
   console.log(id);
   console.log(album);
   createPreviewList(getAlbumData(Number(id)));
-  toggleMenus2(e.target.dataset.name);
+  toggleMenus(e.target.dataset.name);
 };
 
 const menues = document.querySelectorAll("[data-type='menu']");
@@ -486,21 +487,29 @@ const hideAllMenus = (dataName) => {
     if (e.dataset.menu !== dataName) e.classList.remove('show-menu');
   });
   allSongs.forEach((e) => e.pause());
+  overlay.classList.remove('visible2');
 };
 
-const toggleMenus2 = (name) => {
+const toggleMenus = (name) => {
   let menu = document.querySelector(`[data-menu="${name}"]`);
-  console.log(menu);
   hideAllMenus(name);
   menu.classList.toggle('show-menu');
+  const menus = [...menues];
+  menus.some((e) => e.classList.contains('show-menu'))
+    ? overlay.classList.add('visible2')
+    : overlay.classList.remove('visible2');
 };
 
 const btnsMenuEvent = () => {
   const btnsMenu = [...btnMenues];
   btnsMenu.forEach((e) => {
     e.addEventListener('click', (e) => {
-      console.log(e);
-      toggleMenus2(e.target.dataset.name);
+      // console.log(e);
+      if (e.target.dataset.name === 'cartMenu' && !loggedUser.length) {
+        notLoggedIn();
+        return;
+      }
+      toggleMenus(e.target.dataset.name);
     });
   });
 };
@@ -514,9 +523,10 @@ const init = () => {
 
   // burgerBtn.addEventListener('click', toggleMenus);
   window.addEventListener('scroll', (e) => {
-    hideAllMenus()
-    showBtnUp(e)
+    hideAllMenus();
+    showBtnUp(e);
   });
+  overlay.addEventListener('click', hideAllMenus);
   genreContainer.addEventListener('click', applyFilter);
   albumsContainer.addEventListener('click', addAlbum);
   albumsContainer.addEventListener('click', showPreview);

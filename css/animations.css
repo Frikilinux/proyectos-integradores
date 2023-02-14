@@ -1,6 +1,6 @@
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(45px + 1vw);
+  scroll-padding-top: calc(44px + 1vw);
 }
 
 .btn:hover,
@@ -65,7 +65,19 @@ html {
 }
 
 .visible {
+  opacity: 1;
   display: flex;
+}
+
+.visible2 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden2 {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .hidden {

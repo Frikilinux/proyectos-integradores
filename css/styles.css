@@ -627,6 +627,7 @@ a:active {
 
 /* Cart */
 .cart-label {
+  cursor: pointer;
   color: var(--fg3);
   display: flex;
   align-items: center;
@@ -968,4 +969,17 @@ a:active {
 .preview-buy {
   z-index: 2;
   padding: 15px 0;
+}
+
+.overlay {
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: #2b2d42c1;
+  z-index: -3;
 }
