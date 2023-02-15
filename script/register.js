@@ -31,7 +31,7 @@ const register = (e) => {
     return;
   }
   dbSave();
-  saveLocalStorage(userDb);
+  saveUserDbStorage(userDb);
   showFeedback('check', 'Registro exitoso, inicia sesión');
   formRegister.reset();
   setTimeout(() => (window.location.href = '/pages/login.html'), 2000);

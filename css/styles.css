@@ -36,7 +36,7 @@ a,
 a:visited,
 a:hover,
 a:active {
-  color: inherit;
+  color: var(--bg2);
   /* text-decoration: none; */
 }
 
@@ -681,8 +681,13 @@ a:active {
 }
 
 .empty-cart-msg {
+  padding: 6px 0;
   font-family: 'Montserrat';
   font-weight: 700;
+}
+
+.fa-face-sad-tear {
+  font-size: 1.5rem;
 }
 
 .cart-container::-webkit-scrollbar {
@@ -849,8 +854,8 @@ a:active {
   border-radius: 0px 0 5px 5px;
   position: absolute;
   height: calc(45px + 1vw);
-  /* width: 80%; */
-  max-width: 700px;
+  width: 100%;
+  max-width: 990px;
   box-shadow: rgba(0, 0, 0, 0.355) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.461) 0px 8px 16px -8px;
   z-index: -2;
@@ -990,8 +995,8 @@ a:active {
   position: absolute;
   cursor: pointer;
   font-size: 1.5rem;
-  color: var(--fg1);
-  opacity: 0.5;
+  color: var(--fg);
+  opacity: 0.3;
   border: none;
   align-self: flex-end;
   top: 15px;
@@ -1001,5 +1006,5 @@ a:active {
 }
 
 .close-menu:hover {
-color: var(--bg-btn);
+color: var(--red);
 }

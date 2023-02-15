@@ -192,7 +192,7 @@ const renderItem = (cartItem) => {
 const renderCartItems = () => {
   !cart.length
     ? (cartItemsContainer.innerHTML =
-        '<p class="empty-cart-msg">No hay albumes para comprar<p>')
+      '<p class="empty-cart-msg">Nada para comprar<p><i class="far fa-face-sad-tear"></i>')
     : (cartItemsContainer.innerHTML = cart.map(renderItem).join(''));
 };
 
