@@ -234,11 +234,7 @@ const cartStateCheck = () => {
   renderTotalPrice();
   disableBtns(cartBtns);
   renderCartQty();
-  
-  const scrollDown = document.querySelector('.scroll-down');
-  cartItemsContainer.scrollHeight - 60 >= cartItemsContainer.clientHeight
-    ? scrollDown.classList.add('visible2')
-    : scrollDown.classList.remove('visible2');
+  menuScrollIndicator();
 };
 
 // Añade el album
@@ -537,15 +533,21 @@ const closeMenus = (btnCloseMenu) => {
 const menuScrollIndicator = (e) => {
   const scrollUp = document.querySelector('.scroll-up');
   const scrollDown = document.querySelector('.scroll-down');
-  console.dir(cartItemsContainer);
-  console.log(e.target.scrollTop);
-  console.log(e.target.scrollHeight);
-  e.target.scrollTop > 60
-    ? scrollUp.classList.add('visible2')
-    : scrollUp.classList.remove('visible2');
-  e.target.scrollTop + e.target.clientHeight < e.target.scrollHeight - 60
-    ? scrollDown.classList.add('visible2')
-    : scrollDown.classList.remove('visible2');
+  if (e) {
+    e.target.scrollTop > 70
+      ? scrollUp.classList.add('visible2')
+      : scrollUp.classList.remove('visible2');
+    e.target.scrollTop + e.target.clientHeight < e.target.scrollHeight - 60
+      ? scrollDown.classList.add('visible2')
+      : scrollDown.classList.remove('visible2');
+  } else {
+    cartItemsContainer.scrollTop > 70
+      ? scrollUp.classList.add('visible2')
+      : scrollUp.classList.remove('visible2');
+    cartItemsContainer.scrollHeight - 70 >= cartItemsContainer.clientHeight
+      ? scrollDown.classList.add('visible2')
+      : scrollDown.classList.remove('visible2');
+  }
 };
 
 // Inicialización como Rodri manda
@@ -572,9 +574,6 @@ const init = () => {
     cartItemsContainer.addEventListener('scroll', menuScrollIndicator);
   });
   logoutBtn.addEventListener('click', logout);
-  // document.addEventListener('DOMContentLoaded', renderTotalPrice);
-  // document.addEventListener('DOMContentLoaded', renderCartQty);
-  // disableBtns(cartBtns);
 };
 
 init();

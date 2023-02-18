@@ -1015,7 +1015,7 @@ color: var(--red);
   opacity: 0;
   position: fixed;
   font-size: 2rem;
-  color: var(--fg1);
+  color: var(--fg3);
   z-index: 2;
   --fa-animation-duration: 2s;
   /* --fa-animation-direction: reverse; */
