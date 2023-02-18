@@ -191,15 +191,19 @@ const renderCartItem = (cartItem) => {
 </div>`;
 };
 
-const cartScrollArrows =
-  '<div class="scroll-up trans-5"><i class="fas fa-chevron-up fa-beat"></i></div><div class="scroll-down trans-5"><i class="fas fa-chevron-down fa-beat"></i></div>';
+const cartScrollArrowUp =
+  '<div class="scroll-up trans-5"><i class="fas fa-chevron-up fa-beat"></i></div>';
+const cartScrollArrowDown =
+  '<div class="scroll-down trans-5"><i class="fas fa-chevron-down fa-beat"></i></div>';
 
 const renderCartItems = () => {
   !cart.length
     ? (cartItemsContainer.innerHTML =
         '<p class="empty-cart-msg">Nada para comprar<p><i class="far fa-face-sad-tear"></i>')
     : (cartItemsContainer.innerHTML =
-        cartScrollArrows + cart.map(renderCartItem).join(''));
+        cartScrollArrowUp +
+        cart.map(renderCartItem).join('') +
+        cartScrollArrowDown);
 };
 
 const totalItemsPrice = () =>
@@ -408,7 +412,8 @@ class TrackPreview {
     trackPreviewContainer.append(div);
     div.append(btnPlayPause, trackName, audioTrack);
 
-    const togglePlay = () => {
+    const togglePlay = (e) => {
+      console.log(e);
       const allSongs = [...document.querySelectorAll('.song')];
       if (audioTrack.paused) {
         allSongs.forEach((e) => (e.pause(), (e.currentTime = 0)));
@@ -418,8 +423,8 @@ class TrackPreview {
       }
     };
 
-    // btnPlayPause.addEventListener('click', togglePlay);
-    div.addEventListener('click', togglePlay);
+    btnPlayPause.addEventListener('click', togglePlay);
+    // div.addEventListener('click', togglePlay);
 
     audioTrack.onplaying = () => {
       div.classList.add('playing');
@@ -455,10 +460,11 @@ const createPreviewList = (album) => {
   trackPreview.style.background = `url(${albumImg}) no-repeat center/cover`;
   previewAlbumName.textContent = name;
   previewArtistName.textContent = artist;
-  trackPreviewContainer.textContent = '';
+  trackPreviewContainer.appendChild(cartScrollArrowUp);
   tracks.forEach((e) => {
     new TrackPreview(e.name, e.url, e.number);
   });
+  trackPreviewContainer.appendChild(cartScrollArrowUp);
   previewbtnBuy.innerHTML = `<button
     class="btn--buy btn"
     data-id="${id}"
@@ -471,16 +477,12 @@ const createPreviewList = (album) => {
     data-label="${label}">
       Comprar
   </button>`;
+  menuScrollIndicator(trackPreviewContainer);
 };
 
 const showPreview = (e) => {
-  if (!e.target.classList.contains('btn-show-preview')) {
-    return;
-  }
+  if (!e.target.classList.contains('btn-show-preview')) return;
   let id = e.target.dataset.id;
-  let album;
-  console.log(id);
-  console.log(album);
   createPreviewList(getAlbumData(Number(id)));
   toggleMenus(e.target.dataset.name);
 };
@@ -530,13 +532,15 @@ const closeMenus = (btnCloseMenu) => {
   buttons.forEach((e) => e.addEventListener('click', hideAllMenus));
 };
 
+// Flechas de más contenido en los menus escroleables
 const menuScrollIndicator = (container) => {
-  const scrollUp = document.querySelector('.scroll-up');
-  const scrollDown = document.querySelector('.scroll-down');
+  const scrollUp = container.querySelector('.scroll-up');
+  const scrollDown = container.querySelector('.scroll-down');
+  console.log(container.querySelector('.scroll-down'));
   container.scrollTop > 70
     ? scrollUp.classList.add('visible2')
     : scrollUp.classList.remove('visible2');
-  container.scrollTop + container.clientHeight < container.scrollHeight - 70 
+  container.scrollTop + container.clientHeight < container.scrollHeight - 70
     ? scrollDown.classList.add('visible2')
     : scrollDown.classList.remove('visible2');
 };
@@ -562,7 +566,12 @@ const init = () => {
     checkIfLogin();
     btnsMenuEvent();
     closeMenus(btnCloseMenu);
-    cartItemsContainer.addEventListener('scroll', () => menuScrollIndicator(cartItemsContainer));
+    cartItemsContainer.addEventListener('scroll', () =>
+      menuScrollIndicator(cartItemsContainer)
+    );
+    trackPreviewContainer.addEventListener('scroll', () =>
+      menuScrollIndicator(trackPreviewContainer)
+    );
   });
   logoutBtn.addEventListener('click', logout);
 };

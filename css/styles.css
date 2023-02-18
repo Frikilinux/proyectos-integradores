@@ -888,6 +888,7 @@ a:active {
 }
 
 .track-preview-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1017,7 +1018,9 @@ color: var(--red);
   position: fixed;
   font-size: 2rem;
   color: var(--fg3);
-  z-index: 2;
+  z-index: 1;
+  /* height: 0; */
+  overflow: visible;
   --fa-animation-duration: 2s;
   /* --fa-animation-direction: reverse; */
 }
@@ -1027,5 +1030,5 @@ color: var(--red);
 }
 
 .scroll-down {
-  bottom: 90px;
+  bottom: 10px;
 }
