@@ -24,7 +24,9 @@ const previewAlbumName = document.querySelector('.preview-album');
 const previewArtistName = document.querySelector('.preview-artist');
 const previewbtnBuy = document.querySelector('.preview-buy');
 const overlay = document.querySelector('.overlay');
-const btnCloseMenu = document.querySelectorAll('.close-menu')
+const btnCloseMenu = document.querySelectorAll('.close-menu');
+const scrollUp = document.querySelector('.scroll-up');
+const scrollDown = document.querySelector('.scroll-down');
 // const cartBtnBuy = document.querySelector('.btn-buy');
 // const cartBtnDelete = document.querySelector('.btn-delete');
 
@@ -162,7 +164,7 @@ const showBtnUp = (e) => {
 };
 
 // Carrito
-const renderItem = (cartItem) => {
+const renderCartItem = (cartItem) => {
   const { id, artist, name, price, img, tracks, quantity, date, label } =
     cartItem;
   return `<div class="cart-item">
@@ -189,11 +191,15 @@ const renderItem = (cartItem) => {
 </div>`;
 };
 
+const cartScrollArrows =
+  '<div class="scroll-up trans-5"><i class="fas fa-chevron-up fa-beat"></i></div><div class="scroll-down trans-5"><i class="fas fa-chevron-down fa-beat"></i></div>';
+
 const renderCartItems = () => {
   !cart.length
     ? (cartItemsContainer.innerHTML =
-      '<p class="empty-cart-msg">Nada para comprar<p><i class="far fa-face-sad-tear"></i>')
-    : (cartItemsContainer.innerHTML = cart.map(renderItem).join(''));
+        '<p class="empty-cart-msg">Nada para comprar<p><i class="far fa-face-sad-tear"></i>')
+    : (cartItemsContainer.innerHTML =
+        cartScrollArrows + cart.map(renderCartItem).join(''));
 };
 
 const totalItemsPrice = () =>
@@ -228,6 +234,11 @@ const cartStateCheck = () => {
   renderTotalPrice();
   disableBtns(cartBtns);
   renderCartQty();
+  
+  const scrollDown = document.querySelector('.scroll-down');
+  cartItemsContainer.scrollHeight - 60 >= cartItemsContainer.clientHeight
+    ? scrollDown.classList.add('visible2')
+    : scrollDown.classList.remove('visible2');
 };
 
 // Añade el album
@@ -519,18 +530,28 @@ const btnsMenuEvent = () => {
 };
 
 const closeMenus = (btnCloseMenu) => {
-  buttons = [...btnCloseMenu]
-  buttons.forEach(e => e.addEventListener('click', hideAllMenus))
-} 
+  buttons = [...btnCloseMenu];
+  buttons.forEach((e) => e.addEventListener('click', hideAllMenus));
+};
+
+const menuScrollIndicator = (e) => {
+  const scrollUp = document.querySelector('.scroll-up');
+  const scrollDown = document.querySelector('.scroll-down');
+  console.dir(cartItemsContainer);
+  console.log(e.target.scrollTop);
+  console.log(e.target.scrollHeight);
+  e.target.scrollTop > 60
+    ? scrollUp.classList.add('visible2')
+    : scrollUp.classList.remove('visible2');
+  e.target.scrollTop + e.target.clientHeight < e.target.scrollHeight - 60
+    ? scrollDown.classList.add('visible2')
+    : scrollDown.classList.remove('visible2');
+};
 
 // Inicialización como Rodri manda
-
 const init = () => {
   renderAlbumsSection();
   btnLoad.addEventListener('click', showMoreAlbums);
-  // cartBtn.addEventListener('click', toggleMenus);
-
-  // burgerBtn.addEventListener('click', toggleMenus);
   window.addEventListener('scroll', (e) => {
     hideAllMenus();
     showBtnUp(e);
@@ -547,7 +568,8 @@ const init = () => {
     renderGenreBtns(genreList);
     checkIfLogin();
     btnsMenuEvent();
-    closeMenus(btnCloseMenu)
+    closeMenus(btnCloseMenu);
+    cartItemsContainer.addEventListener('scroll', menuScrollIndicator);
   });
   logoutBtn.addEventListener('click', logout);
   // document.addEventListener('DOMContentLoaded', renderTotalPrice);

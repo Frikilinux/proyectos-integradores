@@ -668,6 +668,7 @@ a:active {
 }
 
 .cart-container {
+  position: relative;
   /* padding: 10px; */
   display: flex;
   flex-direction: column;
@@ -839,8 +840,7 @@ a:active {
 /* Notify modal */
 
 .feedback-modal {
-  font-size: 0.9rem;
-
+  /* font-size: 0.9rem; */
   font-family: 'Montserrat';
   font-weight: 600;
   display: flex;
@@ -1007,4 +1007,24 @@ a:active {
 
 .close-menu:hover {
 color: var(--red);
+}
+
+.scroll-up,
+.scroll-down {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  font-size: 2rem;
+  color: var(--fg1);
+  z-index: 2;
+  --fa-animation-duration: 2s;
+  /* --fa-animation-direction: reverse; */
+}
+
+.scroll-up{
+  top: 10px;
+}
+
+.scroll-down {
+  bottom: 90px;
 }
