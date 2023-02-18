@@ -72,7 +72,6 @@ html {
 .visible2 {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .hidden2 {
