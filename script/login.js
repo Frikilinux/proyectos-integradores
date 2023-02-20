@@ -4,8 +4,12 @@ const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
 
 // Trae todos los datos del usuario en un array
-const getUserData = (userDb, mail, pass) => {
-  return userDb.filter((e) => e.email === mail && e.pass === pass);
+// const getUserData = (userDb, mail, pass) => {
+//   return userDb.filter((e) => e.email === mail && e.pass === pass);
+// };
+
+const getUserData2 = (userDb, mail, pass) => {
+  return userDb.find((e) => e.email === mail && e.pass === pass);
 };
 
 const login = (e) => {
@@ -22,9 +26,9 @@ const login = (e) => {
     showFeedback('xmark', 'Password incorrecto');
     return;
   }
-  const userData = getUserData(userDb, inputEmail.value, inputPass.value);
+  const userData = getUserData2(userDb, inputEmail.value, inputPass.value);
   console.log(userData);
-  !userData.length // Double Tap
+  isObjectEmpty(userData) // Double Tap
     ? showFeedback('xmark', 'Algo malió sal')
     : (showFeedback('check', 'Login exitoso'),
       saveLoginStorage(userData),

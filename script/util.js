@@ -26,3 +26,8 @@ const isMailInDd = (userDb, mail) => {
 const isUserPass = (userDb, mail, pass) => {
   return userDb.some((e) => e.email === mail && e.pass === pass);
 };
+
+// Chequea si el objeto está vacío
+const isObjectEmpty = (objectName) => {
+  return Object.keys(objectName).length === 0
+}
