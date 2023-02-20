@@ -363,7 +363,7 @@ const logout = () => {
   cartMenu.classList.remove('show-menu');
   updateUserDb(loggedUser);
   saveUserDbStorage(userDb);
-  loggedUser = [];
+  loggedUser = {};
   cart = [];
   saveLoginStorage(loggedUser);
   showFeedback('xmark', 'Sesion cerrada');
