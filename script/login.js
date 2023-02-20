@@ -3,12 +3,8 @@ const formLogin = document.querySelector('.form-login');
 const inputEmail = document.getElementById('mail');
 const inputPass = document.getElementById('pass');
 
-// Trae todos los datos del usuario en un array
-// const getUserData = (userDb, mail, pass) => {
-//   return userDb.filter((e) => e.email === mail && e.pass === pass);
-// };
-
-const getUserData2 = (userDb, mail, pass) => {
+// Trae datos del usuario si lo encuentra en la DB
+const getUserData = (userDb, mail, pass) => {
   return userDb.find((e) => e.email === mail && e.pass === pass);
 };
 
@@ -26,14 +22,14 @@ const login = (e) => {
     showFeedback('xmark', 'Password incorrecto');
     return;
   }
-  const userData = getUserData2(userDb, inputEmail.value, inputPass.value);
-  console.log(userData);
+  const userData = getUserData(userDb, inputEmail.value, inputPass.value);
+
   isObjectEmpty(userData) // Double Tap
     ? showFeedback('xmark', 'Algo malió sal')
-    : (showFeedback('check', 'Login exitoso'),
-      saveLoginStorage(userData),
+    : (saveLoginStorage(userData),
       formLogin.reset(),
-      setTimeout(() => (window.location.href = '/'), 2000));
+      setTimeout(() => (window.location.href = '/'), 2000),
+      showFeedback('check', 'Login exitoso'));
 };
 
 const init = () => {

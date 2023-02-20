@@ -210,7 +210,7 @@ const renderCartQty = () => {
 // reccibe un NodeList como parámetro
 const disableBtns = (btns) => {
   btns = [...btns];
-  !cart.length || !loggedUser.length
+  !cart.length || isObjectEmpty(loggedUser)
     ? (btns.forEach((e) => e.classList.add('btn-disabled')),
       cartBtn.classList.remove('show-qty'))
     : (btns.forEach((e) => e.classList.remove('btn-disabled')),
@@ -219,7 +219,7 @@ const disableBtns = (btns) => {
 
 // Chequeo del carrito para cada acción
 const cartStateCheck = () => {
-  if (loggedUser.length) {
+  if (!isObjectEmpty(loggedUser)) {
     updateCartOfLoggedUser(loggedUser);
     saveLoginStorage(loggedUser);
   }
@@ -234,7 +234,7 @@ const addAlbum = (e) => {
   if (!e.target.classList.contains('btn--buy')) {
     return;
   }
-  if (!loggedUser.length) {
+  if (isObjectEmpty(loggedUser)) {
     notLoggedIn();
     return;
   }
@@ -349,11 +349,11 @@ const notLoggedIn = () => {
 };
 
 const checkIfLogin = () => {
-  if (!loggedUser.length) {
+  if (isObjectEmpty(loggedUser)) {
     userBtns.classList.remove('hidden');
     userLoginName.classList.add('hidden');
   } else {
-    userNameContainer.textContent = `Hola, ${loggedUser[0].name}`;
+    userNameContainer.textContent = `Hola, ${loggedUser.name}`;
     userBtns.classList.add('hidden');
     userLoginName.classList.remove('hidden');
   }
@@ -501,7 +501,7 @@ const btnsMenuEvent = () => {
   const btnsMenu = [...btnMenues];
   btnsMenu.forEach((e) => {
     e.addEventListener('click', (e) => {
-      if (e.target.dataset.name === 'cartMenu' && !loggedUser.length) {
+      if (e.target.dataset.name === 'cartMenu' && isObjectEmpty(loggedUser)) {
         notLoggedIn();
         return;
       }

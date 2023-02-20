@@ -1,10 +1,10 @@
 // Trayendo cart del usuario
-let getUserCart = () => {
-  return !loggedUser.length ? [] : loggedUser[0].cart;
+const getUserCart = () => {
+  return isObjectEmpty(loggedUser) ? [] : loggedUser.cart;
 };
 
 let userDb = JSON.parse(localStorage.getItem('userDb')) || [];
-let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || [];
+let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || {};
 let cart = getUserCart();
 
 const saveUserDbStorage = (userDb) => {
@@ -17,10 +17,10 @@ const saveLoginStorage = (loggedUser) => {
 
 const updateUserDb = (loggedUser) => {
   userDb = userDb.map((user) => {
-    return user.id === loggedUser[0].id ? loggedUser[0] : user;
+    return user.id === loggedUser.id ? loggedUser : user;
   });
 };
 
 const updateCartOfLoggedUser = (user) => {
-  loggedUser = user.map((user) => ({ ...user, cart: [...cart] }));
+  loggedUser = { ...user, cart: [...cart] };
 };
