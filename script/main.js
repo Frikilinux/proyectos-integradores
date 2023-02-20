@@ -2,7 +2,6 @@ const albumsContainer = document.querySelector('.container--albums');
 const genreContainer = document.querySelector('.genres');
 const btnLoad = document.querySelector('.btn-load');
 const cartBtn = document.querySelector('.cart-label');
-// const cartBubble = document.querySelector('.cart-bubble');
 const cartMenu = document.querySelector('.cart');
 const burgerBtn = document.querySelector('.fa-bars');
 const linksMenu = document.querySelector('.menu');
@@ -24,9 +23,9 @@ const previewAlbumName = document.querySelector('.preview-album');
 const previewArtistName = document.querySelector('.preview-artist');
 const previewbtnBuy = document.querySelector('.preview-buy');
 const overlay = document.querySelector('.overlay');
-const btnCloseMenu = document.querySelectorAll('.close-menu')
-// const cartBtnBuy = document.querySelector('.btn-buy');
-// const cartBtnDelete = document.querySelector('.btn-delete');
+const btnCloseMenu = document.querySelectorAll('.close-menu');
+const menues = document.querySelectorAll("[data-type='menu']");
+const btnMenues = document.querySelectorAll("[data-type='btnMenu']");
 
 const renderAlbum = (album) => {
   const {
@@ -192,7 +191,7 @@ const renderItem = (cartItem) => {
 const renderCartItems = () => {
   !cart.length
     ? (cartItemsContainer.innerHTML =
-      '<p class="empty-cart-msg">Nada para comprar<p><i class="far fa-face-sad-tear"></i>')
+        '<p class="empty-cart-msg">Nada para comprar<p><i class="far fa-face-sad-tear"></i>')
     : (cartItemsContainer.innerHTML = cart.map(renderItem).join(''));
 };
 
@@ -266,11 +265,9 @@ const sumAddedAlbums = (item) => {
 };
 
 // Crear cart
-
 const createAlbumItem = (item) => (cart = [...cart, { ...item, quantity: 1 }]);
 
 // Botones - y +
-
 const itemBtnPlus = (id) => {
   const itemExist = cart.find((item) => item.id === id);
   sumAddedAlbums(itemExist);
@@ -428,11 +425,9 @@ class TrackPreview {
 }
 
 // Busca el album y retorna su objeto
-
 const getAlbumData = (id) => albumsData.find((e) => e.id === id);
 
-// Iterar sobre el album
-
+// Crea la lista de canciones
 const createPreviewList = (album) => {
   const {
     id,
@@ -449,8 +444,8 @@ const createPreviewList = (album) => {
   previewAlbumName.textContent = name;
   previewArtistName.textContent = artist;
   trackPreviewContainer.textContent = '';
-  tracks.forEach((e) => {
-    new TrackPreview(e.name, e.url, e.number);
+  tracks.forEach((track) => {
+    new TrackPreview(track.name, track.url, track.number);
   });
   previewbtnBuy.innerHTML = `<button
     class="btn--buy btn"
@@ -466,21 +461,17 @@ const createPreviewList = (album) => {
   </button>`;
 };
 
+// Genera la lista de canciones y abre el menu lateral
 const showPreview = (e) => {
   if (!e.target.classList.contains('btn-show-preview')) {
     return;
   }
   let id = e.target.dataset.id;
-  let album;
-  console.log(id);
-  console.log(album);
   createPreviewList(getAlbumData(Number(id)));
   toggleMenus(e.target.dataset.name);
 };
 
-const menues = document.querySelectorAll("[data-type='menu']");
-const btnMenues = document.querySelectorAll("[data-type='btnMenu']");
-
+// Oculta todos los menus
 const hideAllMenus = (dataName) => {
   const allSongs = [...document.querySelectorAll('.song')];
   const menus = [...menues];
@@ -492,6 +483,7 @@ const hideAllMenus = (dataName) => {
   document.body.style.overflowY = 'visible';
 };
 
+// Muestra u oculta los menus
 const toggleMenus = (name) => {
   let menu = document.querySelector(`[data-menu="${name}"]`);
   hideAllMenus(name);
@@ -504,11 +496,11 @@ const toggleMenus = (name) => {
       (document.body.style.overflowY = 'visible'));
 };
 
+// Añade evetos a los botones dde menus
 const btnsMenuEvent = () => {
   const btnsMenu = [...btnMenues];
   btnsMenu.forEach((e) => {
     e.addEventListener('click', (e) => {
-      // console.log(e);
       if (e.target.dataset.name === 'cartMenu' && !loggedUser.length) {
         notLoggedIn();
         return;
@@ -518,19 +510,16 @@ const btnsMenuEvent = () => {
   });
 };
 
+// Cierra los menus
 const closeMenus = (btnCloseMenu) => {
-  buttons = [...btnCloseMenu]
-  buttons.forEach(e => e.addEventListener('click', hideAllMenus))
-} 
+  buttons = [...btnCloseMenu];
+  buttons.forEach((e) => e.addEventListener('click', hideAllMenus));
+};
 
 // Inicialización como Rodri manda
-
 const init = () => {
   renderAlbumsSection();
   btnLoad.addEventListener('click', showMoreAlbums);
-  // cartBtn.addEventListener('click', toggleMenus);
-
-  // burgerBtn.addEventListener('click', toggleMenus);
   window.addEventListener('scroll', (e) => {
     hideAllMenus();
     showBtnUp(e);
@@ -547,7 +536,7 @@ const init = () => {
     renderGenreBtns(genreList);
     checkIfLogin();
     btnsMenuEvent();
-    closeMenus(btnCloseMenu)
+    closeMenus(btnCloseMenu);
   });
   logoutBtn.addEventListener('click', logout);
 };
