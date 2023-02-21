@@ -1,3 +1,41 @@
+// Desordena los albumes para que sea más divertido ...
+const shuffleAlbums = (arr) => {
+  let newAlbumsData = [...arr]
+  for (let i = newAlbumsData.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newAlbumsData[i], newAlbumsData[j]] = [newAlbumsData[j], newAlbumsData[i]];
+  }
+  return newAlbumsData
+}
+
+// Dividiendo en arrays
+const splitAlbums = (size) => {
+  let newAlbumsData = shuffleAlbums(albumsData)
+  let dividedAlbums = [];
+  for (let i = 0; i < newAlbumsData.length; i += size) {
+    dividedAlbums.push(newAlbumsData.slice(i, i + size));
+  }
+  return dividedAlbums;
+};
+
+const productsController = {
+  dividedAlbums: splitAlbums(6),
+  nextAlbumsIndex: 1,
+  albumsLimit: splitAlbums(6).length,
+};
+
+// Crea una lista de géneros disponibles
+const getGenres = (data) => {
+  let genreList = [];
+  data.forEach((e) => {
+    if (!genreList.some((genre) => genre === e.genre)) genreList.push(e.genre);
+  });
+  return genreList;
+};
+
+const genreList = getGenres(albumsData);
+
+
 // Feedback Modal
 const feedbackModal = document.querySelector('.feedback-modal');
 
