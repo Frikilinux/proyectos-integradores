@@ -359,20 +359,22 @@ a:active {
   border: none;
 }
 
-.format .format-img {
-  height: 40%;
-}
-
 .img-select {
-  font-size: 0.6rem;
   color: var(--fg1);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  text-align: center;
   height: 100%;
   width: 65%;
   padding: 3px;
+}
+
+.img-select p {
+  font-size: 9px;
+}
+
+.img-select .format-img {
+  height: 35%;
 }
 
 .release__info {
