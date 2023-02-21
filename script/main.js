@@ -40,19 +40,18 @@ const renderAlbum = (album) => {
     label,
   } = album;
   return `<div class="albums__release">
-  <img src="${albumImg}" class="release-img" alt="Album image">
-  <div class="format">
-    <div class="img-select trans-5">
+  <div class="back-release">
+    <div class="format">
+      <button data-id="${id}" data-name="previewMenu" data-type="btnMenu" class="btn-show-preview trans-5"><i class="far fa-circle-play"></i>Preview</button>
+      <div class="img-select trans-5">
+      <p>Disponible en</p>
       <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
-    </div>
-    <div class="img-select trans-5">
       <img src="./assets/img/flac_logo.svg" alt="" class="format-img">
-    </div>
-    <div class="img-select trans-5">
       <img src="./assets/img/mqa_logo.svg" alt="" class="format-img">
-    </div>
+      </div>
+    </div>  
+    <img src="${albumImg}" class="release-img trans-5" alt="Album image">
   </div>
-  <div class="preview-btn"><button data-id="${id}" data-name="previewMenu" data-type="btnMenu" class="btn btn-show-preview">Previsualizar</buttton></div>
   <div class="release__info">
     <div class="release__data">
       <p class="album-name">${name}</p>
