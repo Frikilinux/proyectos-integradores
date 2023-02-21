@@ -467,7 +467,7 @@ const showPreview = (e) => {
     return;
   }
   let id = e.target.dataset.id;
-  createPreviewList(getAlbumData(Number(id)));
+  createPreviewList(getAlbumData(id));
   toggleMenus(e.target.dataset.name);
 };
 
