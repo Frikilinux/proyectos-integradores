@@ -78,6 +78,23 @@ const renderAlbum = (album) => {
 </div>`;
 };
 
+const divideAlbums = (size, genre) => {
+  const shuffledAlbumsData = shuffleAlbums(albumsData);
+  const albumByGenre = shuffledAlbumsData.filter((album) => {
+    return album.genre === genre;
+  });
+  console.log(albumByGenre);
+  let dividedAlbums = [];
+  for (let i = 0; i < dividedAlbums.length; i += size) {
+    if (!genre) {
+      dividedAlbums.push(shuffledAlbumsData.slice(i, i + size));
+    } else {
+      dividedAlbums.push(albumByGenre.slice(i, i + size));
+    }
+  }
+  return dividedAlbums;
+};
+
 // Renderizado de albumes
 const renderDividedAlbums = (i = 0) => {
   albumsContainer.innerHTML += productsController.dividedAlbums[i]
@@ -115,7 +132,6 @@ const changeBtnState = (selectedGenre) => {
   const btnGenreList = document.querySelectorAll('.genre');
   const genresList = [...btnGenreList];
   genresList.forEach((genreBtn) => {
-    console.log(genreBtn.dataset.genre !== selectedGenre);
     genreBtn.dataset.genre !== selectedGenre
       ? genreBtn.classList.remove('active')
       : genreBtn.classList.add('active');

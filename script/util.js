@@ -24,6 +24,12 @@ const productsController = {
   albumsLimit: splitAlbums(6).length,
 };
 
+const albumsController = {
+  dividedAlbums: [],
+  nextAlbumsIndex: 1,
+  albumsLimit: 0,
+};
+
 // Crea una lista de géneros disponibles
 const getGenres = (data) => {
   let genreList = [];
