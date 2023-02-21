@@ -78,44 +78,65 @@ const renderAlbum = (album) => {
 </div>`;
 };
 
-const divideAlbums = (size, genre) => {
+// Divide todos los albumes
+const divideAllAlbums = (size) => {
   const shuffledAlbumsData = shuffleAlbums(albumsData);
-  const albumByGenre = shuffledAlbumsData.filter((album) => {
+  let dividedAlbums = [];
+  for (let i = 0; i < shuffledAlbumsData.length; i += size) {
+    dividedAlbums.push(shuffledAlbumsData.slice(i, i + size));
+  }
+  return dividedAlbums;
+};
+
+// Divide los albunes según la categoría
+const divideByGenre = (size, genre) => {
+  const albumsByGenre = shuffleAlbums(albumsData).filter((album) => {
     return album.genre === genre;
   });
-  console.log(albumByGenre);
   let dividedAlbums = [];
-  for (let i = 0; i < dividedAlbums.length; i += size) {
-    if (!genre) {
-      dividedAlbums.push(shuffledAlbumsData.slice(i, i + size));
-    } else {
-      dividedAlbums.push(albumByGenre.slice(i, i + size));
-    }
+  for (let i = 0; i < albumsByGenre.length; i += size) {
+    dividedAlbums.push(albumsByGenre.slice(i, i + size));
   }
   return dividedAlbums;
 };
 
 // Renderizado de albumes
 const renderDividedAlbums = (i = 0) => {
-  albumsContainer.innerHTML += productsController.dividedAlbums[i]
+  albumsContainer.innerHTML += albumsController.dividedAlbums[i]
     .map(renderAlbum)
     .join('');
 };
+// const renderDividedAlbums = (i = 0) => {
+//   albumsContainer.innerHTML += productsController.dividedAlbums[i]
+//     .map(renderAlbum)
+//     .join('');
+// };
 
-const renderFilteredAlbum = (genre) => {
-  const albumList = shuffleAlbums(albumsData).filter((album) => {
-    return album.genre === genre;
-  });
-  albumsContainer.innerHTML = albumList.map(renderAlbum).join('');
-};
+// const renderFilteredAlbum = (genre) => {
+//   const albumList = shuffleAlbums(albumsData).filter((album) => {
+//     return album.genre === genre;
+//   });
+//   albumsContainer.innerHTML = albumList.map(renderAlbum).join('');
+// };
 
-const renderAlbumsSection = (index = 0, genre = undefined) => {
-  !genre ? renderDividedAlbums(index) : renderFilteredAlbum(genre);
+// const renderAlbumsSection = (index = 0, genre = undefined) => {
+//   !genre ? renderDividedAlbums(index) : renderFilteredAlbum(genre);
+// };
+const generateAlbumSection = (index = 0, genre = undefined) => {
+  !genre
+    ? ((albumsController.dividedAlbums = divideAllAlbums(6)),
+      (albumsController.albumsLimit = albumsController.dividedAlbums.length),
+      renderDividedAlbums(index))
+    : ((albumsController.dividedAlbums = divideByGenre(6, genre)),
+      (albumsController.albumsLimit = albumsController.dividedAlbums.length),
+      renderDividedAlbums(index));
 };
 
 // Añade clase hidden al botón "Ver más"
 const toggleBtnLoad = (genre) => {
-  !genre ? btnLoad.classList.remove('hidden') : btnLoad.classList.add('hidden');
+  albumsController.albumsLimit !== albumsController.nextAlbumsIndex
+    ? btnLoad.classList.remove('hidden')
+    : btnLoad.classList.add('hidden');
 };
 
 // Crea categorías con los géneros
@@ -149,20 +170,33 @@ const applyFilter = (e) => {
   if (!e.target.classList.contains('genre')) return;
   console.log(e);
   !e.target.dataset.genre
-    ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
-    : (renderAlbumsSection(0, e.target.dataset.genre),
-      (productsController.nextAlbumsIndex = 1));
+    ? ((albumsContainer.innerHTML = ''),
+      generateAlbumSection(),
+      (albumsController.nextAlbumsIndex = 1))
+    : ((albumsContainer.innerHTML = ''),
+      generateAlbumSection(0, e.target.dataset.genre),
+      (albumsController.nextAlbumsIndex = 1));
   changeFilterState(e);
 };
+// const applyFilter = (e) => {
+//   if (e.target.classList.contains('active')) return;
+//   if (!e.target.classList.contains('genre')) return;
+//   console.log(e);
+//   !e.target.dataset.genre
+//     ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
+//     : (renderAlbumsSection(0, e.target.dataset.genre),
+//       (albumsController.nextAlbumsIndex = 1));
+//   changeFilterState(e);
+// };
 
 const albumsLimit = () => {
-  return productsController.albumsLimit === productsController.nextAlbumsIndex;
+  return albumsController.albumsLimit === albumsController.nextAlbumsIndex;
 };
 
 // Ver más
 const showMoreAlbums = () => {
-  renderAlbumsSection(productsController.nextAlbumsIndex);
-  productsController.nextAlbumsIndex++;
+  renderDividedAlbums(albumsController.nextAlbumsIndex);
+  albumsController.nextAlbumsIndex++;
   if (albumsLimit()) btnLoad.classList.add('hidden');
 };
 
@@ -534,7 +568,7 @@ const closeMenus = (btnCloseMenu) => {
 
 // Inicialización como Rodri manda
 const init = () => {
-  renderAlbumsSection();
+  generateAlbumSection();
   btnLoad.addEventListener('click', showMoreAlbums);
   window.addEventListener('scroll', (e) => {
     hideAllMenus();
