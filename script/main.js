@@ -78,26 +78,24 @@ const renderAlbum = (album) => {
 </div>`;
 };
 
-// Divide todos los albumes
-const divideAllAlbums = (size) => {
-  const shuffledAlbumsData = shuffleAlbums(albumsData);
+// Divide albumes en arrays
+const divider = (size, albumsList) => {
   let dividedAlbums = [];
-  for (let i = 0; i < shuffledAlbumsData.length; i += size) {
-    dividedAlbums.push(shuffledAlbumsData.slice(i, i + size));
+  for (let i = 0; i < albumsList.length; i += size) {
+    dividedAlbums.push(albumsList.slice(i, i + size));
   }
   return dividedAlbums;
 };
+
+// Divide todos los albumes
+const divideAllAlbums = (size) => divider(size, shuffleAlbums(albumsData));
 
 // Divide los albunes según la categoría
 const divideByGenre = (size, genre) => {
   const albumsByGenre = shuffleAlbums(albumsData).filter((album) => {
     return album.genre === genre;
   });
-  let dividedAlbums = [];
-  for (let i = 0; i < albumsByGenre.length; i += size) {
-    dividedAlbums.push(albumsByGenre.slice(i, i + size));
-  }
-  return dividedAlbums;
+  return divider(size, albumsByGenre);
 };
 
 // Renderizado de albumes
@@ -106,34 +104,18 @@ const renderDividedAlbums = (i = 0) => {
     .map(renderAlbum)
     .join('');
 };
-// const renderDividedAlbums = (i = 0) => {
-//   albumsContainer.innerHTML += productsController.dividedAlbums[i]
-//     .map(renderAlbum)
-//     .join('');
-// };
 
-// const renderFilteredAlbum = (genre) => {
-//   const albumList = shuffleAlbums(albumsData).filter((album) => {
-//     return album.genre === genre;
-//   });
-//   albumsContainer.innerHTML = albumList.map(renderAlbum).join('');
-// };
-
-// const renderAlbumsSection = (index = 0, genre = undefined) => {
-//   !genre ? renderDividedAlbums(index) : renderFilteredAlbum(genre);
-// };
-const generateAlbumSection = (index = 0, genre = undefined) => {
+// Genera el array de albumes y renderiza
+const generateAlbumSection = (index = 0, genre = undefined, size = 6) => {
   !genre
-    ? ((albumsController.dividedAlbums = divideAllAlbums(6)),
-      (albumsController.albumsLimit = albumsController.dividedAlbums.length),
-      renderDividedAlbums(index))
-    : ((albumsController.dividedAlbums = divideByGenre(6, genre)),
-      (albumsController.albumsLimit = albumsController.dividedAlbums.length),
-      renderDividedAlbums(index));
+    ? (albumsController.dividedAlbums = divideAllAlbums(size))
+    : (albumsController.dividedAlbums = divideByGenre(size, genre));
+  albumsController.albumsLimit = albumsController.dividedAlbums.length;
+  renderDividedAlbums(index);
 };
 
 // Añade clase hidden al botón "Ver más"
-const toggleBtnLoad = (genre) => {
+const toggleBtnLoad = () => {
   albumsController.albumsLimit !== albumsController.nextAlbumsIndex
     ? btnLoad.classList.remove('hidden')
     : btnLoad.classList.add('hidden');
@@ -144,6 +126,7 @@ const renderCatGenre = (genre) => {
   return `<button class="genre trans-5" data-genre="${genre}">${genre}</button>`;
 };
 
+// Renderiza los botones de géneros
 const renderGenreBtns = (genreList) => {
   genreContainer.innerHTML += genreList.map(renderCatGenre).join('');
 };
@@ -159,6 +142,7 @@ const changeBtnState = (selectedGenre) => {
   });
 };
 
+// Cambia el estado de los botones de género
 const changeFilterState = (e) => {
   toggleBtnLoad(e.target.dataset.genre);
   changeBtnState(e.target.dataset.genre);
@@ -168,26 +152,13 @@ const changeFilterState = (e) => {
 const applyFilter = (e) => {
   if (e.target.classList.contains('active')) return;
   if (!e.target.classList.contains('genre')) return;
-  console.log(e);
+  albumsContainer.innerHTML = '';
+  albumsController.nextAlbumsIndex = 1;
   !e.target.dataset.genre
-    ? ((albumsContainer.innerHTML = ''),
-      generateAlbumSection(),
-      (albumsController.nextAlbumsIndex = 1))
-    : ((albumsContainer.innerHTML = ''),
-      generateAlbumSection(0, e.target.dataset.genre),
-      (albumsController.nextAlbumsIndex = 1));
+    ? generateAlbumSection()
+    : generateAlbumSection(0, e.target.dataset.genre);
   changeFilterState(e);
 };
-// const applyFilter = (e) => {
-//   if (e.target.classList.contains('active')) return;
-//   if (!e.target.classList.contains('genre')) return;
-//   console.log(e);
-//   !e.target.dataset.genre
-//     ? ((albumsContainer.innerHTML = ''), renderAlbumsSection())
-//     : (renderAlbumsSection(0, e.target.dataset.genre),
-//       (albumsController.nextAlbumsIndex = 1));
-//   changeFilterState(e);
-// };
 
 const albumsLimit = () => {
   return albumsController.albumsLimit === albumsController.nextAlbumsIndex;
@@ -200,14 +171,10 @@ const showMoreAlbums = () => {
   if (albumsLimit()) btnLoad.classList.add('hidden');
 };
 
-const showBtnUp = (e) => {
-  if (e.type === 'scroll') {
-    if (scrollY < 500) {
-      btnUp.style.transform = 'translateY(150%)';
-    } else {
-      btnUp.style.transform = 'translateY(0%)';
-    }
-  }
+const showBtnUp = () => {
+  scrollY < 500
+    ? (btnUp.style.transform = 'translateY(150%)')
+    : (btnUp.style.transform = 'translateY(0%)');
 };
 
 // Carrito
@@ -326,24 +293,26 @@ const itemBtnPlus = (id) => {
 const itemBtnMinus = (id) => {
   const itemExist = cart.find((item) => item.id === id);
   if (itemExist.quantity === 1) {
-    if (window.confirm('¿Elimino el album?')) {
-      deleteCartItem(itemExist), showFeedback('info', 'Album Eliminado');
-    }
+    confirmDelete(itemExist);
   } else {
     decItemQty(itemExist);
   }
 };
 
-// Borra un album directamente del la lista
+// Borra un album directamente de la lista
 const deleteCartAlbum = (id) => {
   const itemExist = cart.find((item) => item.id === id);
-  if (itemExist) {
-    if (window.confirm('¿Elimino el album?')) {
-      deleteCartItem(itemExist), showFeedback('info', 'Album Eliminado');
-    }
+  if (itemExist) confirmDelete(itemExist);
+};
+
+// Confirma si se elimina un album del carrito
+const confirmDelete = (item) => {
+  if (window.confirm('¿Elimino el album?')) {
+    deleteCartItem(item), showFeedback('info', 'Album Eliminado');
   }
 };
 
+// Actualiza el array del carrito
 const deleteCartItem = (itemExist) => {
   cart = cart.filter((item) => itemExist.id !== item.id);
   cartStateCheck();
@@ -572,7 +541,7 @@ const init = () => {
   btnLoad.addEventListener('click', showMoreAlbums);
   window.addEventListener('scroll', (e) => {
     hideAllMenus();
-    showBtnUp(e);
+    showBtnUp();
   });
   overlay.addEventListener('click', hideAllMenus);
   genreContainer.addEventListener('click', applyFilter);
@@ -583,7 +552,7 @@ const init = () => {
   cartBtnContainer.addEventListener('click', cartBtnAction);
   document.addEventListener('DOMContentLoaded', () => {
     cartStateCheck();
-    renderGenreBtns(genreList);
+    renderGenreBtns(albumsController.genreList);
     checkIfLogin();
     btnsMenuEvent();
     closeMenus(btnCloseMenu);
