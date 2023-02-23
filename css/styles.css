@@ -12,7 +12,8 @@
   --bg-btn: #d90429;
   --bg-bubble: #f7e76bd5;
   --orange: #ef885c;
-  --bg-menu: #180707b0;
+  --bg-menu: #18070791;
+  --bg-track: #180707d1;
   --fback-icon: #1e3adc;
   --success: #5ceb6f;
 }
@@ -930,7 +931,7 @@ a:active {
 
 .preview-data {
   padding: 15px;
-  background-color: var(--bg-menu);
+  background-color: var(--bg-track);
   backdrop-filter: blur(10px);
   width: 100%;
   z-index: 2;
@@ -946,7 +947,7 @@ a:active {
   padding: 10px;
   width: 100%;
   /* backdrop-filter: blur(10px); */
-  background-color: var(--bg-menu);
+  background-color: var(--bg-track);
   user-select: none;
 }
 
