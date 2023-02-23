@@ -344,6 +344,7 @@ a:active {
 }
 
 .btn-show-preview {
+  --fa-beat-scale: 1.1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -351,7 +352,7 @@ a:active {
   cursor: pointer;
   height: 100%;
   width: 35%;
-  padding: 2px;
+  padding-right: 0px;
   color: var(--fg1);
   font-weight: 700;
   font-family: 'Montserrat';

@@ -42,7 +42,7 @@ const renderAlbum = (album) => {
   return `<div class="albums__release">
   <div class="back-release">
     <div class="format">
-      <button data-id="${id}" data-name="previewMenu" data-type="btnMenu" class="btn-show-preview trans-5"><i class="far fa-circle-play"></i>Preview</button>
+      <button data-id="${id}" data-name="previewMenu" data-type="btnMenu" class="btn-show-preview trans-5">Preview<i class="far fa-circle-play fa-beat" data-name="previewMenu" data-id="${id}"></i></button>
       <div class="img-select trans-5">
       <p>Disponible en</p>
       <img src="./assets/img/dsd_logo.svg" alt="" class="format-img">
@@ -481,7 +481,7 @@ const createPreviewList = (album) => {
 
 // Genera la lista de canciones y abre el menu lateral
 const showPreview = (e) => {
-  if (!e.target.classList.contains('btn-show-preview')) {
+  if (e.target.dataset.name !== 'previewMenu') {
     return;
   }
   let id = e.target.dataset.id;
@@ -538,14 +538,17 @@ const closeMenus = (btnCloseMenu) => {
 const init = () => {
   generateAlbumSection();
   btnLoad.addEventListener('click', showMoreAlbums);
-  window.addEventListener('scroll', (e) => {
+  window.addEventListener('scroll', () => {
     hideAllMenus();
     showBtnUp();
   });
   overlay.addEventListener('click', hideAllMenus);
   genreContainer.addEventListener('click', applyFilter);
-  albumsContainer.addEventListener('click', addAlbum);
-  albumsContainer.addEventListener('click', showPreview);
+  albumsContainer.addEventListener(
+    'click',
+    (e) => (addAlbum(e), showPreview(e))
+  );
+  // albumsContainer.addEventListener('click', showPreview);
   previewbtnBuy.addEventListener('click', addAlbum);
   cartItemsContainer.addEventListener('click', setItemQty);
   cartBtnContainer.addEventListener('click', cartBtnAction);
