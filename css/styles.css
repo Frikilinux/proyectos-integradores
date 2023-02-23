@@ -924,7 +924,7 @@ a:active {
   position: absolute;
   height: 100%;
   width: 100%;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(6px);
   z-index: -1;
 }
 
@@ -952,9 +952,17 @@ a:active {
 
 .preview-album,
 .preview-artist {
+  max-width: 280px;
+  display: -webkit-box;
+  line-clamp: 2; 
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
   font-family: 'Montserrat';
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
 }
 
 .preview-artist {
