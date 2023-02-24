@@ -384,7 +384,7 @@ const logout = () => {
   loggedUser = {};
   cart = [];
   saveLoginStorage(loggedUser);
-  showFeedback('xmark', 'Sesion cerrada');
+  showFeedback('info', 'Sesion cerrada');
   checkIfLogin();
   cartStateCheck();
 };
