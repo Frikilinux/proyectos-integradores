@@ -198,7 +198,7 @@ const renderItem = (cartItem) => {
         <button class="quantity-handler down btn" data-id="${id}"> - </button>
         <span class="item-quantity"> ${quantity} </span>
         <button class="quantity-handler up btn" data-id="${id}"> + </button>
-        <i class="trash delete-item fa-solid fa-trash-can" data-id="${id}"></i>
+        <i class="trash delete-item fas fa-xmark" data-id="${id}"></i>
       </div>
     </div>
 </div>`;
