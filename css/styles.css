@@ -5,17 +5,17 @@
 :root {
   --bg: #2b2d42;
   --bg2: #8d99ae;
-  --fg1: #edf2f4;
+  --fg1: #fbf1c7;
   --fg2: #1d1d1f;
   --fg3: #48608b;
   --red: #ef233c;
   --bg-btn: #d90429;
-  --bg-bubble: #f7e76bd5;
-  --orange: #ef885c;
+  --bg-bubble: #fabd2f;
+  --orange: #fe8019;
   --bg-menu: #18070791;
   --bg-track: #180707d1;
   --fback-icon: #1e3adc;
-  --success: #5ceb6f;
+  --success: #c9cc28;
 }
 
 * {
@@ -876,6 +876,18 @@ a:active {
   z-index: -2;
   left: 50%;
   transform: translate(-50%, -400%);
+}
+
+.modal-login.menu__link {
+  font-size: 0.9rem;
+  border-radius: 5px;
+  padding: 2px 5px;
+  background-color: var(--red);
+  color: var(--fg1);
+}
+
+.modal-login:hover {
+  color: var(--bg-bubble);
 }
 
 /* Tracks preview */
