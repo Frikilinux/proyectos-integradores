@@ -134,8 +134,12 @@ a:active {
 }
 
 .login-user .logout {
+  font-size: 0.7rem;
+  background-color: var(--bg-btn);
+  padding: 5px;
   cursor: pointer;
-  color: var(--bg-btn);
+  color: var(--fg1);
+  border-radius: 5px;
 }
 
 .login-user .fa-user-check {
@@ -807,7 +811,7 @@ a:active {
   cursor: pointer;
   color: var(--orange);
   padding: 0 5px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 .quantity-handler {
   font-family: 'Montserrat';

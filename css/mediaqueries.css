@@ -105,19 +105,18 @@
 
   .login-user,
   .user {
-    /* display: none; */
     height: 100%;
     width: 100%;
     padding: 15px 0px;
-    justify-content: space-evenly;
-    gap: 25px;
+    justify-content: center;
+    gap: 20%;
     align-items: center;
     background-color: #485f8b71;
     border-radius: 0 0 10px 10px;
   }
 
   .login-user {
-    gap: 5px;
+    gap: 20px;
     display: flex;
   }
 
