@@ -120,6 +120,10 @@
     gap: 5px;
     display: flex;
   }
+
+  .item-album {
+    width: 88%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -167,5 +171,4 @@
     max-width: unset;
     width: 100vw;
   }
-
 }
