@@ -5,7 +5,7 @@ html {
 
 .btn:hover,
 .back__btn:hover {
-  transform: scale(1.07);
+  transform: scale(1.04);
   transition: all 0.3s ease-in-out;
   background-color: #d904279e;
 }
