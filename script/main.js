@@ -198,7 +198,7 @@ const renderItem = (cartItem) => {
         <button class="quantity-handler down btn" data-id="${id}"> - </button>
         <span class="item-quantity"> ${quantity} </span>
         <button class="quantity-handler up btn" data-id="${id}"> + </button>
-        <i class="trash delete-item fa-solid fa-trash-can" data-id="${id}"></i>
+        <i class="trash delete-item fas fa-xmark" data-id="${id}"></i>
       </div>
     </div>
 </div>`;
@@ -360,8 +360,8 @@ const cartBtnAction = (e) => {
 // Login stuff
 const notLoggedIn = () => {
   showFeedback(
-    'xmark',
-    'Por favor <a href="./pages/login.html" class="menu__link trans-5">inicia sesión</a> o <a href="./pages/register.html" class="menu__link trans-5">registrate</a>',
+    'info',
+    'Por favor <a href="./pages/login.html" class="modal-login menu__link trans-5">inicia sesión</a> o <a href="./pages/register.html" class="modal-login menu__link trans-5">registrate</a>',
     4000
   );
 };
@@ -384,7 +384,7 @@ const logout = () => {
   loggedUser = {};
   cart = [];
   saveLoginStorage(loggedUser);
-  showFeedback('xmark', 'Sesion cerrada');
+  showFeedback('info', 'Sesion cerrada');
   checkIfLogin();
   cartStateCheck();
 };
