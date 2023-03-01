@@ -14,7 +14,7 @@ const getGenres = (data) => {
   data.forEach((e) => {
     if (!genreList.some((genre) => genre === e.genre)) genreList.push(e.genre);
   });
-  return genreList;
+  return genreList.sort()
 };
 
 // Mostrar feedback al usuario, tipos (xmark, check, info)
