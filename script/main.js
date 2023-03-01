@@ -201,8 +201,9 @@ const renderItem = (cartItem) => {
 
 const renderCartItems = () => {
   !cart.length
-    ? (cartItemsContainer.innerHTML =
-        '<p class="empty-cart-msg">Nada para comprar<p><i class="far fa-face-sad-tear"></i>')
+    ? (cartItemsContainer.innerHTML = `
+        <p class="empty-cart-msg">Nada para comprar<p>
+        <i class="far fa-face-sad-tear"></i>`)
     : (cartItemsContainer.innerHTML = cart.map(renderItem).join(''));
 };
 
@@ -252,17 +253,11 @@ const addAlbum = (e) => {
   const { id, artist, name, price, img, tracks, date, label } =
     e.target.dataset;
   const album = { id, artist, name, price, img, tracks, date, label };
-  // console.log(album);
   albumAdded(album)
     ? sumAddedAlbums(album)
     : (createAlbumItem(album), showFeedback('check', 'Nuevo album añadido'));
   cartStateCheck();
 };
-
-// Crea un objeto con el album añadido
-// const albumData = (id, artist, name, price, img, tracks, date, label) => {
-//   return { id, artist, name, price, img, tracks, date, label };
-// };
 
 // Chequea si ya está el album añadido
 const albumAdded = (item) => cart.find((album) => album.id === item.id);
@@ -362,7 +357,7 @@ const notLoggedIn = () => {
   );
 };
 
-const checkIfLogin = () => {
+const checkIfLoggedIn = () => {
   if (isObjectEmpty(loggedUser)) {
     userBtns.classList.remove('hidden');
     userLoginName.classList.add('hidden');
@@ -381,7 +376,7 @@ const logout = () => {
   cart = [];
   saveLoginStorage(loggedUser);
   showFeedback('info', 'Sesion cerrada');
-  checkIfLogin();
+  checkIfLoggedIn();
   cartStateCheck();
 };
 
@@ -461,18 +456,20 @@ const createPreviewList = (album) => {
   tracks.forEach((track) => {
     new TrackPreview(track.name, track.url, track.number);
   });
-  previewbtnBuy.innerHTML = `<button
-    class="btn--buy btn"
-    data-id="${id}"
-    data-artist="${artist}"
-    data-name="${name}"
-    data-price="${price}"
-    data-img="${albumImg}"
-    data-tracks="${totalTracks}"
-    data-date="${releaseDate}"
-    data-label="${label}">
+  previewbtnBuy.innerHTML = `
+    <button
+      class="btn--buy btn"
+      data-id="${id}"
+      data-artist="${artist}"
+      data-name="${name}"
+      data-price="${price}"
+      data-img="${albumImg}"
+      data-tracks="${totalTracks}"
+      data-date="${releaseDate}"
+      data-label="${label}">
       Comprar
-  </button>`;
+    </button>
+  `;
 };
 
 // Genera la lista de canciones y abre el menu lateral
@@ -510,7 +507,7 @@ const toggleMenus = (name) => {
       (document.body.style.overflowY = 'visible'));
 };
 
-// Añade evetos a los botones dde menus
+// Añade eventos a los botones de menus
 const btnsMenuEvent = () => {
   const btnsMenu = [...btnMenues];
   btnsMenu.forEach((e) => {
@@ -532,30 +529,28 @@ const closeMenus = (btnCloseMenu) => {
 
 // Inicialización como Rodri manda
 const init = () => {
+  renderGenreBtns(albumsController.genreList);
   generateAlbumSection();
-  btnLoad.addEventListener('click', showMoreAlbums);
-  window.addEventListener('scroll', () => {
-    hideAllMenus();
-    showBtnUp();
-  });
-  overlay.addEventListener('click', hideAllMenus);
-  genreContainer.addEventListener('click', applyFilter);
-  albumsContainer.addEventListener(
-    'click',
-    (e) => (addAlbum(e), showPreview(e))
-  );
-  // albumsContainer.addEventListener('click', showPreview);
-  previewbtnBuy.addEventListener('click', addAlbum);
-  cartItemsContainer.addEventListener('click', setItemQty);
-  cartBtnContainer.addEventListener('click', cartBtnAction);
   document.addEventListener('DOMContentLoaded', () => {
+    checkIfLoggedIn();
     cartStateCheck();
-    renderGenreBtns(albumsController.genreList);
-    checkIfLogin();
     btnsMenuEvent();
     closeMenus(btnCloseMenu);
+    btnLoad.addEventListener('click', showMoreAlbums);
+    window.addEventListener('scroll', () => {
+      hideAllMenus();
+      showBtnUp();
+    });
+    overlay.addEventListener('click', hideAllMenus);
+    genreContainer.addEventListener('click', applyFilter);
+    albumsContainer.addEventListener('click', (e) => {
+      addAlbum(e), showPreview(e);
+    });
+    previewbtnBuy.addEventListener('click', addAlbum);
+    cartItemsContainer.addEventListener('click', setItemQty);
+    cartBtnContainer.addEventListener('click', cartBtnAction);
+    logoutBtn.addEventListener('click', logout);
   });
-  logoutBtn.addEventListener('click', logout);
 };
 
 init();
