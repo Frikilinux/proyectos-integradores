@@ -1,19 +1,19 @@
 const albumsContainer = document.querySelector('.container--albums');
 const genreContainer = document.querySelector('.genres');
+const cartItemsContainer = document.querySelector('.cart-container');
+const cartBtnContainer = document.querySelector('.cart-btns');
+const cartBtns = cartBtnContainer.querySelectorAll('.btn');
+const userNameContainer = document.querySelector('.user-name');
 const btnLoad = document.querySelector('.btn-load');
 const cartBtn = document.querySelector('.cart-label');
 const cartMenu = document.querySelector('.cart');
 const burgerBtn = document.querySelector('.fa-bars');
 const linksMenu = document.querySelector('.menu');
-const cartItemsContainer = document.querySelector('.cart-container');
 const totalPrice = document.querySelector('.total-price');
 const cartItemsQty = document.querySelector('.cart-qty');
-const cartBtnContainer = document.querySelector('.cart-btns');
-const cartBtns = cartBtnContainer.querySelectorAll('.btn');
 const userBtns = document.querySelector('.user');
 const userLoginName = document.querySelector('.login-user');
 const logoutBtn = document.querySelector('.logout');
-const userNameContainer = document.querySelector('.user-name');
 const btnUp = document.querySelector('.btn--up');
 const trackPreview = document.querySelector('.track-preview');
 const trackPreviewContainer = document.querySelector(
@@ -97,7 +97,7 @@ const renderDividedAlbums = (i = 0) => {
     .join('');
 };
 
-// Genera el array de albumes y renderiza
+// Genera el array de albumes y renderiza (size según viewport, en un futuro)
 const generateAlbumSection = (index = 0, genre = undefined, size = 6) => {
   !genre
     ? (albumsController.dividedAlbums = divideAllAlbums(size))
@@ -115,7 +115,11 @@ const toggleBtnLoad = () => {
 
 // Crea categorías con los géneros
 const renderCatGenre = (genre) => {
-  return `<button class="genre trans-5" data-genre="${genre}">${genre}</button>`;
+  return `
+    <button class="genre trans-5" data-genre="${genre}">
+      ${genre}
+    </button>
+  `;
 };
 
 // Renderiza los botones de géneros
@@ -203,7 +207,8 @@ const renderCartItems = () => {
   !cart.length
     ? (cartItemsContainer.innerHTML = `
         <p class="empty-cart-msg">Nada para comprar<p>
-        <i class="far fa-face-sad-tear"></i>`)
+        <i class="far fa-face-sad-tear"></i>
+      `)
     : (cartItemsContainer.innerHTML = cart.map(renderItem).join(''));
 };
 
@@ -230,7 +235,7 @@ const disableBtns = (btns) => {
 };
 
 // Chequeo del carrito para cada acción
-const cartStateCheck = () => {
+const checkCartStatus = () => {
   if (!isObjectEmpty(loggedUser)) {
     updateCartOfLoggedUser(loggedUser);
     saveLoginStorage(loggedUser);
@@ -256,7 +261,7 @@ const addAlbum = (e) => {
   albumAdded(album)
     ? sumAddedAlbums(album)
     : (createAlbumItem(album), showFeedback('check', 'Nuevo album añadido'));
-  cartStateCheck();
+  checkCartStatus();
 };
 
 // Chequea si ya está el album añadido
@@ -305,7 +310,7 @@ const confirmDelete = (item) => {
 // Actualiza el array del carrito
 const deleteCartItem = (itemExist) => {
   cart = cart.filter((item) => itemExist.id !== item.id);
-  cartStateCheck();
+  checkCartStatus();
 };
 
 const decItemQty = (itemExist) => {
@@ -321,13 +326,13 @@ const setItemQty = (e) => {
   if (e.target.classList.contains('up')) itemBtnPlus(e.target.dataset.id);
   if (e.target.classList.contains('trash'))
     deleteCartAlbum(e.target.dataset.id);
-  cartStateCheck();
+  checkCartStatus();
 };
 
 // Compra y borrado de carrito
 const resetCart = () => {
   cart = [];
-  cartStateCheck();
+  checkCartStatus();
 };
 
 const confirmCartAction = (confirmMsg, feedbackMsg, type) => {
@@ -377,7 +382,7 @@ const logout = () => {
   saveLoginStorage(loggedUser);
   showFeedback('info', 'Sesion cerrada');
   checkIfLoggedIn();
-  cartStateCheck();
+  checkCartStatus();
 };
 
 // Tracks preview
@@ -533,7 +538,7 @@ const init = () => {
   generateAlbumSection();
   document.addEventListener('DOMContentLoaded', () => {
     checkIfLoggedIn();
-    cartStateCheck();
+    checkCartStatus();
     btnsMenuEvent();
     closeMenus(btnCloseMenu);
     btnLoad.addEventListener('click', showMoreAlbums);
