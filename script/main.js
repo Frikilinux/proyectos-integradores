@@ -181,8 +181,8 @@ const renderItem = (cartItem) => {
           <p class="item-album">${name}</p>
           <p class="item-artist">${artist}</p>
           <p class="item-data">${tracks} Pistas</p>
-          <p class="item-data"><i class="fa-regular fa-calendar"></i>${date}</p>
-          <p class="item-data"><i class="fa-solid fa-record-vinyl"></i>${label}</p>
+          <p class="item-data"><i class="far fa-calendar"></i>${date}</p>
+          <p class="item-data"><i class="fas fa-record-vinyl"></i>${label}</p>
         </div> 
       </div>
       <div class="item-handler">
@@ -433,7 +433,7 @@ class TrackPreview {
   }
 }
 
-// Busca el album y retorna su objeto
+// Busca el álbum y retorna su objeto
 const getAlbumData = (id) => albumsData.find((e) => e.id === id);
 
 // Crea la lista de canciones

@@ -780,6 +780,7 @@ a:active {
 }
 
 .item-data > i {
+  color: var(--fg1);
   text-align: center;
   width: clamp(0.5rem, calc(8px + 0.2vw), 0.65rem);
 }
