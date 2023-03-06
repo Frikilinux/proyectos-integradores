@@ -262,13 +262,19 @@ a:active {
 /* Abums Section */
 
 .genres {
+  position: sticky;
+  top: calc(45px + 1vw);
+  /* bottom: 350px; */
   width: 90%;
   flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  padding: 15px;
+  padding: 10px;
+  z-index: 2;
+  background-color: rgba(117, 144, 118, 0.565);
+  backdrop-filter: blur(10px);
 }
 
 .genre {
@@ -277,13 +283,14 @@ a:active {
   font-weight: 600;
   color: var(--fg);
   border: none;
-  padding: 5px 12px;
+  padding: 3px 10px;
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--bg2);
 }
 
 .albums {
+  position: relative;
   padding: 30px 0;
   width: 100%;
   display: flex;

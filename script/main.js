@@ -154,6 +154,7 @@ const applyFilter = (e) => {
     ? generateAlbumSection()
     : generateAlbumSection(0, e.target.dataset.genre);
   changeFilterState(e);
+  window.location.replace('http://172.16.1.110:5500/#albums');
 };
 
 const albumsLimit = () => {
