@@ -265,15 +265,15 @@ a:active {
   position: sticky;
   top: calc(45px + 1vw);
   /* bottom: 350px; */
-  width: 90%;
+  width: 100%;
   flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  padding: 10px;
-  z-index: 2;
-  background-color: rgba(117, 144, 118, 0.565);
+  gap: 10px;
+  padding: 10px 3%;
+  z-index: 1;
+  background-color: #75907690;
   backdrop-filter: blur(10px);
 }
 
@@ -289,6 +289,11 @@ a:active {
   background-color: var(--bg2);
 }
 
+.genre:hover {
+  color: var(--bg);
+  background-color: var(--orange);
+}
+
 .albums {
   position: relative;
   padding: 30px 0;
@@ -302,8 +307,8 @@ a:active {
 
 .albums__title {
   font-family: 'Montserrat', sans-serif;
-  padding: 10px 0;
-  font-size: 2.5rem;
+  padding: 5px 0;
+  font-size: 2rem;
   color: var(--bg);
   text-align: center;
 }
@@ -948,13 +953,13 @@ a:active {
   position: absolute;
   height: 100%;
   width: 100%;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(5px);
   z-index: -1;
 }
 
 .preview-data {
   padding: 15px;
-  background-color: var(--bg-track);
+  background-color: #2b2d42d0;
   backdrop-filter: blur(10px);
   width: 100%;
   z-index: 2;
@@ -970,7 +975,7 @@ a:active {
   padding: 10px;
   width: 100%;
   /* backdrop-filter: blur(10px); */
-  background-color: var(--bg-track);
+  background-color: #2b2d42e3;
   user-select: none;
 }
 
