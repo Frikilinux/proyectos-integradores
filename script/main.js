@@ -109,8 +109,8 @@ const generateAlbumSection = (index = 0, genre = undefined, size = 6) => {
 // Añade clase hidden al botón "Ver más"
 const toggleBtnLoad = () => {
   albumsController.albumsLimit !== albumsController.nextAlbumsIndex
-    ? btnLoad.classList.remove('hidden')
-    : btnLoad.classList.add('hidden');
+    ? btnLoad.classList.remove('hidden2')
+    : btnLoad.classList.add('hidden2');
 };
 
 // Crea categorías con los géneros
@@ -140,8 +140,8 @@ const changeBtnState = (selectedGenre) => {
 
 // Cambia el estado de los botones de género
 const changeFilterState = (e) => {
-  toggleBtnLoad(e.target.dataset.genre);
   changeBtnState(e.target.dataset.genre);
+  toggleBtnLoad();
 };
 
 // Botones de género
@@ -157,15 +157,16 @@ const applyFilter = (e) => {
   window.location.replace('/#albums');
 };
 
-const albumsLimit = () => {
-  return albumsController.albumsLimit === albumsController.nextAlbumsIndex;
-};
+// const albumsLimit = () => {
+//   return albumsController.albumsLimit === albumsController.nextAlbumsIndex;
+// };
 
 // Ver más
 const showMoreAlbums = () => {
   renderDividedAlbums(albumsController.nextAlbumsIndex);
   albumsController.nextAlbumsIndex++;
-  if (albumsLimit()) btnLoad.classList.add('hidden');
+  toggleBtnLoad()
+  // if (albumsLimit()) btnLoad.classList.add('hidden2');
 };
 
 const showBtnUp = () => {
