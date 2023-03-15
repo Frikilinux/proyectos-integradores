@@ -27,7 +27,7 @@ const btnCloseMenu = document.querySelectorAll('.close-menu');
 const menues = document.querySelectorAll("[data-type='menu']");
 const btnMenues = document.querySelectorAll("[data-type='btnMenu']");
 
-const renderAlbum = (album) => {
+const albumCardTemplate = (album) => {
   const { id, name, artist, totalTracks, price, albumImg, releaseDate, label } =
     album;
   return `
@@ -93,7 +93,7 @@ const divideByGenre = (size, genre) => {
 // Renderizado de albumes
 const renderDividedAlbums = (i = 0) => {
   albumsContainer.innerHTML += albumsController.dividedAlbums[i]
-    .map(renderAlbum)
+    .map(albumCardTemplate)
     .join('');
 };
 
@@ -165,7 +165,7 @@ const applyFilter = (e) => {
 const showMoreAlbums = () => {
   renderDividedAlbums(albumsController.nextAlbumsIndex);
   albumsController.nextAlbumsIndex++;
-  toggleBtnLoad()
+  toggleBtnLoad();
   // if (albumsLimit()) btnLoad.classList.add('hidden2');
 };
 
@@ -176,7 +176,7 @@ const showBtnUp = () => {
 };
 
 // Carrito
-const renderItem = (cartItem) => {
+const cartItemTemplate = (cartItem) => {
   const { id, artist, name, price, img, tracks, quantity, date, label } =
     cartItem;
   return `
@@ -211,7 +211,7 @@ const renderCartItems = () => {
         <p class="empty-cart-msg">Nada para comprar<p>
         <i class="far fa-face-sad-tear"></i>
       `)
-    : (cartItemsContainer.innerHTML = cart.map(renderItem).join(''));
+    : (cartItemsContainer.innerHTML = cart.map(cartItemTemplate).join(''));
 };
 
 const totalItemsPrice = () =>
