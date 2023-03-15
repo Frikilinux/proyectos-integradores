@@ -31,7 +31,7 @@ const renderAlbum = (album) => {
   const { id, name, artist, totalTracks, price, albumImg, releaseDate, label } =
     album;
   return `
-  <div class="albums__release">
+  <div id="${id}" class="albums__release">
     <div class="back-release">
       <div class="format">
         <button data-id="${id}" data-name="previewMenu" data-type="btnMenu" class="btn-show-preview trans-5">Preview<i class="far fa-circle-play fa-beat" data-name="previewMenu" data-id="${id}"></i></button>
