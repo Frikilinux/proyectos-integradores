@@ -157,16 +157,11 @@ const applyFilter = (e) => {
   window.location.replace('/#albums');
 };
 
-// const albumsLimit = () => {
-//   return albumsController.albumsLimit === albumsController.nextAlbumsIndex;
-// };
-
 // Ver más
 const showMoreAlbums = () => {
   renderDividedAlbums(albumsController.nextAlbumsIndex);
   albumsController.nextAlbumsIndex++;
   toggleBtnLoad();
-  // if (albumsLimit()) btnLoad.classList.add('hidden2');
 };
 
 const showBtnUp = () => {
@@ -484,8 +479,7 @@ const showPreview = (e) => {
   if (e.target.dataset.name !== 'previewMenu') {
     return;
   }
-  let id = e.target.dataset.id;
-  createPreviewList(getAlbumData(id));
+  createPreviewList(getAlbumData(e.target.dataset.id));
   toggleMenus(e.target.dataset.name);
 };
 
