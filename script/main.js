@@ -7,7 +7,7 @@ const userNameContainer = document.querySelector('.user-name');
 const btnLoad = document.querySelector('.btn-load');
 const cartBtn = document.querySelector('.cart-label');
 const cartMenu = document.querySelector('.cart');
-const burgerBtn = document.querySelector('.fa-bars');
+const burgerBtn = document.querySelector("[data-name='navMenu']");
 const linksMenu = document.querySelector('.menu');
 const totalPrice = document.querySelector('.total-price');
 const cartItemsQty = document.querySelector('.cart-qty');
@@ -319,10 +319,10 @@ const decItemQty = (itemExist) => {
 };
 
 const setItemQty = (e) => {
-  if (e.target.classList.contains('down')) itemBtnMinus(e.target.dataset.id);
-  if (e.target.classList.contains('up')) itemBtnPlus(e.target.dataset.id);
-  if (e.target.classList.contains('trash'))
-    deleteCartAlbum(e.target.dataset.id);
+  const itemId = e.target.dataset.id;
+  if (e.target.classList.contains('down')) itemBtnMinus(itemId);
+  if (e.target.classList.contains('up')) itemBtnPlus(itemId);
+  if (e.target.classList.contains('trash')) deleteCartAlbum(itemId);
   checkCartStatus();
 };
 
@@ -424,13 +424,11 @@ class TrackPreview {
 
     audioTrack.onplaying = () => {
       div.classList.add('playing');
-      btnPlayPause.classList.add('fa-circle-pause');
-      btnPlayPause.classList.remove('fa-circle-play');
+      btnPlayPause.classList.replace('fa-circle-play', 'fa-circle-pause');
     };
     audioTrack.onpause = () => {
       div.classList.remove('playing');
-      btnPlayPause.classList.add('fa-circle-play');
-      btnPlayPause.classList.remove('fa-circle-pause');
+      btnPlayPause.classList.replace('fa-circle-pause', 'fa-circle-play');
     };
   }
 }
@@ -493,6 +491,13 @@ const hideAllMenus = (dataName) => {
   allSongs.forEach((e) => e.pause());
   overlay.classList.remove('visible2');
   document.body.style.overflowY = 'visible';
+  toggleMenuIcon();
+};
+
+const toggleMenuIcon = () => {
+  linksMenu.classList.contains('show-menu')
+    ? burgerBtn.classList.replace('fa-bars', 'fa-x')
+    : burgerBtn.classList.replace('fa-x', 'fa-bars');
 };
 
 // Muestra u oculta los menus
@@ -506,6 +511,7 @@ const toggleMenus = (name) => {
       (document.body.style.overflowY = 'hidden'))
     : (overlay.classList.remove('visible2'),
       (document.body.style.overflowY = 'visible'));
+  toggleMenuIcon();
 };
 
 // Añade eventos a los botones de menus
@@ -526,6 +532,10 @@ const btnsMenuEvent = () => {
 const closeMenus = (btnCloseMenu) => {
   buttons = [...btnCloseMenu];
   buttons.forEach((e) => e.addEventListener('click', hideAllMenus));
+};
+
+const scapeEvent = () => {
+  document.addEventListener;
 };
 
 // Inicialización como Rodri manda
@@ -551,6 +561,9 @@ const init = () => {
     cartItemsContainer.addEventListener('click', setItemQty);
     cartBtnContainer.addEventListener('click', cartBtnAction);
     logoutBtn.addEventListener('click', logout);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hideAllMenus();
   });
 };
 
