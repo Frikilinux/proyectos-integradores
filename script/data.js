@@ -13,7 +13,7 @@ const albumsData = [
     tracks: [
       {
         url: 'https://p.scdn.co/mp3-preview/c33cd742e073fb03d5eed082cd4ea3f9905fe1e8?cid=774b29d4f13844c495f206cafdad9c86',
-        name: 'Selaocoe: Ibuyile I\'Africa / Africa is Back',
+        name: "Selaocoe: Ibuyile I'Africa / Africa is Back",
         number: 1,
         disc: 1,
       },
@@ -15819,4 +15819,4 @@ const albumsData = [
       },
     ],
   },
-];
+]
