@@ -1,13 +1,11 @@
 export const storage = {
   userDb: JSON.parse(localStorage.getItem('userDb')) || [],
   loggedUser: JSON.parse(localStorage.getItem('loggedUser')) || {},
-  // cart: getUserCart(),
 }
 
-export let { loggedUser, userDb } = storage
+console.log(storage.loggedUser, 'LOGGED USER')
 
-// let userDb = JSON.parse(localStorage.getItem('userDb')) || []
-// let loggedUser = JSON.parse(localStorage.getItem('loggedUser')) || {}
+export let { loggedUser, userDb, currentUserCart } = storage
 
 // Crea un nuevo usuario
 export const saveNewUser = ({ name, email, pass, eula }) => {
@@ -28,7 +26,9 @@ export const saveUserDbStorage = () => {
   localStorage.setItem('userDb', JSON.stringify(userDb))
 }
 
-export const saveLoginStorage = (user = '{}') => {
+export const saveLoginStorage = (user) => {
+  loggedUser = user
+  console.log(user, 'USER FROM UTILS')
   localStorage.setItem('loggedUser', JSON.stringify(user))
 }
 
@@ -38,6 +38,6 @@ export const updateUserDb = () => {
   })
 }
 
-export const updateCartOfLoggedUser = ({ cart }) => {
+export const updateCartOfLoggedUser = (cart) => {
   loggedUser = { ...loggedUser, cart: [...cart] }
 }

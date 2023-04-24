@@ -17,6 +17,7 @@ const login = (e) => {
     return
   }
   if (!isMailInDB(userDb, inputEmail.value)) {
+    console.log(userDb);
     showFeedback('xmark', 'Usuario no encontrado')
     return
   }

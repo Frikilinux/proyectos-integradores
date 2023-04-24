@@ -7,6 +7,7 @@ import {
   shuffleAlbums,
 } from './Util.js'
 import {
+  // initStorage,
   loggedUser,
   saveLoginStorage,
   saveUserDbStorage,
@@ -219,7 +220,8 @@ const logout = () => {
   cartMenu.classList.remove('show-menu')
   updateUserDb()
   saveUserDbStorage()
-  saveLoginStorage()
+  saveLoginStorage({})
+  console.log(loggedUser, 'LOGGED USER FROM MAIN');
   showFeedback('info', 'Sesion cerrada')
   checkIfLoggedIn()
   resetCart()
@@ -408,6 +410,7 @@ const init = () => {
     logoutBtn.addEventListener('click', logout)
     document.addEventListener('keydown', escKeyHandler)
   })
+  // initStorage()
   initCart()
 }
 

@@ -51,13 +51,12 @@ export const isUserPass = (userDb, mail, pass) => {
 }
 
 // Chequea si un objeto está vacío
-export const isObjectEmpty = (object) => Object.keys(JSON.parse(localStorage.getItem('loggedUser'))).length === 0
+export const isObjectEmpty = (object) => Object.keys(object).length === 0
 
 // Trayendo cart del usuario
 export const getUserCart = () => {
-  return isObjectEmpty(storage.loggedUser) ? [] : storage.loggedUser.cart
+  return isObjectEmpty(loggedUser) ? [] : loggedUser.cart
 }
-
 
 // Esto puede ir en data.js <===
 export const albumsController = {
@@ -66,7 +65,6 @@ export const albumsController = {
   albumsLimit: 0,
   genreList: getGenres(albumsData),
 }
-
 
 export const notLoggedIn = () => {
   showFeedback(

@@ -12,15 +12,6 @@ const cartBtn = document.querySelector('.cart-label')
 const totalPrice = document.querySelector('.total-price')
 const cartItemsQty = document.querySelector('.cart-qty')
 
-// Trayendo cart del usuario
-// const getUserCart = () => {
-//   return isObjectEmpty(JSON.parse(localStorage.getItem('loggedUser')))
-//     ? []
-//     : JSON.parse(localStorage.getItem('loggedUser')).cart
-// }
-
-// let cart = getUserCart()
-
 let cart = JSON.parse(localStorage.getItem('loggedUser')).cart || []
 
 // Carrito
@@ -97,7 +88,7 @@ const disableBtns = (btns) => {
 // Chequeo del carrito para cada acción
 export const checkCartStatus = () => {
   if (!isObjectEmpty(loggedUser)) {
-    updateCartOfLoggedUser({ cart })
+    updateCartOfLoggedUser(cart)
     saveLoginStorage(loggedUser)
   }
   renderCartItems()
