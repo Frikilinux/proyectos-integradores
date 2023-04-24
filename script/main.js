@@ -1,21 +1,22 @@
 import { albumsData } from './Data.js'
 import {
   albumsController,
+  btnsMenuEvent,
+  closeMenus,
+  escKeyHandler,
+  hideAllMenus,
   isObjectEmpty,
-  notLoggedIn,
   showFeedback,
   shuffleAlbums,
 } from './Util.js'
 import {
-  // initStorage,
   loggedUser,
   saveLoginStorage,
   saveUserDbStorage,
-  storage,
-  updateCartOfLoggedUser,
   updateUserDb,
 } from './Storage.js'
-import { addToCart, checkCartStatus, initCart, resetCart } from './Cart.js'
+import { addToCart, initCart, resetCart } from './Cart.js'
+import { initPreview, showPreview } from './Preview.js'
 
 const header = document.querySelector('.header')
 const albumsContainer = document.querySelector('.container--albums')
@@ -23,20 +24,12 @@ const genreContainer = document.querySelector('.genres')
 const userNameContainer = document.querySelector('.user-name')
 const btnLoad = document.querySelector('.btn-load')
 const cartMenu = document.querySelector('.cart')
-const burgerBtn = document.querySelector("[data-name='navMenu']")
-const linksMenu = document.querySelector('.menu')
 const userBtns = document.querySelector('.user')
 const userLoginName = document.querySelector('.login-user')
 const logoutBtn = document.querySelector('.logout')
 const btnUp = document.querySelector('.btn--up')
-const trackPreview = document.querySelector('.track-preview')
-const trackPreviewContainer = document.querySelector('.track-preview-container')
-const previewAlbumName = document.querySelector('.preview-album')
-const previewArtistName = document.querySelector('.preview-artist')
-const previewbtnBuy = document.querySelector('.preview-buy')
 const overlay = document.querySelector('.overlay')
 const btnCloseMenu = document.querySelectorAll('.close-menu')
-const menues = document.querySelectorAll("[data-type='menu']")
 const btnMenues = document.querySelectorAll("[data-type='btnMenu']")
 
 const albumCardTemplate = (album) => {
@@ -221,169 +214,9 @@ const logout = () => {
   updateUserDb()
   saveUserDbStorage()
   saveLoginStorage({})
-  console.log(loggedUser, 'LOGGED USER FROM MAIN');
   showFeedback('info', 'Sesion cerrada')
   checkIfLoggedIn()
   resetCart()
-}
-
-// Tracks preview
-
-// Constructor
-class TrackPreview {
-  constructor(name, url, img) {
-    this.createTrackPreview(name, url, img)
-  }
-
-  createTrackPreview(name, url, trackNumber) {
-    const div = document.createElement('div')
-    div.classList.add('track', 'trans-5')
-
-    const trackName = document.createElement('p')
-    trackName.classList.add('track-preview-name')
-    trackName.textContent = `${trackNumber.toString().padStart(2, 0)} | ${name}`
-
-    const btnPlayPause = document.createElement('i')
-    btnPlayPause.classList.add('play-pause', 'fa-regular', 'fa-circle-play')
-
-    const audioTrack = document.createElement('audio')
-    audioTrack.classList.add('song')
-    audioTrack.src = url
-
-    trackPreviewContainer.append(div)
-    div.append(btnPlayPause, trackName, audioTrack)
-
-    const togglePlay = () => {
-      const allSongs = [...document.querySelectorAll('.song')]
-      if (audioTrack.paused) {
-        allSongs.forEach((e) => {
-          e.pause()((e.currentTime = 0))
-        })
-        audioTrack.play()
-      } else {
-        audioTrack.pause()
-      }
-    }
-
-    // btnPlayPause.addEventListener('click', togglePlay);
-    div.addEventListener('click', togglePlay)
-
-    audioTrack.onplaying = () => {
-      div.classList.add('playing')
-      btnPlayPause.classList.replace('fa-circle-play', 'fa-circle-pause')
-    }
-    audioTrack.onpause = () => {
-      div.classList.remove('playing')
-      btnPlayPause.classList.replace('fa-circle-pause', 'fa-circle-play')
-    }
-  }
-}
-
-// Busca el álbum y retorna su objeto
-const getAlbumData = (id) => albumsData.find((e) => e.id === id)
-
-// Crea la lista de canciones
-const createPreviewList = (album) => {
-  const {
-    id,
-    artist,
-    name,
-    price,
-    albumImg,
-    totalTracks,
-    releaseDate,
-    label,
-    tracks,
-  } = album
-  trackPreview.style.background = `url(${albumImg}) no-repeat center/cover`
-  previewAlbumName.textContent = name
-  previewArtistName.textContent = artist
-  trackPreviewContainer.textContent = ''
-  tracks.forEach((track) => {
-    new TrackPreview(track.name, track.url, track.number)
-  })
-  previewbtnBuy.innerHTML = `
-    <button
-      class="btn--buy btn"
-      data-id="${id}"
-      data-artist="${artist}"
-      data-name="${name}"
-      data-price="${price}"
-      data-img="${albumImg}"
-      data-tracks="${totalTracks}"
-      data-date="${releaseDate}"
-      data-label="${label}">
-      Comprar
-    </button>
-  `
-}
-
-// Genera la lista de canciones y abre el menu lateral
-const showPreview = (e) => {
-  if (e.target.dataset.name !== 'previewMenu') {
-    return
-  }
-  createPreviewList(getAlbumData(e.target.dataset.id))
-  toggleMenus(e.target.dataset.name)
-}
-
-// Oculta todos los menus
-const hideAllMenus = (dataName) => {
-  const allSongs = [...document.querySelectorAll('.song')]
-  const menus = [...menues]
-  menus.forEach((e) => {
-    if (e.dataset.menu !== dataName) e.classList.remove('show-menu')
-  })
-  allSongs.forEach((e) => e.pause())
-  overlay.classList.remove('visible2')
-  document.body.style.overflowY = 'visible'
-  toggleMenuIcon()
-}
-
-const toggleMenuIcon = () => {
-  linksMenu.classList.contains('show-menu')
-    ? burgerBtn.classList.replace('fa-bars', 'fa-x')
-    : burgerBtn.classList.replace('fa-x', 'fa-bars')
-}
-
-// Muestra u oculta los menus
-const toggleMenus = (name) => {
-  const menu = document.querySelector(`[data-menu="${name}"]`)
-  hideAllMenus(name)
-  menu.classList.toggle('show-menu')
-  const menus = [...menues]
-  if (menus.some((e) => e.classList.contains('show-menu'))) {
-    overlay.classList.add('visible2')
-    document.body.style.overflowY = 'hidden'
-  } else {
-    overlay.classList.remove('visible2')
-    document.body.style.overflowY = 'visible'
-  }
-  toggleMenuIcon()
-}
-
-// Añade eventos a los botones de menus
-const btnsMenuEvent = () => {
-  const btnsMenu = [...btnMenues]
-  btnsMenu.forEach((e) => {
-    e.addEventListener('click', (e) => {
-      if (e.target.dataset.name === 'cartMenu' && isObjectEmpty(loggedUser)) {
-        notLoggedIn()
-        return
-      }
-      toggleMenus(e.target.dataset.name)
-    })
-  })
-}
-
-// Cierra los menus
-const closeMenus = (btnCloseMenu) => {
-  const buttons = [...btnCloseMenu]
-  buttons.forEach((e) => e.addEventListener('click', hideAllMenus))
-}
-
-const escKeyHandler = (e) => {
-  if (e.key === 'Escape') hideAllMenus()
 }
 
 // Inicialización como Rodri manda
@@ -392,7 +225,7 @@ const init = () => {
   generateAlbumSection()
   document.addEventListener('DOMContentLoaded', () => {
     checkIfLoggedIn()
-    btnsMenuEvent()
+    btnsMenuEvent(btnMenues)
     closeMenus(btnCloseMenu)
     btnLoad.addEventListener('click', showMoreAlbums)
     window.addEventListener('scroll', () => {
@@ -406,12 +239,11 @@ const init = () => {
       addToCart(e)
       showPreview(e)
     })
-    previewbtnBuy.addEventListener('click', addToCart)
     logoutBtn.addEventListener('click', logout)
     document.addEventListener('keydown', escKeyHandler)
+    initPreview()
+    initCart()
   })
-  // initStorage()
-  initCart()
 }
 
 init()

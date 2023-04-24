@@ -3,8 +3,6 @@ export const storage = {
   loggedUser: JSON.parse(localStorage.getItem('loggedUser')) || {},
 }
 
-console.log(storage.loggedUser, 'LOGGED USER')
-
 export let { loggedUser, userDb, currentUserCart } = storage
 
 // Crea un nuevo usuario
@@ -28,7 +26,6 @@ export const saveUserDbStorage = () => {
 
 export const saveLoginStorage = (user) => {
   loggedUser = user
-  console.log(user, 'USER FROM UTILS')
   localStorage.setItem('loggedUser', JSON.stringify(user))
 }
 

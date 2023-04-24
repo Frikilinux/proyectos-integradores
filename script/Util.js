@@ -1,5 +1,10 @@
 import { albumsData } from './Data.js'
-import { loggedUser, storage } from './Storage.js'
+import { loggedUser } from './Storage.js'
+
+const burgerBtn = document.querySelector("[data-name='navMenu']")
+const linksMenu = document.querySelector('.menu')
+const menues = document.querySelectorAll("[data-type='menu']")
+const overlay = document.querySelector('.overlay')
 
 // Desordena los albumes para que sea más divertido ...
 export const shuffleAlbums = (arr) => {
@@ -33,7 +38,7 @@ export const showFeedback = (type, msg, time = 1500) => {
 
 // Chequea si el email es válido
 export const isEmailValid = (email) => {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return regex.test(email)
 }
 
@@ -72,4 +77,63 @@ export const notLoggedIn = () => {
     'Por favor <a href="./pages/login.html" class="modal-login menu__link trans-5">inicia sesión</a> o <a href="./pages/register.html" class="modal-login menu__link trans-5">registrate</a>',
     4000
   )
+}
+
+// Oculta todos los menus
+export const hideAllMenus = (dataName) => {
+  const allSongs = [...document.querySelectorAll('.song')]
+  const menus = [...menues]
+  menus.forEach((e) => {
+    if (e.dataset.menu !== dataName) e.classList.remove('show-menu')
+  })
+  allSongs.forEach((e) => e.pause())
+  overlay.classList.remove('visible2')
+  document.body.style.overflowY = 'visible'
+  toggleMenuIcon()
+}
+
+const toggleMenuIcon = () => {
+  linksMenu.classList.contains('show-menu')
+    ? burgerBtn.classList.replace('fa-bars', 'fa-x')
+    : burgerBtn.classList.replace('fa-x', 'fa-bars')
+}
+
+// Muestra u oculta los menus
+export const toggleMenus = (name) => {
+  const menu = document.querySelector(`[data-menu="${name}"]`)
+  hideAllMenus(name)
+  menu.classList.toggle('show-menu')
+  const menus = [...menues]
+  if (menus.some((e) => e.classList.contains('show-menu'))) {
+    overlay.classList.add('visible2')
+    document.body.style.overflowY = 'hidden'
+  } else {
+    overlay.classList.remove('visible2')
+    document.body.style.overflowY = 'visible'
+  }
+  toggleMenuIcon()
+}
+
+// Añade eventos a los botones de menus
+export const btnsMenuEvent = (btnMenues) => {
+  const btnsMenu = [...btnMenues]
+  btnsMenu.forEach((e) => {
+    e.addEventListener('click', (e) => {
+      if (e.target.dataset.name === 'cartMenu' && isObjectEmpty(loggedUser)) {
+        notLoggedIn()
+        return
+      }
+      toggleMenus(e.target.dataset.name)
+    })
+  })
+}
+
+// Cierra los menus
+export const closeMenus = (btnCloseMenu) => {
+  const buttons = [...btnCloseMenu]
+  buttons.forEach((e) => e.addEventListener('click', hideAllMenus))
+}
+
+export const escKeyHandler = (e) => {
+  if (e.key === 'Escape') hideAllMenus()
 }
