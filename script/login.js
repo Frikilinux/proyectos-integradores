@@ -1,4 +1,6 @@
-const registerBtn = document.getElementById('send')
+import { saveLoginStorage, userDb } from "./Storage.js"
+import { isEmailValid, isMailInDB, isObjectEmpty, isUserPass, showFeedback } from "./Util.js"
+
 const formLogin = document.querySelector('.form-login')
 const inputEmail = document.getElementById('mail')
 const inputPass = document.getElementById('pass')
@@ -14,7 +16,7 @@ const login = (e) => {
     showFeedback('xmark', 'El email no es válido')
     return
   }
-  if (!isMailInDd(userDb, inputEmail.value)) {
+  if (!isMailInDB(userDb, inputEmail.value)) {
     showFeedback('xmark', 'Usuario no encontrado')
     return
   }

@@ -1,4 +1,4 @@
-const albumsData = [
+export const albumsData = [
   {
     id: '6IYAr9pzGQJ2c9I5ZWuYEb',
     name: 'Where is Home / Hae ke Kae',
