@@ -4,6 +4,7 @@ import {
   saveLoginStorage,
   updateCartOfLoggedUser,
 } from './Storage.js'
+import { cartItemTemplate } from './Templates.js'
 
 const cartItemsContainer = document.querySelector('.cart-container')
 const cartBtnContainer = document.querySelector('.cart-btns')
@@ -15,42 +16,6 @@ const cartItemsQty = document.querySelector('.cart-qty')
 let cart = JSON.parse(localStorage.getItem('loggedUser')).cart || []
 
 // Carrito
-const cartItemTemplate = ({
-  id,
-  artist,
-  name,
-  price,
-  img,
-  tracks,
-  quantity,
-  date,
-  label,
-}) => {
-  return `
-    <div class="cart-item">
-      <div class="item-info">
-        <img src="${img}" alt="Imagen del album" />
-        <div class="album-data">
-          <p class="item-album">${name}</p>
-          <p class="item-artist">${artist}</p>
-          <p class="item-data">${tracks} Pistas</p>
-          <p class="item-data"><i class="far fa-calendar"></i>${date}</p>
-          <p class="item-data"><i class="fas fa-record-vinyl"></i>${label}</p>
-        </div> 
-      </div>
-      <div class="item-handler">
-        <span class="item-price">$ ${price}</span>
-        <div class="quantity-container">
-          <span>Qty</span>
-          <button class="quantity-handler down btn" data-id="${id}"> - </button>
-          <span class="item-quantity"> ${quantity} </span>
-          <button class="quantity-handler up btn" data-id="${id}"> + </button>
-          <i class="trash delete-item fas fa-xmark" data-id="${id}"></i>
-        </div>
-      </div>
-    </div>
-  `
-}
 
 const renderCartItems = () => {
   !cart.length

@@ -1,5 +1,11 @@
-import { saveLoginStorage, userDb } from "./Storage.js"
-import { isEmailValid, isMailInDB, isObjectEmpty, isUserPass, showFeedback } from "./Util.js"
+import { saveLoginStorage, userDb } from './Storage.js'
+import {
+  isEmailValid,
+  isMailInDB,
+  isObjectEmpty,
+  isUserPass,
+  showFeedback,
+} from './Util.js'
 
 const formLogin = document.querySelector('.form-login')
 const inputEmail = document.getElementById('mail')
