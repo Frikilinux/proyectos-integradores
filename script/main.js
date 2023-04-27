@@ -280,6 +280,7 @@ const addAlbum = (e) => {
     sumAddedAlbums(album)
   } else {
     createAlbumItem(album)
+    hideAllMenus()
     showFeedback('check', 'Nuevo album añadido')
   }
   checkCartStatus()
@@ -377,6 +378,7 @@ const cartBtnAction = (e) => {
 
 // Login stuff
 const notLoggedIn = () => {
+  hideAllMenus()
   showFeedback(
     'info',
     'Por favor <a href="./pages/login.html" class="modal-login menu__link trans-5">Accede</a> o <a href="./pages/register.html" class="modal-login menu__link trans-5">Registrate</a>',

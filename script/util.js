@@ -22,7 +22,6 @@ const showFeedback = (type, msg, time = 1500) => {
   const feedbackModal = document.querySelector('.feedback-modal')
   feedbackModal.innerHTML = `<i class="fas fa-circle-${type} modal-icon"></i></i> ${msg}`
   feedbackModal.classList.add(`show-feedback-${type}`)
-  hideAllMenus()
   setTimeout(
     () => feedbackModal.classList.remove(`show-feedback-${type}`),
     time
