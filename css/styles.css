@@ -896,7 +896,7 @@ a:active {
   text-align: center;
   margin: 0 auto;
   top: calc(45px + 1vw);
-  padding: 5px 50px;
+  padding: 5px 10px;
   border-radius: 0px 0 5px 5px;
   position: absolute;
   height: calc(45px + 1vw);
@@ -912,7 +912,7 @@ a:active {
 .modal-login.menu__link {
   font-size: 0.9rem;
   border-radius: 5px;
-  padding: 2px 5px;
+  padding: 5px 10px;
   background-color: var(--red);
   color: var(--fg1);
 }
