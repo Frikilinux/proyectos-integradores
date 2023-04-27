@@ -4,9 +4,12 @@
 
 * Validación de formularios
 * Registro de usuarios
-* DB de usuario en LocalStorage
-* Carrito de compras por usuario guardado en LocalStorage
+* DB de usuarios en LocalStorage
+* Guardado de carrito en LocalStorage
+* Carrito de compras por usuario
 * Modal informativo
 * Paginación de Cards en todas la categorías
+* Preview de canciones
 
-**Nota**: Se necesita estar registrado y legueado para activar el carrito
+**Nota**:
+  Se necesita estar registrado y logueado para activar el carrito

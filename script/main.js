@@ -379,7 +379,7 @@ const cartBtnAction = (e) => {
 const notLoggedIn = () => {
   showFeedback(
     'info',
-    'Por favor <a href="./pages/login.html" class="modal-login menu__link trans-5">Ingresa</a> o <a href="./pages/register.html" class="modal-login menu__link trans-5">Registrate</a>',
+    'Por favor <a href="./pages/login.html" class="modal-login menu__link trans-5">Accede</a> o <a href="./pages/register.html" class="modal-login menu__link trans-5">Registrate</a>',
     4000
   )
 }
